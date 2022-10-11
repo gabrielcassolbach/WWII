@@ -1,15 +1,20 @@
 #pragma once
-// Perguntar para o monitor. -> namespace.
 
-class Entidade
+namespace Entidades
 {
-protected:
-    int x, y;
 
-public:
-    Entidade();
-    ~Entidade();
+    class Entidade
+    {
+    protected:
+        int x, y;
 
-    virtual void executar() const = 0; /*Pedir!*/
-    //virtual void renderizar();
-};
+    public:
+        Entidade();
+        ~Entidade();
+
+        virtual void executar() const = 0; /*Pedir!*/
+   
+        //virtual void renderizar();
+    };
+
+}

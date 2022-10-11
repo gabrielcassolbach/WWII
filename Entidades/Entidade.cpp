@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "Entidade.h"
 
-Entidade::Entidade()
+namespace Entidades
 {
 
-}
+    Entidade::Entidade()
+    {
 
-Entidade::~Entidade()
-{
+    }
+
+    Entidade::~Entidade()
+    {
+
+    }
 
 }
