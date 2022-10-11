@@ -1,14 +1,13 @@
 #pragma once
-#include "Character.h"
+#include "Character.hpp"
 
 namespace Entities
 {
     namespace Characters
     {
-        class Enemy : public Character
+        class Player : public Character
         {
         protected:
-        
         public:
         };
     }

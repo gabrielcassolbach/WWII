@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Enemy.h"
+#include "Enemy.hpp"
 
 namespace Entities
 {

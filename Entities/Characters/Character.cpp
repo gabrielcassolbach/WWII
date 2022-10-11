@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Character.h"
+#include "Character.hpp"
 
 namespace Entities
 {
