@@ -1,13 +1,13 @@
 #pragma once
 
-class Ente
+class Object
 {
 protected:
     int id;
 
 public:
-    Ente();
-    ~Ente();
+    Object();
+    ~Object();
 
     virtual void executar() const = 0; /*pedir const.*/
     
