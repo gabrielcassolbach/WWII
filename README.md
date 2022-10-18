@@ -3,28 +3,30 @@
 // Início do jogo:
 ----------------------------------------------------------------------------------------
 
-. Passos gerais:
+. Passos iniciais:
 
-    -> Criar loop do jogo.
-        - Exemplo da SFML -> frame por segundo -> 1 atualização a cada 1/60 segundos.
-        - o loop vai estar dentro de game.executar();
-        
-    -> Fazer a movimentação dos objetos dentro do loop do jogo.
+    Ideia geral: criar uma estrutura geral do jogo e a partir dela ir adicionando os requisitos
+    e tornando o projeto mais complexo.
 
-    -> Criar a textura de um bloco.
+    Passo 1: criar loop do jogo.
+        1.1: o loop vai estar dentro da estrutura (nomedojogo).executar();
+        1.2: será feito com SFML;
+        1.3: atualização da tela será dada em 1 frame por segundo, 1 atualização a cada 1/60 segundos.
 
-    -> Fazer colisão entre objetos. (utilizar blocos -> mais fácil) 
+    Passo 2: criar uma entidade e fazer ela aparecer na tela (mais simples possível -> bloco).
+        2.2: colocar um identificador na entidade.
 
-    -> Criar os diferentes tipos de objetos que estão na tela
+    Passo 3: fazer a movimentação do objeto dentro do loop do jogo;
+
+    Passo 4: fazer colisão entre objetos. (utilizar blocos -> mais fácil) 
+
+    Passo 5: criar os diferentes tipos de objetos que estão na tela
         (obstáculos, personagens, inimigos....)
 
-    -> Criar lista de entes (classe mais abstrata.)
-        -> Percorrer a lista e aplicar o polimorfismo..-> personagens, ....
+    Passo 6: criar lista de entes (classe mais abstrata.)
+        6.1: Percorrer a lista e aplicar o polimorfismo..-> personagens, ....
 
-    -> Criar as fases
+    Passo 7: criar as fases
 
-    -> Criar Menu.
-
-    -> Adicionar texturas -> último passo, se der tempo.
-
+    Passo 8: criar Menu.
 --------------------------------------------------------------------------------------
