@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphic_Manager.cpp"
+#include "Graphic_Manager.hpp"
 
 
 class Game
