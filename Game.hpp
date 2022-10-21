@@ -1,11 +1,13 @@
 #pragma once
 #include "Graphic_Manager.hpp"
 
+class Character;
 
 class Game
 {
     private:
-        // Objects List.
+        // Characters List.
+        Character* pBloco;
         Graphic_Manager* pGM;
         
     public:

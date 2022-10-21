@@ -19,3 +19,8 @@ void Character::imprimir_se(Graphic_Manager *pGM)
         se eu não derivasse nada da classe -> static_cast
     */
 }
+
+void Character::atualizar_se()
+{
+    
+}

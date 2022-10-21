@@ -11,4 +11,5 @@ public:
     Character();
     ~Character();
     void imprimir_se(Graphic_Manager *pGM);
+    void atualizar_se();
 };
