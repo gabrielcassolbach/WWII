@@ -6,6 +6,9 @@ are changed infrequently*/
 #pragma once
 #include <stdio.h>
 
+// Biblioteca Gráfica
+#include <SFML/Graphics.hpp>
+
 // TODO: reference additional headers your program requires here
 #include <string.h>
 #include <stdio.h>
