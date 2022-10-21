@@ -5,8 +5,8 @@
 
 // Percorrer uma lista de entidades.
 
-Game::Game() 
-{
+Game::Game()  
+{   
     // Percorrer uma lista de entidades.
     pBloco =  new Character();
     pGM = Graphic_Manager::getGraphic_Manager();
@@ -20,11 +20,11 @@ Game::~Game()
 
 void Game::executar() 
 {
+
     while((pGM ->getWindow()) -> isOpen()){
         
 
         pBloco -> atualizar_se();
-        pBloco -> imprimir_se(pGM);
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -33,6 +33,7 @@ void Game::executar()
                 (pGM ->getWindow())->close();
         }
         (pGM ->getWindow()) -> clear();
+        pBloco -> imprimir_se(pGM);
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.

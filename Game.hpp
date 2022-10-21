@@ -9,6 +9,7 @@ class Game
         // Characters List.
         Character* pBloco;
         Graphic_Manager* pGM;
+        sf::RenderWindow *window;
         
     public:
         Game();
