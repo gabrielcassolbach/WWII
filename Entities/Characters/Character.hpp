@@ -1,5 +1,5 @@
 #pragma once
-#include "Entity.hpp"
+#include "../Entity.hpp"
 
 class Character : public Entity
 {

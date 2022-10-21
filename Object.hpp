@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.hpp"
 
-#include "Graphic_Manager.hpp"
+#include "Managers/Graphic_Manager.hpp"
 
 class Object
 {

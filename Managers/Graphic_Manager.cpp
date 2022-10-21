@@ -1,5 +1,5 @@
 #include "Graphic_Manager.hpp"
-#include "Object.hpp"
+#include "../Object.hpp"
 
 
 void Graphic_Manager::draw(Object *pObject)

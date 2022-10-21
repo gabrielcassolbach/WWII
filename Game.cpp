@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "Character.hpp"
+#include "Entities/Characters/Character.hpp"
 // CLOCK -> gerencia a atualização da tela: fps.
     // a cada 1/60 segundos chamar a função atualizar posição();
 

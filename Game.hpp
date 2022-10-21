@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphic_Manager.hpp"
+#include "Managers/Graphic_Manager.hpp"
 
 class Character;
 
