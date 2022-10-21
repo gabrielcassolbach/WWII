@@ -7,7 +7,7 @@ are changed infrequently*/
 #include <stdio.h>
 
 // Biblioteca Gráfica
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp> 
 
 // TODO: reference additional headers your program requires here
 #include <string.h>

@@ -7,7 +7,7 @@
 Game::Game() 
 {
     // Percorrer uma lista de entidades.
-    pGM = Managers::Graphic_Manager::getGraphic_Manager();
+    pGM = Graphic_Manager::getGraphic_Manager();
 }
 
 Game::~Game() 

@@ -1,5 +1,14 @@
 #include "Graphic_Manager.hpp"
+#include "Object.hpp"
 
-Managers::Graphic_Manager* Managers::Graphic_Manager::instance = nullptr;
+
+void Graphic_Manager::draw(Object *pObject)
+{
+    window->draw(pObject->getRectangleShape());
+
+}
+
+
+Graphic_Manager* Graphic_Manager::instance = nullptr;
 
 

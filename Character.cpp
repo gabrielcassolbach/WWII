@@ -1,8 +1,6 @@
 #include "Character.hpp"
-using namespace Entities;
 
-Character::Character(int vida = 0, int dano = 0) : 
-Entity()
+Character::Character()
 {
     
 }
@@ -12,7 +10,7 @@ Character::~Character()
 
 }
 
-void Character::imprimir_se(Managers::Graphic_Manager *pGM)
+void Character::imprimir_se(Graphic_Manager *pGM)
 {
     pGM -> draw(dynamic_cast<Object*>(this)); 
     // observação:

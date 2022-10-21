@@ -1,11 +1,12 @@
 #pragma once
-//#include "../Graphic_Manager.hpp"
+#include "Graphic_Manager.cpp"
+
 
 class Game
 {
     private:
         // Objects List.
-        Managers::Graphic_Manager* pGM;
+        Graphic_Manager* pGM;
         
     public:
         Game();
