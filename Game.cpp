@@ -1,30 +1,24 @@
 #include "Game.hpp"
 #include "Entities/Characters/Character.hpp"
-// CLOCK -> gerencia a atualização da tela: fps.
-    // a cada 1/60 segundos chamar a função atualizar posição();
-
-// Percorrer uma lista de entidades.
-
-Game::Game()  
-{   
-    // Percorrer uma lista de entidades.
-    pBloco =  new Character();
+/*CONSTRUCTORS & DESTRUCTORS*/
+Game::Game()  {   
+    pBloco =  new Player();
+    pBloco->init();
     pGM = Graphic_Manager::getGraphic_Manager();
 }
-
 Game::~Game() 
 {
-    // deletar a lista de Entidades.
     if(pBloco) delete pBloco;
+    pGM=NULL;
 }
 
-void Game::executar() 
-{
-
+/*METHODS*/
+void Game::executar() {
+//A comentar posteriormente
     while((pGM ->getWindow()) -> isOpen()){
         
 
-        pBloco -> atualizar_se();
+        pBloco -> update();
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -33,7 +27,7 @@ void Game::executar()
                 (pGM ->getWindow())->close();
         }
         (pGM ->getWindow()) -> clear();
-        pBloco -> imprimir_se(pGM);
+        pBloco -> drawThis(pGM);
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.

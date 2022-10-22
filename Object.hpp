@@ -7,11 +7,16 @@ class Object
 {
     protected: 
         Graphic_Manager* pGM;
-        sf::RectangleShape retangulo;
 
     public:
+    /*CONSTRUCTORS & DESTRUCTORS*/
         Object();
         ~Object();
-        sf::RectangleShape getRectangleShape();
-        virtual void imprimir_se(Graphic_Manager* pGM) = 0;
+        virtual void init () = 0;
+
+    /*SETTERS & GETTERS*/
+        virtual sf::RectangleShape getRectangleShape() = 0;
+
+    /*METHODS*/
+        virtual void drawThis(Graphic_Manager* pGM) = 0;
 };

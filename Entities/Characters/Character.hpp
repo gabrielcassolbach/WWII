@@ -1,15 +1,24 @@
 #pragma once
 #include "../Entity.hpp"
 
+
 class Character : public Entity
+/*Classe que cria personagens*/
 {
-private:
-    int vida;
-    int dano;
+protected:
+    int health;
+    int damage;
 
 public:
+/*CONSTRUCTORS & DESTRUCTORS*/
     Character();
     ~Character();
-    void imprimir_se(Graphic_Manager *pGM);
-    void atualizar_se();
+    void init () = 0; //Função que inicializa os retangulos
+
+/*SETTERS & GETTERS*/
+    virtual sf::RectangleShape getRectangleShape() = 0;
+
+/*METHODS*/
+    void drawThis(Graphic_Manager *pGM);
+    void update();
 };

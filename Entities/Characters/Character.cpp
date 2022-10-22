@@ -1,26 +1,27 @@
 #include "Character.hpp"
 
+/*CONSTRUCTORS & DESTRUCTORS*/
 Character::Character()
-{
-    
-}
+{  
 
+}
 Character::~Character()
 {
 
 }
 
-void Character::imprimir_se(Graphic_Manager *pGM)
-{
-    pGM -> draw(dynamic_cast<Object*>(this)); 
-    // observação:
-    /*
-        por causa do polimorfismo, é necessário o dynamic cast.
-        se eu não derivasse nada da classe -> static_cast
-    */
-}
+/*SETTERS & GETTERS*/
 
-void Character::atualizar_se()
+/*METHODS*/
+void Character::drawThis(Graphic_Manager *pGM)
+{
+/*Função que desenha o objeto atual na tela
+- Proveniente da função abstrata do "objeto".
+- Chama uma função mais específica que designa a "tela" na qual o desenho será feito
+*/
+    pGM -> draw(dynamic_cast<Object*>(this)); 
+}
+void Character::update()
 {
     
 }
