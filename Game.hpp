@@ -10,6 +10,7 @@ class Game
     private:
         Player* pBloco;
         Player* pBloco2;
+        Player* pBloco3;
         Graphic_Manager* pGM;
         
     public:

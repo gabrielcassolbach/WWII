@@ -35,3 +35,12 @@ void Player::init (){
     retangulo.setFillColor(sf::Color::Blue);
     retangulo.setPosition(sf::Vector2f(x, y));
 }
+void Player::update(){
+/*Função que atualiza as posições e velocidades de um objeto
+- Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.
+- Determina a nova posição do retângulo
+*/ 
+    x+=velocity_x;
+    y+=velocity_y;
+    retangulo.setPosition(sf::Vector2f(x, y));
+}

@@ -26,9 +26,3 @@ void Character::drawThis(Graphic_Manager *pGM)
 */
     pGM -> draw(dynamic_cast<Object*>(this)); 
 }
-void Character::update()
-{
-/*Função que atualiza as posições e velocidades de um objeto
-- Feita futuramente.
-*/ 
-}

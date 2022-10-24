@@ -15,5 +15,6 @@ public:
     sf::RectangleShape getRectangleShape();
 
 /*METHODS*/
+    void update ();
 
 };

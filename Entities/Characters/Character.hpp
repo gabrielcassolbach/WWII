@@ -20,5 +20,5 @@ public:
 
 /*METHODS*/
     void drawThis(Graphic_Manager *pGM);
-    void update();
+    void update()=0;
 };
