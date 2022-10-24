@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "Entities/Characters/Character.hpp"
+
 /*CONSTRUCTORS & DESTRUCTORS*/
 Game::Game() {  
 /*Construtora da classe Game
