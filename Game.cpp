@@ -36,7 +36,6 @@ void Game::exec() {
 //A comentar posteriormente
     while((pGM ->getWindow()) -> isOpen()){
         
-
         pBloco->update();
         pBloco2->update();
         pBloco3->update();
