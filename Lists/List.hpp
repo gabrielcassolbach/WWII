@@ -1,4 +1,4 @@
-// CLASSE TEMPLATE
+// TEMPLATE CLASS
 #pragma once
 #include <iostream>
 using namespace std;
@@ -15,13 +15,13 @@ private:
         {
             nextElement = NULL;
             prevElement = NULL;
-            valorCorrespondente = NULL;
+            Value = NULL;
         }
         ~Element()
         {
             nextElement = NULL;
             prevElement = NULL;
-            valorCorrespondente = NULL;
+            Value = NULL;
         }
 
         /*SETTERS & GETTERS*/
@@ -41,20 +41,20 @@ private:
         {
             return nextElement;
         }
-        void setValorCorrespondente(TIPO *c)
+        void setValue(TIPO *c)
         {
-            valorCorrespondente = c;
+            Value = c;
         }
-        TIPO *getValorCorrespondente()
+        TIPO *getValue()
         {
-            return valorCorrespondente;
+            return Value;
         }
 
         /*METHODS*/
     private:
         Element *nextElement;
         Element *prevElement;
-        TIPO *valorCorrespondente;
+        TIPO *Value;
     };
     Element *firstElement;
     Element *currentElement;
@@ -98,15 +98,16 @@ void List<TIPO>::setFirstElement(Element *f)
 }
 
 template <class TIPO>
-Element* List<TIPO>::getFirstElement()
-{
-    return firstElement;
-}
-
-template <class TIPO>
 void List<TIPO>::setCurrentElement(Element *c)
 {
     currentElement = c;
+}
+
+
+template <class TIPO>
+Element* List<TIPO>::getFirstElement()
+{
+    return firstElement;
 }
 
 template <class TIPO>
@@ -130,11 +131,13 @@ void List<TIPO>::clear()
         it = aux;
     }
 }
+
 template <class TIPO>
-void List<TIPO>::includeElement(TIPO *n)
+void List<TIPO>::includeElement(List<TIPO>::Element *n)
 {
     Element *newEl = NULL;
-    newEl->setValorCorrespondente(n);
+    newEl->setValue(n);
+
     if (currentElement != NULL)
         currentElement->setNextElement(newEl);
     else
