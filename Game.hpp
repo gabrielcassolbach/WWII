@@ -9,6 +9,7 @@ class Game
 {
     private:
         Player* pBloco;
+        Player* pBloco2;
         Graphic_Manager* pGM;
         
     public:
@@ -19,5 +20,5 @@ class Game
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-        void executar();
+        void exec();
 };

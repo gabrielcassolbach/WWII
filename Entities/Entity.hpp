@@ -12,7 +12,7 @@ protected:
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
     Entity(double px = 0.0f, double py = 0.0f, double vx = 0.0f, double vy = 0.0f);
-    ~Entity();
+    virtual ~Entity();
     void init() = 0;
 
 /*SETTERS & GETTERS*/

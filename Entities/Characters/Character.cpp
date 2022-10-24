@@ -1,13 +1,18 @@
 #include "Character.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Character::Character()
-{  
-
-}
 Character::~Character()
 {
 
+}
+Character::Character(double px, double py, double vx, double vy):
+Entity(px, py, vx, vy){
+/*Construtora da classe character
+- Posição inicial será (px, py)
+- Posição como default é (0, 0)
+- Velocidade inicial será (vx, vy)
+- Velocidade como default é (0, 0)
+*/
 }
 
 /*SETTERS & GETTERS*/
@@ -23,5 +28,7 @@ void Character::drawThis(Graphic_Manager *pGM)
 }
 void Character::update()
 {
-    
+/*Função que atualiza as posições e velocidades de um objeto
+- Feita futuramente.
+*/ 
 }

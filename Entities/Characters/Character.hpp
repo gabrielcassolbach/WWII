@@ -11,7 +11,7 @@ protected:
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Character();
+    Character (double px=0, double py=0, double vx=0, double vy=0);
     ~Character();
     void init () = 0; //Função que inicializa os retangulos
 

@@ -7,7 +7,7 @@ private:
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Player();
+    Player(double px=0, double py=0, double vx=0, double vy=0);
     ~Player();
     void init ();
 

@@ -6,6 +6,9 @@ Graphic_Manager::Graphic_Manager(){
     window = new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo");
 }
 Graphic_Manager::~Graphic_Manager(){
+/* Destrutora da classe Graphic_Manager
+- Desaloca os objetos alocados dinamicamente
+*/
         if (instance)
             delete instance;
         if (window)
@@ -14,12 +17,15 @@ Graphic_Manager::~Graphic_Manager(){
 
 /*SETTERS & GETTERS*/
 sf::RenderWindow* Graphic_Manager::getWindow(){
+/* Função que retorna a janela em questão
+*/
         return window;
 }
 
 /*METHODS*/
 void Graphic_Manager::draw(Object *pObject){
-/*Função que desenha algo na tela*/
+/*Função que desenha algo na tela
+*/
     window->draw(pObject->getRectangleShape());
 }
 
