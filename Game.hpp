@@ -9,7 +9,8 @@ class Game
 /*Classe responsável pela mecânica geral do jogo*/
 {
     private:
-        EntityList PlayersList;
+        EntityList MovingEntityList;
+        EntityList StaticEntityList;
         Player* pBloco;
         Player* pBloco2;
         Player* pBloco3;
