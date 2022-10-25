@@ -7,8 +7,7 @@ class Entity : public Object
 protected:
     double x, y;
     double velocity_x, velocity_y;
-    double size_x;
-    double size_y;
+    double size_x, size_y;
     sf::RectangleShape retangulo;
 
 public:

@@ -1,7 +1,7 @@
 #pragma once
+#include "Lists/EntityList.hpp"
 #include "Managers/Graphic_Manager.hpp"
 #include "Entities/Characters/Player.hpp"
-#include "Lists/EntityList.hpp"
 
 class Character;
 

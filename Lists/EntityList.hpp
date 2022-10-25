@@ -1,7 +1,7 @@
 #pragma once
 #include "List.hpp"
 #include "../Entities/Entity.hpp"
-#include "../Game.hpp"
+#include "../Object.hpp"
 
 class EntityList{
 private:
