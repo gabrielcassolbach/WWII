@@ -7,11 +7,13 @@ class Entity : public Object
 protected:
     double x, y;
     double velocity_x, velocity_y;
+    double size_x;
+    double size_y;
     sf::RectangleShape retangulo;
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Entity(double px = 0.0f, double py = 0.0f, double vx = 0.0f, double vy = 0.0f);
+    Entity(double px = 0.0f, double py = 0.0f, double vx = 0.0f, double vy = 0.0f, double sx=0.0f, double sy=0.0f);
     virtual ~Entity();
     void init() = 0;
 

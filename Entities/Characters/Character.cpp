@@ -3,15 +3,19 @@
 /*CONSTRUCTORS & DESTRUCTORS*/
 Character::~Character()
 {
+/*Destrutora da classe Character
+*/
 
 }
-Character::Character(double px, double py, double vx, double vy):
-Entity(px, py, vx, vy){
+Character::Character(double px, double py, double vx, double vy, double sx, double sy):
+Entity(px, py, vx, vy, sx, sy){
 /*Construtora da classe character
 - Posição inicial será (px, py)
 - Posição como default é (0, 0)
 - Velocidade inicial será (vx, vy)
 - Velocidade como default é (0, 0)
+- Tamanho inicial definido por (sx, sy)
+- Tamanho inicial default como (0, 0)
 */
 }
 

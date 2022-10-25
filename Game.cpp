@@ -9,20 +9,15 @@ Game::Game() {
 - Faz o ponteiro apontar para a janela que será utilizada.
 - Chama a função de execução.
 */
-    pBloco = new Player(0.0, 0.0, 0.2, 0.0); //(px, py, vx, vy)
-    pBloco2= new Player (800.00-100.00, 0.00, 0.00, 0.00); //Posicao final - tamanh (para o retângulo aparecer por inteiro)
-    pBloco3= new Player (350.00, 0.0, 0.0, 0.0);
+    pBloco = new Player(0.0, 0.0, 0.2, 0.0, 100.0, 100.0); //(px, py, vx, vy, sx, sy)
+    pBloco2= new Player (800.00-100.00, 0.00, 0.00, 0.00, 100.0, 100.0); //Posicao final - tamanho (para o retângulo aparecer por inteiro)
+    pBloco3= new Player (350.00, 0.0, 0.0, 0.0, 100.0, 100.0);
     cout<<"Jogadores criados"<<endl;
 
-    PlayersList.includeCharacter(static_cast<Character*>(pBloco));
-    cout<<"C1 incluido"<<endl;
-    system("pause");
-    PlayersList.includeCharacter(static_cast<Character*>(pBloco2));
-    cout<<"C2 incluido"<<endl;
-    system("pause");
-    PlayersList.includeCharacter(static_cast<Character*>(pBloco3));
-    cout<<"C3 incluido"<<endl;
-    system("pause");
+    PlayersList.includeEntity(static_cast<Entity*>(pBloco));
+    PlayersList.includeEntity(static_cast<Entity*>(pBloco2));
+    PlayersList.includeEntity(static_cast<Entity*>(pBloco3));
+    cout<<"Characters incluidos"<<endl;
 
     PlayersList.initAll();
     pGM = Graphic_Manager::getGraphic_Manager();

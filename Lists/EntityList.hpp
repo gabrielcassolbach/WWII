@@ -1,19 +1,21 @@
+#pragma once
 #include "List.hpp"
-#include "../Entities/Characters/Character.hpp"
+#include "../Entities/Entity.hpp"
+#include "../Game.hpp"
 
-class CharacterList{
+class EntityList{
 private:
-    List<Character*> CharactersList;
+    List<Entity*> EntitiesList;
 
 public:
 /*CONSTRUCTOS & DESTRUCTORS*/
-    CharacterList();
-    ~CharacterList();
+    EntityList();
+    ~EntityList();
 
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-    void includeCharacter(Character* p);
+    void includeEntity(Entity* p);
     void drawAll();
     void updateAll();
     void initAll();

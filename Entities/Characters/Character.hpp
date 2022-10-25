@@ -11,8 +11,8 @@ protected:
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Character (double px=0, double py=0, double vx=0, double vy=0);
-    ~Character();
+    Character (double px=0.0f, double py=0.0f, double vx=0.0f, double vy=0.0f, double sx=0.0f, double sy=0.0f);
+    virtual ~Character();
     void init () = 0; //Função que inicializa os retangulos
 
 /*SETTERS & GETTERS*/
