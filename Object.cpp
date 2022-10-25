@@ -15,3 +15,6 @@ Object::~Object()
 }
 
 /*SETTERS & GETTERS*/
+Graphic_Manager* Object::getGraphicManager() const{
+    return pGM;
+}

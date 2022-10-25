@@ -12,10 +12,19 @@ Game::Game() {
     pBloco = new Player(0.0, 0.0, 0.2, 0.0); //(px, py, vx, vy)
     pBloco2= new Player (800.00-100.00, 0.00, 0.00, 0.00); //Posicao final - tamanh (para o retângulo aparecer por inteiro)
     pBloco3= new Player (350.00, 0.0, 0.0, 0.0);
-    pBloco->init();
-    pBloco2->init();
-    pBloco3->init();
+    cout<<"Jogadores criados"<<endl;
 
+    PlayersList.includeCharacter(static_cast<Character*>(pBloco));
+    cout<<"C1 incluido"<<endl;
+    system("pause");
+    PlayersList.includeCharacter(static_cast<Character*>(pBloco2));
+    cout<<"C2 incluido"<<endl;
+    system("pause");
+    PlayersList.includeCharacter(static_cast<Character*>(pBloco3));
+    cout<<"C3 incluido"<<endl;
+    system("pause");
+
+    PlayersList.initAll();
     pGM = Graphic_Manager::getGraphic_Manager();
     exec();
 }
@@ -25,11 +34,8 @@ Game::~Game()
 - Desaloca todos os objetos alocados dinamicamente
 - Faz o ponteiro da janela apontar para NULL
 */
-    if(pBloco) delete pBloco;
-    if(pBloco2) delete pBloco2;
-    if (pBloco3) delete pBloco3;
+    PlayersList.destroyAll();
     pGM=NULL;
-
 }
 
 /*METHODS*/
@@ -37,9 +43,7 @@ void Game::exec() {
 //A comentar posteriormente
     while((pGM ->getWindow()) -> isOpen()){
         
-        pBloco->update();
-        pBloco2->update();
-        pBloco3->update();
+        PlayersList.updateAll();
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -50,9 +54,7 @@ void Game::exec() {
                 (pGM ->getWindow())->close();
         }
         (pGM ->getWindow()) -> clear();
-        pBloco->drawThis(pGM);
-        pBloco2->drawThis(pGM);
-        pBloco3->drawThis(pGM);
+        PlayersList.drawAll();
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.

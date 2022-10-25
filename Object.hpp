@@ -16,6 +16,7 @@ class Object
 
     /*SETTERS & GETTERS*/
         virtual sf::RectangleShape getRectangleShape() = 0;
+        Graphic_Manager* getGraphicManager() const;
 
     /*METHODS*/
         virtual void drawThis(Graphic_Manager* pGM) = 0;

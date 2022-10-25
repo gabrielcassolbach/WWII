@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 INCLUDE_SFML = -I SFML/include
 LDFLAGS = -L SFML/lib -lsfml-graphics -lsfml-window -lsfml-system
-OBJFILES = *.cpp Entities/*.cpp  Entities/Characters/*.cpp Managers/*.cpp Entities/Obstacles/*.cpp Phases/*.cpp
+OBJFILES = *.cpp Entities/*.cpp  Entities/Characters/*.cpp Managers/*.cpp Entities/Obstacles/*.cpp Phases/*.cpp Lists/*.cpp
 TARGET = z_jogo
 
 all: 

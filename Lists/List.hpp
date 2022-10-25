@@ -6,7 +6,7 @@ using namespace std;
 template <class TIPO>
 class List
 {
-private:
+public:
     class Element
     {
     public:
@@ -15,13 +15,11 @@ private:
         {
             nextElement = NULL;
             prevElement = NULL;
-            Value = NULL;
         }
         ~Element()
         {
             nextElement = NULL;
             prevElement = NULL;
-            Value = NULL;
         }
 
         /*SETTERS & GETTERS*/
@@ -41,11 +39,11 @@ private:
         {
             return nextElement;
         }
-        void setValue(TIPO *c)
+        void setValue(TIPO c)
         {
             Value = c;
         }
-        TIPO *getValue()
+        TIPO getValue()
         {
             return Value;
         }
@@ -54,97 +52,65 @@ private:
     private:
         Element *nextElement;
         Element *prevElement;
-        TIPO *Value;
+        TIPO Value;
     };
+
+private:
     Element *firstElement;
     Element *currentElement;
 
 public:
+
     /*CONSTRUCTORS & DESTRUCTORS*/
-    List();
-    ~List();
+    List(){
+        firstElement = NULL;
+        currentElement = NULL;
+    }
+    ~List(){
+        clear();
+    }
 
     /*SETTERS & GETTERS*/
-    void setFirstElement(Element *f);
-    Element *getFirstElement();
-    void setCurrentElement(Element *c);
-    Element *getCurrentElement();
+    void setFirstElement(Element *f){
+        firstElement = f;
+    }
+    Element *getFirstElement(){
+        return firstElement;
+    }
+    void setCurrentElement(Element *c){
+        currentElement = c;
+    }
+    Element *getCurrentElement(){
+        return(currentElement);
+    }
 
     /*METHODS*/
-    void clear();
-    void includeElement(Element *n);
+    void clear(){
+        Element *it = NULL;
+        it = firstElement;
+        Element *aux = NULL;
+
+        while (it != NULL)
+        {
+            aux = it->getNextElement();
+            delete (it);
+            it = aux;
+        }
+
+        firstElement = NULL;
+        currentElement = NULL;
+    }   
+    void includeElement(TIPO n){
+        Element *newEl = NULL;
+        newEl=new Element();
+        newEl->setValue(n);
+
+        if (currentElement != NULL)
+            currentElement->setNextElement(newEl);
+        else
+            firstElement = newEl;
+
+        newEl->setPrevElement(currentElement);
+        currentElement=newEl;
+    }
 };
-
-template <class TIPO>
-List<TIPO>::List()
-{
-    firstElement = NULL;
-    currentElement = NULL;
-}
-
-template <class TIPO>
-List<TIPO>::~List()
-{
-    clear();
-    firstElement = NULL;
-    currentElement = NULL;
-}
-
-/*SETTERS & GETTERS*/
-template <class TIPO>
-void List<TIPO>::setFirstElement(Element *f)
-{
-    firstElement = f;
-}
-
-template <class TIPO>
-void List<TIPO>::setCurrentElement(Element *c)
-{
-    currentElement = c;
-}
-
-
-template <class TIPO>
-Element* List<TIPO>::getFirstElement()
-{
-    return firstElement;
-}
-
-template <class TIPO>
-Element* List<TIPO>::getCurrentElement()
-{
-    return currentElement;
-}
-
-/*METHODS*/
-template <class TIPO>
-void List<TIPO>::clear()
-{
-    Element *it = NULL;
-    aux = firstElement;
-    Element *aux = NULL;
-
-    while (it != NULL)
-    {
-        aux = it->getNextElement();
-        delete (it);
-        it = aux;
-    }
-}
-
-template <class TIPO>
-void List<TIPO>::includeElement(List<TIPO>::Element *n)
-{
-    Element *newEl = NULL;
-    newEl->setValue(n);
-
-    if (currentElement != NULL)
-        currentElement->setNextElement(newEl);
-    else
-    {
-        firstElement = newEl;
-        currentElement = newEl;
-    }
-
-    newEl->setPrevElement(currentElement);
-}
