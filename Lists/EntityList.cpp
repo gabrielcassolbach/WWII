@@ -1,4 +1,5 @@
 #include "EntityList.hpp"
+//#include "Object.hpp"
 
 /*CONSTRUCTOS & DESTRUCTORS*/
 EntityList::EntityList(){
@@ -42,7 +43,7 @@ EntityList::~EntityList(){
     void EntityList::destroyAll(){
         List<Entity*>::Element* cur=NULL;
         List<Entity*>::Element* aux=NULL;
-        cur=EnititiesList.getFirstElement();
+        cur=EntitiesList.getFirstElement();
         while (cur!=NULL){
             aux=cur->getNextElement();
             delete(cur->getValue());
