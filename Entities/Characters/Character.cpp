@@ -7,8 +7,8 @@ Character::~Character()
 */
 
 }
-Character::Character(double px, double py, double vx, double vy, double sx, double sy):
-Entity(px, py, vx, vy, sx, sy){
+Character::Character(double px, double py, double sx, double sy, double vx, double vy):
+MovingEntity(px, py, sx, sy, vx, vy){
 /*Construtora da classe character
 - Posição inicial será (px, py)
 - Posição como default é (0, 0)

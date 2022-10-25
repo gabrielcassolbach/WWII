@@ -2,7 +2,6 @@
 #include "List.hpp"
 #include "../Entities/Entity.hpp"
 
-
 class EntityList{
 private:
     List<Entity*> EntitiesList;
@@ -13,6 +12,7 @@ public:
     ~EntityList();
 
 /*SETTERS & GETTERS*/
+    int getSize ();
 
 /*METHODS*/
     void includeEntity(Entity* p);
@@ -20,4 +20,5 @@ public:
     void updateAll();
     void initAll();
     void destroyAll();
+    Entity* operator[](int index);
 };

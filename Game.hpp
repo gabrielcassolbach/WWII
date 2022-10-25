@@ -1,7 +1,8 @@
 #pragma once
-#include "Managers/Graphic_Manager.hpp"
-#include "Entities/Characters/Player.hpp"
 #include "Lists/EntityList.hpp"
+#include "Managers/Graphic_Manager.hpp"
+#include "Managers/Collision_Manager.hpp"
+#include "Entities/Characters/Player.hpp"
 
 class Character;
 
@@ -9,11 +10,13 @@ class Game
 /*Classe responsável pela mecânica geral do jogo*/
 {
     private:
-        EntityList PlayersList;
+        EntityList MovingEntityList;
+        EntityList StaticEntityList;
         Player* pBloco;
         Player* pBloco2;
         Player* pBloco3;
         Graphic_Manager* pGM;
+        Collision_Manager CM;
         
     public:
 /*CONSTRUCTORS & DESTRUCTORS*/

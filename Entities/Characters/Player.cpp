@@ -2,7 +2,7 @@
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Player::Player(double px, double py, double vx, double vy, double sx, double sy):
-Character(px, py, vx, vy, sx, sy)
+Character(px, py, sx, sy, vx, vy)
 {
 /*Construtora da class player
 - Posição inicial do player será (px, py)

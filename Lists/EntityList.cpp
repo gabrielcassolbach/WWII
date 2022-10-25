@@ -9,17 +9,20 @@ EntityList::~EntityList(){
 }
 
 /*SETTERS & GETTERS*/
+    int EntityList::getSize(){
+        return EntitiesList.getSize();
+    }
 
 /*METHODS*/
     void EntityList::includeEntity(Entity* p){
         if (p != NULL)
             EntitiesList.includeElement(p);     
     }
-    void EntityList::drawAll(){//PODE APRESENTAR ERROS
+    void EntityList::drawAll(){
         List<Entity*>::Element* cur=NULL;
         cur=EntitiesList.getFirstElement();
         while (cur!=NULL){
-            cur->getValue()->drawThis(Object::getGraphicManager());
+            cur->getValue()->drawThis(cur->getValue()->getGraphicManager());
             cur=cur->getNextElement();
         }
     }
@@ -30,6 +33,8 @@ EntityList::~EntityList(){
             cur->getValue()->update();
             cur=cur->getNextElement();
         }
+        //if (EntitiesList.getFirstElement())
+        //  EntitiesList.getFirstElement()->getValue()->getCollisionManager()->collision();
     }
     void EntityList::initAll(){
         List<Entity*>::Element* cur=NULL;
@@ -50,4 +55,14 @@ EntityList::~EntityList(){
         }
 
         EntitiesList.clear();
+    }
+    Entity* EntityList::operator[](int index){
+        int contador=0;
+        List<Entity*>::Element* cur=NULL;
+        cur=EntitiesList.getFirstElement();
+        while (cur!=NULL && contador<=index){
+            contador++;
+            cur=cur->getNextElement();
+        }
+        return (cur->getValue());
     }

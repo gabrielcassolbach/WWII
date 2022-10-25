@@ -2,7 +2,9 @@
 #include "Entities/Characters/Character.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Game::Game() {  
+Game::Game():
+CM(&MovingEntityList, &StaticEntityList)
+{  
 /*Construtora da classe Game
 - Cria dinamicamente os objetos pré-determinados no arquivo.h
 - Inicializa todos os objetos.
@@ -14,12 +16,12 @@ Game::Game() {
     pBloco3= new Player (350.00, 0.0, 0.0, 0.0, 100.0, 100.0);
     cout<<"Jogadores criados"<<endl;
 
-    PlayersList.includeEntity(static_cast<Entity*>(pBloco));
-    PlayersList.includeEntity(static_cast<Entity*>(pBloco2));
-    PlayersList.includeEntity(static_cast<Entity*>(pBloco3));
+    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco));
+    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco2));
+    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco3));
     cout<<"Characters incluidos"<<endl;
 
-    PlayersList.initAll();
+    MovingEntityList.initAll();
     pGM = Graphic_Manager::getGraphic_Manager();
     exec();
 }
@@ -29,7 +31,7 @@ Game::~Game()
 - Desaloca todos os objetos alocados dinamicamente
 - Faz o ponteiro da janela apontar para NULL
 */
-    PlayersList.destroyAll();
+    MovingEntityList.destroyAll();
     pGM=NULL;
 }
 
@@ -38,7 +40,7 @@ void Game::exec() {
 //A comentar posteriormente
     while((pGM ->getWindow()) -> isOpen()){
         
-        PlayersList.updateAll();
+        MovingEntityList.updateAll();
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -49,7 +51,7 @@ void Game::exec() {
                 (pGM ->getWindow())->close();
         }
         (pGM ->getWindow()) -> clear();
-        PlayersList.drawAll();
+        MovingEntityList.drawAll();
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.
