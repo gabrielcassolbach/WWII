@@ -58,6 +58,7 @@ public:
 private:
     Element *firstElement;
     Element *currentElement;
+    int size;
 
 public:
 
@@ -65,6 +66,7 @@ public:
     List(){
         firstElement = NULL;
         currentElement = NULL;
+        size=0;
     }
     ~List(){
         clear();
@@ -82,6 +84,9 @@ public:
     }
     Element *getCurrentElement(){
         return(currentElement);
+    }
+    int getSize (){
+        return size;
     }
 
     /*METHODS*/
@@ -112,5 +117,6 @@ public:
 
         newEl->setPrevElement(currentElement);
         currentElement=newEl;
+        size++;
     }
 };

@@ -1,7 +1,6 @@
 #pragma once
 #include "List.hpp"
 #include "../Entities/Entity.hpp"
-#include "../Object.hpp"
 
 class EntityList{
 private:
@@ -13,6 +12,7 @@ public:
     ~EntityList();
 
 /*SETTERS & GETTERS*/
+    int getSize ();
 
 /*METHODS*/
     void includeEntity(Entity* p);
@@ -20,4 +20,5 @@ public:
     void updateAll();
     void initAll();
     void destroyAll();
+    Entity* operator[](int index);
 };

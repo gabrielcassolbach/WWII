@@ -2,7 +2,9 @@
 #include "Entities/Characters/Character.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Game::Game() {  
+Game::Game():
+CM(&MovingEntityList, &StaticEntityList)
+{  
 /*Construtora da classe Game
 - Cria dinamicamente os objetos pré-determinados no arquivo.h
 - Inicializa todos os objetos.
