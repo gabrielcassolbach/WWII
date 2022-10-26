@@ -27,4 +27,5 @@ class Game
 
 /*METHODS*/
         void exec();
+        void update();
 };

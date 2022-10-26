@@ -60,7 +60,7 @@ EntityList::~EntityList(){
         int contador=0;
         List<Entity*>::Element* cur=NULL;
         cur=EntitiesList.getFirstElement();
-        while (cur!=NULL && contador<=index){
+        while (cur->getNextElement()!=NULL && contador<index){
             contador++;
             cur=cur->getNextElement();
         }
