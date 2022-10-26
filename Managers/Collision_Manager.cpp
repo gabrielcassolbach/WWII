@@ -17,10 +17,10 @@ Collision_Manager::~Collision_Manager(){
 
 /*METHODS*/
 bool Collision_Manager::checkCollision(Entity* ent1, Entity* ent2){
-    double centerDistance_x = ent1->get_x() - ent2->get_x();
+    double centerDistance_x = ent1->getPosition_x() - ent2->getPosition_x();
     if (centerDistance_x<0)
         centerDistance_x=-centerDistance_x;
-    double centerDistance_y = ent1->get_y() - ent2->get_y();
+    double centerDistance_y = ent1->getPosition_y() - ent2->getPosition_y();
     if (centerDistance_y<0)
         centerDistance_y=-centerDistance_y;
 

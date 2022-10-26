@@ -33,8 +33,6 @@ EntityList::~EntityList(){
             cur->getValue()->update();
             cur=cur->getNextElement();
         }
-        //if (EntitiesList.getFirstElement())
-        //  EntitiesList.getFirstElement()->getValue()->getCollisionManager()->collision();
     }
     void EntityList::initAll(){
         List<Entity*>::Element* cur=NULL;
