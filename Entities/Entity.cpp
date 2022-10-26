@@ -10,8 +10,8 @@ Entity::Entity(double px, double py, double sx, double sy) : Object()
 - Tamanho inicial definido por (sx, sy)
 - Tamanho inicial defautl como (0, 0)
 */
-    x=px;
-    y=py;
+    position_x=px;
+    position_y=py;
     size_x=sx;
     size_y=sy;
 }
@@ -21,11 +21,11 @@ Entity::~Entity()
 }
 
 /*SETTERS & GETTERS*/
-double Entity::get_x(){
-    return x;
+double Entity::getPosition_x(){
+    return position_x;
 }
-double Entity::get_y(){
-    return y;
+double Entity::getPosition_y(){
+    return position_y;
 }
 double Entity::getSize_x(){
     return size_x;
@@ -33,4 +33,5 @@ double Entity::getSize_x(){
 double Entity::getSize_y(){
     return size_y;
 }
+
 /*METHODS*/

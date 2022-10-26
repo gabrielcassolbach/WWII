@@ -23,6 +23,8 @@ CM(&MovingEntityList, &StaticEntityList)
 
     MovingEntityList.initAll();
     pGM = Graphic_Manager::getGraphic_Manager();
+    cout<<"Characters inicializados"<<endl;
+    system("pause");
     exec();
 }
 Game::~Game() 
@@ -40,7 +42,7 @@ void Game::exec() {
 //A comentar posteriormente
     while((pGM ->getWindow()) -> isOpen()){
         
-        MovingEntityList.updateAll();
+        this->update();
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -59,4 +61,8 @@ void Game::exec() {
         
         (pGM ->getWindow()) -> display(); // mostra na tela.
     }
+}
+void Game::update(){
+    MovingEntityList.updateAll();
+    CM.collision();
 }

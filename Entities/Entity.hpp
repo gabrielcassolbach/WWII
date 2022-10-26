@@ -4,7 +4,7 @@
 class Entity : public Object
 {
 protected:
-    double x, y;
+    double position_x, position_y;
     double size_x, size_y;
     sf::RectangleShape retangulo;
 
@@ -16,8 +16,8 @@ public:
 
 /*SETTERS & GETTERS*/
     virtual sf::RectangleShape getRectangleShape() = 0;
-    double get_x();
-    double get_y();
+    double getPosition_x();
+    double getPosition_y();
     double getSize_x();
     double getSize_y();
 
