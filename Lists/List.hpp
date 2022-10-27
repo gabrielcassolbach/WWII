@@ -68,6 +68,7 @@ public:
         currentElement = NULL;
         size=0;
     }
+
     ~List(){
         clear();
     }
@@ -76,15 +77,19 @@ public:
     void setFirstElement(Element *f){
         firstElement = f;
     }
+
     Element *getFirstElement(){
         return firstElement;
     }
+
     void setCurrentElement(Element *c){
         currentElement = c;
     }
+    
     Element *getCurrentElement(){
         return(currentElement);
     }
+
     int getSize (){
         return size;
     }
@@ -104,7 +109,8 @@ public:
 
         firstElement = NULL;
         currentElement = NULL;
-    }   
+    } 
+      
     void includeElement(TIPO n){
         Element *newEl = NULL;
         newEl=new Element();

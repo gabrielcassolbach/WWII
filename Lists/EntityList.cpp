@@ -18,6 +18,7 @@ EntityList::~EntityList(){
         if (p != NULL)
             EntitiesList.includeElement(p);     
     }
+    
     void EntityList::drawAll(){
         List<Entity*>::Element* cur=NULL;
         cur=EntitiesList.getFirstElement();
