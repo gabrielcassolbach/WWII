@@ -52,6 +52,7 @@ void Game::exec() {
             else if (event.key.code==sf::Keyboard::Escape)
                 (pGM ->getWindow())->close();
         }
+        
         (pGM ->getWindow()) -> clear();
         MovingEntityList.drawAll();
         // Percorro a lista de entidades.

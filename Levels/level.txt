@@ -1,0 +1,19 @@
+//  Nessa classe eu vou fazer a mecanica do jogo
+//  gravidade 
+//  vou agregar fortemente um mapa
+//  desacoplar da "Principal" (Game) várias funções.
+
+//  Pensar no padrão de projeto Factory Method:
+
+/*
+    -> Classe que cria outras classes.
+
+    // A fábrica serve para criar muitos objetos.
+
+    Dentro de uma fase eu crio uma classe Factory de inimigos que irá 
+    instanciar todos os inimigos da fase.
+
+    "No factory voce cria objetos sem especificar a classe concreta dele"
+    "Ele gera objetos base e no final eu só adiciono o tipo."
+
+*/
