@@ -15,7 +15,7 @@ class Object
         virtual void init () = 0;
 
     /*SETTERS & GETTERS*/
-        virtual sf::RectangleShape getRectangleShape() = 0;
+        virtual sf::RectangleShape getRectangleShape() const = 0;
         Graphic_Manager* getGraphicManager() const;
 
     /*METHODS*/

@@ -3,7 +3,6 @@
 
 class Player: public Character{
 private:
-    sf::RectangleShape retangulo;
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
@@ -12,7 +11,6 @@ public:
     void init ();
 
 /*SETTERS & GETTERS*/
-    sf::RectangleShape getRectangleShape();
 
 /*METHODS*/
     void update ();

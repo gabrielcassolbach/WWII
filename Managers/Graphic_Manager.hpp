@@ -26,7 +26,7 @@ public:
             instance = new Graphic_Manager();
         return instance;
     }
-    sf::RenderWindow *getWindow();
+    sf::RenderWindow *getWindow() const;
 
 /*METHODS*/
     void draw(Object *pObject);

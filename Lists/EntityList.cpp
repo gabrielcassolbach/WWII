@@ -9,7 +9,7 @@ EntityList::~EntityList(){
 }
 
 /*SETTERS & GETTERS*/
-    int EntityList::getSize(){
+    int EntityList::getSize(){ 
         return EntitiesList.getSize();
     }
 
@@ -17,8 +17,7 @@ EntityList::~EntityList(){
     void EntityList::includeEntity(Entity* p){
         if (p != NULL)
             EntitiesList.includeElement(p);     
-    }
-    
+    }   
     void EntityList::drawAll(){
         List<Entity*>::Element* cur=NULL;
         cur=EntitiesList.getFirstElement();
