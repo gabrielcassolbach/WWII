@@ -10,12 +10,10 @@ class Game
 /*Classe responsável pela mecânica geral do jogo*/
 {
     private:
-        EntityList MovingEntityList;
-        EntityList StaticEntityList;
         Player* pBloco;
         Player* pBloco2;
         Player* pBloco3;
-        Graphic_Manager* pGM;
+        Graphic_Manager pGM;
         Collision_Manager CM;
         
     public:

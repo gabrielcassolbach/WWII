@@ -27,6 +27,7 @@ CM(&MovingEntityList, &StaticEntityList)
     system("pause");
     exec();
 }
+
 Game::~Game() 
 {
 /*Destrutora da classe Game
@@ -52,9 +53,10 @@ void Game::exec() {
             else if (event.key.code==sf::Keyboard::Escape)
                 (pGM ->getWindow())->close();
         }
-        
+
         (pGM ->getWindow()) -> clear();
         MovingEntityList.drawAll();
+        //StaticEntityList.drawAll();
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.
@@ -63,6 +65,7 @@ void Game::exec() {
         (pGM ->getWindow()) -> display(); // mostra na tela.
     }
 }
+
 void Game::update(){
     MovingEntityList.updateAll();
     CM.collision();
