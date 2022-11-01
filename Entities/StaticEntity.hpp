@@ -3,9 +3,9 @@
 
 class StaticEntity : public Entity
 {
-    // Todos os objetos serão derivados desta classe
+    // Todos os obstáculos serão derivados desta classe
 protected:
-    sf::RectangleShape retangulo;
+    // Empty!
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -15,4 +15,7 @@ public:
     /*SETTERS & GETTERS*/
 
     /*METHODS*/
+    virtual void update() = 0;
+    virtual void init() = 0;
+
 };

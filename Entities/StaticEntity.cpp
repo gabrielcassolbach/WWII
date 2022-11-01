@@ -2,10 +2,13 @@
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 StaticEntity::StaticEntity(double px, double py, double sx, double sy):
-Entity(px, py, sx, sy){
+Entity(px, py, sx, sy)
+{
 
 }
-StaticEntity::~StaticEntity(){
+StaticEntity::~StaticEntity()
+{
+    
 
 }
 

@@ -3,6 +3,8 @@
 #include "Managers/Graphic_Manager.hpp"
 #include "Managers/Collision_Manager.hpp"
 #include "Entities/Characters/Player.hpp"
+#include "Entities/Obstacles/Box.hpp"
+
 
 class Character;
 
@@ -13,8 +15,10 @@ class Game
         EntityList MovingEntityList;
         EntityList StaticEntityList;
         Player* pBloco;
-        Player* pBloco2;
+        Box* pBloco2;
         Player* pBloco3;
+
+
         Graphic_Manager* pGM;
         Collision_Manager CM;
         

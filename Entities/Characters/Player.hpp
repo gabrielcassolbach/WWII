@@ -1,17 +1,17 @@
 #include "Character.hpp"
 #pragma once
 
-class Player: public Character{
+class Player : public Character
+{
 private:
-
 public:
-/*CONSTRUCTORS & DESTRUCTORS*/
-    Player(double px=0.0f, double py=0.0f, double sx=0.0f, double sy=0.0f, double vx=0.0f, double vy=0.0f);
+    /*CONSTRUCTORS & DESTRUCTORS*/
+    Player(double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx = 0.0f, double vy = 0.0f);
     ~Player();
-    void init ();
+    void init();
 
-/*SETTERS & GETTERS*/
+    /*SETTERS & GETTERS*/
 
-/*METHODS*/
-    void update ();
+    /*METHODS*/
+    void update();
 };

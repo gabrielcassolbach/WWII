@@ -7,6 +7,7 @@ using namespace std;
 Collision_Manager::Collision_Manager(){
 
 }
+
 Collision_Manager::~Collision_Manager(){
     movingEntitiesList.clear();
     staticEntitiesList.clear();
@@ -44,6 +45,7 @@ bool Collision_Manager::checkCollision(Entity* ent1, Entity* ent2){
     cout<<"Retornando false"<<endl;
     return false;
 }
+
 void Collision_Manager::collision(){
     std::list<Entity*>::iterator it;
     int i, j;
@@ -52,11 +54,12 @@ void Collision_Manager::collision(){
     
     //Verificar colisão entre entidades estáticas e móveis
     for (it=staticEntitiesList.begin(); it!=staticEntitiesList.end(); it++){
-        for(i=0; i<movingEntitiesList.size(); i){
+        for(i=0; i<movingEntitiesList.size(); i++){
             ent1=(*it);
             ent2=movingEntitiesList[i];
             if (checkCollision(ent1, ent2)){
                 cout<<"Colisao!"<<endl;
+                //getchar();
             }
         } 
     }
@@ -68,6 +71,7 @@ void Collision_Manager::collision(){
             ent2=movingEntitiesList[i];
             if (checkCollision(ent1, ent2)){
                 cout<<"Colisao!"<<endl;
+                getchar();
             }
         } 
     }

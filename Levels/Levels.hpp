@@ -11,9 +11,3 @@ private:
 
 
 };
-
-/*
-A ideia da fábrica é, a partir da lista que existe dentro da classe Level, 
-ir criando e colocando na lista.
-
-*/

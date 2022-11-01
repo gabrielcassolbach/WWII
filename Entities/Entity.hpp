@@ -1,6 +1,6 @@
 #pragma once
 #include "../Object.hpp"
-
+ 
 class Entity : public Object
 {
 protected:
@@ -12,7 +12,6 @@ public:
 /*CONSTRUCTORS & DESTRUCTORS*/
     Entity(double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
     virtual ~Entity();
-    virtual void init() = 0;
 
 /*SETTERS & GETTERS*/
     sf::RectangleShape getRectangleShape() const;
@@ -24,4 +23,6 @@ public:
 /*METHODS*/
     void drawThis(Graphic_Manager *pGM);
     virtual void update() = 0;
+    virtual void init() = 0;
 };
+

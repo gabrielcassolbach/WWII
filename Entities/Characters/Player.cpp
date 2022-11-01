@@ -21,7 +21,8 @@ Player::~Player(){
 
 
 /*METHODS*/
-void Player::init (){
+void Player::init ()
+{
     /*Função que determina as propriedades básicas de um retângulo
     - Determina o tamanho do retângulo
     - Determina a cor do retângulo (azul para player e vermelho para inimigo)
@@ -31,6 +32,7 @@ void Player::init (){
     retangulo.setFillColor(sf::Color::Blue);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
+
 void Player::update(){
 /*Função que atualiza as posições e velocidades de um objeto
 - Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.

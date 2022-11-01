@@ -12,20 +12,25 @@ CM()
 - Chama a função de execução.
 */
     pBloco = new Player(0.0, 0.0, 0.2, 0.0, 100.0, 100.0); //(px, py, vx, vy, sx, sy)
-    pBloco2= new Player (800.00-100.00, 0.00, 0.00, 0.00, 100.0, 100.0); //Posicao final - tamanho (para o retângulo aparecer por inteiro)
+    pBloco2= new Box (800.00-100.00, 0.00, 100.0, 100.0); //Posicao final - tamanho (para o retângulo aparecer por inteiro)
     pBloco3= new Player (350.00, 0.0, 0.0, 0.0, 100.0, 100.0);
     cout<<"Jogadores criados"<<endl;
 
+
+
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco));
-    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco2));
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco3));
     cout<<"Characters incluidos"<<endl;
 
+    StaticEntityList.includeEntity(static_cast<Entity*>(pBloco2));
+    cout<<"Obstáculos incluidos"<<endl;
+    
+    StaticEntityList.initAll();
     MovingEntityList.initAll();
     CM.init(&MovingEntityList, &StaticEntityList);
     pGM = Graphic_Manager::getGraphic_Manager();
     cout<<"Characters inicializados"<<endl;
-    system("pause");
+
     exec();
 }
 Game::~Game() 
@@ -35,6 +40,7 @@ Game::~Game()
 - Faz o ponteiro da janela apontar para NULL
 */
     MovingEntityList.destroyAll();
+    StaticEntityList.destroyAll();
     pGM=NULL;
 }
 
@@ -55,7 +61,9 @@ void Game::exec() {
         }
         
         (pGM ->getWindow()) -> clear();
+
         MovingEntityList.drawAll();
+        StaticEntityList.drawAll();
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.
@@ -64,7 +72,9 @@ void Game::exec() {
         (pGM ->getWindow()) -> display(); // mostra na tela.
     }
 }
+
 void Game::update(){
     MovingEntityList.updateAll();
+    StaticEntityList.updateAll();
     CM.collision();
 }

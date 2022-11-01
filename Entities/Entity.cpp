@@ -33,6 +33,7 @@ double Entity::getSize_x() const{
 double Entity::getSize_y() const{
     return size_y;
 }
+
 sf::RectangleShape Entity::getRectangleShape () const{
     return retangulo;
 }

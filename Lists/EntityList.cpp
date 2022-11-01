@@ -54,6 +54,7 @@ EntityList::~EntityList(){
 
         EntitiesList.clear();
     }
+    
     Entity* EntityList::operator[](int index){
         int contador=0;
         List<Entity*>::Element* cur=NULL;
