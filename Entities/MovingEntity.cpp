@@ -7,7 +7,6 @@ Entity(px, py, sx, sy)
     velocity_x = vx;
     velocity_y = vy;
 }
-
 MovingEntity::~MovingEntity()
 {
 }

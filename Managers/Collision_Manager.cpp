@@ -41,8 +41,6 @@ bool Collision_Manager::checkCollision(Entity* ent1, Entity* ent2){
     if (intersection_x>0 && intersection_y>0)
         return true;
     
-
-    cout<<"Retornando false"<<endl;
     return false;
 }
 
@@ -59,7 +57,6 @@ void Collision_Manager::collision(){
             ent2=movingEntitiesList[i];
             if (checkCollision(ent1, ent2)){
                 cout<<"Colisao!"<<endl;
-                //getchar();
             }
         } 
     }
@@ -71,7 +68,6 @@ void Collision_Manager::collision(){
             ent2=movingEntitiesList[i];
             if (checkCollision(ent1, ent2)){
                 cout<<"Colisao!"<<endl;
-                getchar();
             }
         } 
     }

@@ -1,7 +1,7 @@
 #include "Player.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Player::Player(double px, double py, double vx, double vy, double sx, double sy):
+Player::Player(double px, double py, double sx, double sy, double vx, double vy):
 Character(px, py, sx, sy, vx, vy)
 {
 /*Construtora da class player
