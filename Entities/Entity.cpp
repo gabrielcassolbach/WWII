@@ -21,17 +21,23 @@ Entity::~Entity()
 }
 
 /*SETTERS & GETTERS*/
-double Entity::getPosition_x(){
+double Entity::getPosition_x() const{
     return position_x;
 }
-double Entity::getPosition_y(){
+double Entity::getPosition_y() const{
     return position_y;
 }
-double Entity::getSize_x(){
+double Entity::getSize_x() const{
     return size_x;
 }
-double Entity::getSize_y(){
+double Entity::getSize_y() const{
     return size_y;
+}
+sf::RectangleShape Entity::getRectangleShape () const{
+    return retangulo;
 }
 
 /*METHODS*/
+void Entity::drawThis(Graphic_Manager *pGM){
+    pGM -> draw(dynamic_cast<Object*>(this)); 
+}

@@ -19,7 +19,7 @@ Graphic_Manager::~Graphic_Manager(){
 }
 
 /*SETTERS & GETTERS*/
-sf::RenderWindow* Graphic_Manager::getWindow(){
+sf::RenderWindow* Graphic_Manager::getWindow() const{
 /* Função que retorna a janela em questão
 */
         return window;

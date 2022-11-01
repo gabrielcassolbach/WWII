@@ -7,7 +7,6 @@ class Character : public MovingEntity
 {
 protected:
     int health;
-    int damage;
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
@@ -16,9 +15,7 @@ public:
     virtual void init () = 0; //Função que inicializa os retangulos
 
 /*SETTERS & GETTERS*/
-    virtual sf::RectangleShape getRectangleShape() = 0;
 
 /*METHODS*/
-    void drawThis(Graphic_Manager *pGM);
     virtual void update()=0;
 };

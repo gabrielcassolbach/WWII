@@ -1,24 +1,14 @@
 #pragma once
 
-class EntityList;
-class Graphic_Manager;
-class Collision_Manager;
-
 class Levels
 {
-protected:   
-    EntityList* MovingEntityList;
-    EntityList* StaticEntityList;
-    Graphic_Manager* pGM;
-    Collision_Manager* CM;
-    double gravity;
+protected:                                                      
+    // Percorrer a lista de objetos estáticos. draw().
+    // Percorrer a lista de objetos dinamicos. update() & draw().
+    // Gravidade.
 
 private:
-    Levels();
-    ~Levels();
 
-    virtual void draw(Graphic_Manager*) = 0;
-    virtual void uptade() = 0;
 
 };
 

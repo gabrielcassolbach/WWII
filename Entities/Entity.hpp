@@ -15,13 +15,13 @@ public:
     virtual void init() = 0;
 
 /*SETTERS & GETTERS*/
-    virtual sf::RectangleShape getRectangleShape() = 0;
-    double getPosition_x();
-    double getPosition_y();
-    double getSize_x();
-    double getSize_y();
+    sf::RectangleShape getRectangleShape() const;
+    double getPosition_x() const;
+    double getPosition_y() const;
+    double getSize_x() const;
+    double getSize_y() const;
 
 /*METHODS*/
-    virtual void drawThis(Graphic_Manager *pGM) = 0;
+    void drawThis(Graphic_Manager *pGM);
     virtual void update() = 0;
 };

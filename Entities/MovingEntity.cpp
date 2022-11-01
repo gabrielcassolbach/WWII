@@ -10,7 +10,6 @@ Entity(px, py, sx, sy)
 
 MovingEntity::~MovingEntity()
 {
-    
 }
 
 /*SETTERS & GETTERS*/

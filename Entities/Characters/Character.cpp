@@ -8,7 +8,8 @@ Character::~Character()
 
 }
 Character::Character(double px, double py, double sx, double sy, double vx, double vy):
-MovingEntity(px, py, sx, sy, vx, vy){
+MovingEntity(px, py, sx, sy, vx, vy)
+{
 /*Construtora da classe character
 - Posição inicial será (px, py)
 - Posição como default é (0, 0)
@@ -22,11 +23,4 @@ MovingEntity(px, py, sx, sy, vx, vy){
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-void Character::drawThis(Graphic_Manager *pGM)
-{
-/*Função que desenha o objeto atual na tela
-- Proveniente da função abstrata do "objeto".
-- Chama uma função mais específica que designa a "tela" na qual o desenho será feito
-*/
-    pGM -> draw(dynamic_cast<Object*>(this)); 
-}
+

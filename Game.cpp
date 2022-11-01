@@ -3,7 +3,7 @@
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Game::Game():
-CM(&MovingEntityList, &StaticEntityList)
+CM()
 {  
 /*Construtora da classe Game
 - Cria dinamicamente os objetos pré-determinados no arquivo.h
@@ -22,12 +22,12 @@ CM(&MovingEntityList, &StaticEntityList)
     cout<<"Characters incluidos"<<endl;
 
     MovingEntityList.initAll();
+    CM.init(&MovingEntityList, &StaticEntityList);
     pGM = Graphic_Manager::getGraphic_Manager();
     cout<<"Characters inicializados"<<endl;
     system("pause");
     exec();
 }
-
 Game::~Game() 
 {
 /*Destrutora da classe Game
@@ -53,10 +53,9 @@ void Game::exec() {
             else if (event.key.code==sf::Keyboard::Escape)
                 (pGM ->getWindow())->close();
         }
-
+        
         (pGM ->getWindow()) -> clear();
         MovingEntityList.drawAll();
-        //StaticEntityList.drawAll();
         // Percorro a lista de entidades.
             /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
                              -> imprimir-se(): chama o gerenciador gráfico para desenhar.
@@ -65,7 +64,6 @@ void Game::exec() {
         (pGM ->getWindow()) -> display(); // mostra na tela.
     }
 }
-
 void Game::update(){
     MovingEntityList.updateAll();
     CM.collision();

@@ -18,12 +18,7 @@ Player::~Player(){
 }
 
 /*SETTER & GETTERS*/
-sf::RectangleShape Player::getRectangleShape(){
-/*Função que retorna o retângulo
--
-*/
-    return retangulo;
-}
+
 
 /*METHODS*/
 void Player::init (){
