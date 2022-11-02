@@ -1,8 +1,8 @@
 #include "Player.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy):
-Character(ident, px, py, sx, sy, vx, vy)
+Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp):
+Character(ident, px, py, sx, sy, vx, vy, hp)
 {
 /*Construtora da class player
 - Posição inicial do player será (px, py)

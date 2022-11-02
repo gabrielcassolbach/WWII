@@ -7,7 +7,7 @@ Character::~Character()
 */
 
 }
-Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy):
+Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp):
 MovingEntity(ident, px, py, sx, sy, vx, vy)
 {
 /*Construtora da classe character
@@ -18,6 +18,7 @@ MovingEntity(ident, px, py, sx, sy, vx, vy)
 - Tamanho inicial definido por (sx, sy)
 - Tamanho inicial default como (0, 0)
 */
+    health=hp;
 }
 
 /*SETTERS & GETTERS*/
