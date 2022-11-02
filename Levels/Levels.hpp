@@ -1,13 +1,26 @@
 #pragma once
+#include "../Lists/EntityList.hpp"
+#include "../Managers/Graphic_Manager.hpp"
+#include "../Managers/Collision_Manager.hpp"
+#include "../Entities/Characters/Player.hpp"
+#include "../Entities/Obstacles/Box.hpp"
+#include "../Entities/Characters/Samurai.hpp"
+class Character;
 
 class Levels
 {
 protected:                                                      
-    // Percorrer a lista de objetos estáticos. draw().
-    // Percorrer a lista de objetos dinamicos. update() & draw().
-    // Gravidade.
 
-private:
+public:
+/*CONSTRUCTORS & DESTRUCTORS*/
+    Levels();
+    ~Levels();
 
+/*SETTERS & GETTERS*/
+
+
+/*METHODS*/
+    virtual void update()=0;
+    virtual void render()=0;
 
 };

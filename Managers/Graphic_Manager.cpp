@@ -6,7 +6,7 @@ Graphic_Manager::Graphic_Manager(){
 /*Construtora da classe Graphic_Manager
 - Criação de uma janela (800, 600) com nome "Jogo"
 */
-    window = new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo");
+    window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Jogo");
 }
 Graphic_Manager::~Graphic_Manager(){
 /* Destrutora da classe Graphic_Manager
