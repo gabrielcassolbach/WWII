@@ -13,7 +13,9 @@ class FirstLevel : public Levels
         Collision_Manager CM;
 
         Platform* floor;
-        //Platform* ceiling;
+        Platform* ceiling;
+        Platform* leftWall;
+        Platform* rightWall;
          
     public:
 /*CONSTRUCTORS & DESTRUCTORS*/
