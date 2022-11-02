@@ -2,36 +2,33 @@
 #include "../Object.hpp"
 
 /*CONSTRUCTOS & DESTRUCTORS*/
-Graphic_Manager::Graphic_Manager(){
 /*Construtora da classe Graphic_Manager
 - Criação de uma janela (800, 600) com nome "Jogo"
 */
+Graphic_Manager::Graphic_Manager()
+{
     window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Jogo");
 }
-Graphic_Manager::~Graphic_Manager(){
-/* Destrutora da classe Graphic_Manager
-- Desaloca os objetos alocados dinamicamente
-*/
-        if (instance)
-            delete instance;
-        if (window)
-            delete window;
+
+
+Graphic_Manager::~Graphic_Manager()
+{
+    if (instance)
+        delete instance;
+    if (window)
+        delete window;
 }
 
 /*SETTERS & GETTERS*/
-sf::RenderWindow* Graphic_Manager::getWindow() const{
-/* Função que retorna a janela em questão
-*/
-        return window;
+sf::RenderWindow *Graphic_Manager::getWindow() const
+{
+    return window;
 }
 
 /*METHODS*/
-void Graphic_Manager::draw(Object *pObject){
-/*Função que desenha algo na tela
-*/
+void Graphic_Manager::draw(Object *pObject)
+{
     window->draw(pObject->getRectangleShape());
 }
 
-Graphic_Manager* Graphic_Manager::instance = nullptr;
-
-
+Graphic_Manager *Graphic_Manager::instance = nullptr;

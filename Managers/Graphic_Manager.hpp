@@ -4,11 +4,11 @@
 
 class Object;
 
-class Graphic_Manager
-{
 /* Classe que gerencia tudo o que aparece na tela
 - Update/Spawn/Render...
 */
+class Graphic_Manager
+{
 private:
     sf::RenderWindow *window; // Cria uma janela.
     static Graphic_Manager *instance; //Cria o gerenciador que será utilizado no jogo inteiro
