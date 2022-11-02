@@ -18,6 +18,5 @@ public:
     void init(EntityList *lMoving, EntityList *lStatic);
 
 /*SETTERS & GETTERS*/
-    bool checkCollision(Entity* ent1, Entity* ent2);
     void collision();
 };

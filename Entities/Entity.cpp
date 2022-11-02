@@ -2,14 +2,15 @@
 #include "../Object.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Entity::Entity(double px, double py, double sx, double sy) : Object()
+Entity::Entity(int ident, double px, double py, double sx, double sy) : Object()
 {
 /*Construtora da classe Entity
 - Posição inicial será (px, py)
 - A posição inicial possui como valor default (0, 0)
 - Tamanho inicial definido por (sx, sy)
 - Tamanho inicial defautl como (0, 0)
-*/
+*/  
+    id=ident;
     position_x=px;
     position_y=py;
     size_x=sx;
@@ -33,7 +34,9 @@ double Entity::getSize_x() const{
 double Entity::getSize_y() const{
     return size_y;
 }
-
+const int Entity::getId () const{
+    return id;
+}
 sf::RectangleShape Entity::getRectangleShape () const{
     return retangulo;
 }
@@ -42,3 +45,5 @@ sf::RectangleShape Entity::getRectangleShape () const{
 void Entity::drawThis(Graphic_Manager *pGM){
     pGM -> draw(dynamic_cast<Object*>(this)); 
 }
+
+

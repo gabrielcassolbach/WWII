@@ -1,7 +1,7 @@
 #include "Box.hpp"
 
-Box::Box(double px, double py, double sx, double sy):
-Obstacle( px,  py,  sx,  sy)
+Box::Box(int ident, double px, double py, double sx, double sy):
+Obstacle(ident, px, py, sx, sy)
 {
 
 }

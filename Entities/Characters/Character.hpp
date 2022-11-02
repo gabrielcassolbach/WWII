@@ -10,7 +10,7 @@ protected:
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Character (double px=0.0f, double py=0.0f, double sx=0.0f, double sy=0.0f, double vx=0.0f, double vy=0.0f);
+    Character (int ident=-4, double px=0.0f, double py=0.0f, double sx=0.0f, double sy=0.0f, double vx=0.0f, double vy=0.0f);
     virtual ~Character();
     virtual void init () = 0; //Função que inicializa os retangulos
 
@@ -18,4 +18,5 @@ public:
 
 /*METHODS*/
     virtual void update()=0;
+    virtual void collide (Entity* ent2, double inter_x, double inter_y)=0;
 };

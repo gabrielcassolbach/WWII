@@ -7,7 +7,7 @@ protected:
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-    Obstacle(double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
+    Obstacle(int ident=-6, double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
     ~Obstacle();
     /*SETTERS & GETTERS*/
 

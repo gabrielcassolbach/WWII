@@ -5,7 +5,7 @@ private:
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Samurai(double px=0.0f, double py=0.0f, double sx=0.0f, double sy=0.0f, double vx=0.0f, double vy=0.0f);
+    Samurai(int ident=1, double px=0.0f, double py=0.0f, double sx=0.0f, double sy=0.0f, double vx=0.0f, double vy=0.0f);
     ~Samurai();
 
 /*SETTERS & GETTERS*/
@@ -13,4 +13,5 @@ public:
 /*METHODS*/
     void update();
     void init();
+    void collide (Entity* ent2, double inter_x, double inter_y);
 };

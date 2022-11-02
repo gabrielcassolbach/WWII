@@ -1,8 +1,8 @@
 #include "Player.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Player::Player(double px, double py, double sx, double sy, double vx, double vy):
-Character(px, py, sx, sy, vx, vy)
+Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy):
+Character(ident, px, py, sx, sy, vx, vy)
 {
 /*Construtora da class player
 - Posição inicial do player será (px, py)
@@ -32,7 +32,6 @@ void Player::init ()
     retangulo.setFillColor(sf::Color::Blue);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-
 void Player::update(){
 /*Função que atualiza as posições e velocidades de um objeto
 - Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.
@@ -42,3 +41,24 @@ void Player::update(){
     position_y+=velocity_y;
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
+void Player::collide (Entity* ent2, double inter_x, double inter_y){
+    if (ent2->getId()==1){
+        Character* pAttacker = static_cast<Character*>(ent2);
+        cout<<"Colisao player com Samurai"<<endl;
+    }    
+    else{
+        collisionMovement(ent2, inter_x, inter_y);
+        switch(ent2->getId()){
+            case 2:{
+                cout<<"Colisao com uma caixa"<<endl;
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+

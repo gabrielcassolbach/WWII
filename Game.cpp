@@ -11,9 +11,9 @@ CM()
 - Faz o ponteiro apontar para a janela que será utilizada.
 - Chama a função de execução.
 */
-    pBloco = new Player(0.0, 0.0, 100.00, 100.0, 0.2, 0.0); //(px, py, vx, vy, sx, sy)
-    pBloco2= new Box (800.00-100.00, 0.00, 100.0, 100.0); //Posicao final - tamanho (para o retângulo aparecer por inteiro)
-    pBloco3= new Samurai (400.0, 0.0, 100.0, 100.0, 0.0, 0.0);
+    pBloco = new Player(0, 0.0, 0.0, 100.00, 100.0, 0.2, 0.0); //(px, py, vx, vy, sx, sy)
+    pBloco2= new Box (2, 800.00-100.00, 0.00, 100.0, 100.0); //Posicao final - tamanho (para o retângulo aparecer por inteiro)
+    pBloco3= new Samurai (1, 400.0, 0.0, 100.0, 100.0, 0.0, 0.0);
     cout<<"Jogadores criados"<<endl;
 
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco));

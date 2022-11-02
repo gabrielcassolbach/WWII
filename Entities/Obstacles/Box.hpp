@@ -6,7 +6,7 @@ class Box : public Obstacle
     private:
         // Empty!
     public:
-        Box(double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
+        Box(int ident=2,double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
         ~Box();
 
         void update();
