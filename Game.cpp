@@ -13,12 +13,12 @@ Game::~Game() {
 
 /*METHODS*/
 void Game::execLevelOne() {
-    /*sf::Texture backgroundTexture;
+    sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile("background1.png");
     sf::Sprite backgroundSprite;
     sf::Vector2u size=backgroundTexture.getSize();
     backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.setOrigin(0, 0);*/
+    backgroundSprite.setOrigin(0, 0);
 
     while((pGM ->getWindow()) -> isOpen()){       
         levelOne.update();
@@ -34,12 +34,8 @@ void Game::execLevelOne() {
         
         (pGM ->getWindow()) -> clear();
 
-        //pGM->getWindow()->draw(backgroundSprite);
+        pGM->getWindow()->draw(backgroundSprite);
         levelOne.render();
-        // Percorro a lista de entidades.
-            /* classe Entity -> atualizar posição(): chama gerenciador de eventos e colisões.
-                             -> imprimir-se(): chama o gerenciador gráfico para desenhar.
-            */
         
         (pGM ->getWindow()) -> display(); // mostra na tela.
     }
