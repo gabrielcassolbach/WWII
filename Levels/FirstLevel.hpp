@@ -9,6 +9,17 @@ class FirstLevel : public Levels
         Player* pBloco;
         Box* pBloco2;
         Samurai* pBloco3;
+
+        Platform* pFloor;
+        Platform* pCeiling;
+        Platform* pRightLimit;
+        Platform* pLeftLimit;
+
+
+        Platform* pPlat1;
+        Platform* pPlat2;
+        Platform* pPlat3;
+
         Graphic_Manager* pGM;
         Collision_Manager CM;
          

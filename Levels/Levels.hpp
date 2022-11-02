@@ -4,6 +4,7 @@
 #include "../Managers/Collision_Manager.hpp"
 #include "../Entities/Characters/Player.hpp"
 #include "../Entities/Obstacles/Box.hpp"
+#include "../Entities/Obstacles/Platform.hpp"
 #include "../Entities/Characters/Samurai.hpp"
 class Character;
 
