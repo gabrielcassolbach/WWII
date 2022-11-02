@@ -11,6 +11,9 @@ class FirstLevel : public Levels
         Samurai* pBloco3;
         Graphic_Manager* pGM;
         Collision_Manager CM;
+
+        Platform* floor;
+        //Platform* ceiling;
          
     public:
 /*CONSTRUCTORS & DESTRUCTORS*/

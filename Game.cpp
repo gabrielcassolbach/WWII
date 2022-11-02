@@ -20,7 +20,7 @@ void Game::execLevelOne() {
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);
 
-    while((pGM ->getWindow()) -> isOpen()){       
+    while((pGM ->getWindow()) -> isOpen()){      
         levelOne.update();
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))

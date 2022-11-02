@@ -5,6 +5,7 @@
 #include "../Entities/Characters/Player.hpp"
 #include "../Entities/Obstacles/Box.hpp"
 #include "../Entities/Characters/Samurai.hpp"
+#include "../Entities/Obstacles/Platform.hpp"
 class Character;
 
 class Levels

@@ -39,14 +39,20 @@ void Collision_Manager::collision(){
             ent1=(*it);
             ent2=movingEntitiesList[i];
 
-            centerDistance_x = abs(ent1->getPosition_x() - ent2->getPosition_x());
-            centerDistance_y = abs(ent1->getPosition_y() - ent2->getPosition_y());
+            centerDistance_x = ent2->getPosition_x() - ent1->getPosition_x();
+            if (centerDistance_x<0)
+                centerDistance_x=centerDistance_x*(-1);
+            centerDistance_y = ent2->getPosition_y() - ent1->getPosition_y();
+            if (centerDistance_y<0)
+                centerDistance_y=(-centerDistance_y);
 
-            intersection_x = (ent1->getSize_x()+ent2->getSize_x())/2 - centerDistance_x;
-            intersection_y = (ent1->getSize_y()+ent2->getSize_y())/2 - centerDistance_y;
+            intersection_x = centerDistance_x - (ent1->getSize_x()/2.0 + ent2->getSize_x()/2.0);
+            intersection_y = centerDistance_y - (ent1->getSize_y()/2.0 + ent2->getSize_y()/2.0);
             
-            if (intersection_x>0 && intersection_y>0)
+            if (intersection_x<0.0 && intersection_y<0.0){
+                //cout<<"Collision:("<<ent1->getId()<<", "<<ent2->getId()<<endl;
                 ent2-> collide (ent1, intersection_x, intersection_y);
+            }
         } 
     }
 
@@ -56,13 +62,13 @@ void Collision_Manager::collision(){
             ent1=movingEntitiesList[j];
             ent2=movingEntitiesList[i];
 
-            centerDistance_x = abs(ent1->getPosition_x() - ent2->getPosition_x());
-            centerDistance_y = abs(ent1->getPosition_y() - ent2->getPosition_y());
+            centerDistance_x = ent2->getPosition_x() - ent1->getPosition_x();
+            centerDistance_y = ent2->getPosition_y() - ent1->getPosition_y();
 
-            intersection_x = (ent1->getSize_x()+ent2->getSize_x())/2 - centerDistance_x;
-            intersection_y = (ent1->getSize_y()+ent2->getSize_y())/2 - centerDistance_y;
+            intersection_x = abs(centerDistance_x) - (ent1->getSize_x()/2.0 + ent2->getSize_x()/2.0);
+            intersection_y = abs(centerDistance_y) - (ent1->getSize_y()/2.0 + ent2->getSize_y()/2.0);
             
-            if (intersection_x>0 && intersection_y>0){
+            if (intersection_x<0.0 && intersection_y<0.0){
                 ent1-> collide (ent2, intersection_x, intersection_y);
                 ent2-> collide (ent1, intersection_x, intersection_y);
             }

@@ -44,8 +44,7 @@ void Player::update(){
 void Player::collide (Entity* ent2, double inter_x, double inter_y){
     if (ent2->getId()==1){
         Character* pAttacker = static_cast<Character*>(ent2);
-        cout<<"Colisao player com Samurai"<<endl;
-    }    
+    }
     else{
         collisionMovement(ent2, inter_x, inter_y);
         switch(ent2->getId()){
