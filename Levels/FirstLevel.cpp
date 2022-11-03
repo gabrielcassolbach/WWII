@@ -9,7 +9,7 @@ FirstLevel::FirstLevel():
 CM()
 {
 
-    pBloco = new Player(0, 20.0, 40.0, 100.00, 100.0, 0.2, 0.0, 10);
+    pBloco = new Player(0, 20.0, 40.0, 100.00, 100.0, 0.0, 0.2, 10);
     pBloco2= new Box (2, 800.00-100.00, 40.00, 100.0, 100.0); 
     pBloco3= new Samurai (1, 400.0, 40.0, 100.0, 100.0, 0.0, 0.0, 6);
     
@@ -33,6 +33,8 @@ CM()
     MovingEntityList.initAll();
     CM.init(&MovingEntityList, &StaticEntityList);
     pGM = Graphic_Manager::getGraphic_Manager();
+
+    gravity=9.8;
 }
 
 /* - Desaloca todos os objetos alocados dinamicamente
@@ -46,6 +48,9 @@ FirstLevel::~FirstLevel()
 }
 
 /*SETTERS & GETTERS*/
+Player* FirstLevel::getPlayerOne () const{
+    return pBloco;
+}
 
 /*METHODS*/
 void FirstLevel::update (){

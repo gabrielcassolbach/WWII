@@ -20,4 +20,6 @@ public:
     //void execPause ();
     void execLevelOne();
     void execLevelTwo();
+
+    void keyPressedAction (sf::Event event);
 };

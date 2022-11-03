@@ -70,7 +70,7 @@ void Collision_Manager::collision(){
     //Verifica colisao entre objetos que se movem
     for (i=0; i<movingEntitiesList.size(); i++){
         for(j=i+1; j<movingEntitiesList.size(); j++){
-            ent1=(*it);
+            ent1=movingEntitiesList[j];
             ent2=movingEntitiesList[i];
             
             if (ent1->getPosition_y() > ent2->getPosition_y()){

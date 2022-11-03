@@ -1,8 +1,8 @@
 #include "Samurai.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp):
-Enemy(ident, px, py, sx, sy, vx, vy, hp)
+Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam):
+Enemy(ident, px, py, sx, sy, vx, vy, hp, dam)
 {
 }
 Samurai::~Samurai(){

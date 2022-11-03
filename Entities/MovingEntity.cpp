@@ -1,17 +1,21 @@
 #include "MovingEntity.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-MovingEntity::MovingEntity(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
+MovingEntity::MovingEntity(int ident, double px, double py, double sx, double sy, double vx, double vy, int dam) : 
 Entity(ident, px, py, sx, sy)
 {
     velocity_x = vx;
     velocity_y = vy;
+    damage=dam;
 }
 MovingEntity::~MovingEntity()
 {
 }
 
 /*SETTERS & GETTERS*/
+int MovingEntity::getDamage() const{
+    return damage;
+}
 
 /*METHODS*/
 void MovingEntity::collisionMovement(Entity* ent2, double intersection_x, double intersection_y){

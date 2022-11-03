@@ -16,6 +16,8 @@ class FirstLevel : public Levels
         Platform* ceiling;
         Platform* leftWall;
         Platform* rightWall;
+
+        double gravity;
          
     public:
 /*CONSTRUCTORS & DESTRUCTORS*/
@@ -23,6 +25,7 @@ class FirstLevel : public Levels
         ~FirstLevel();
 
 /*SETTERS & GETTERS*/
+        Player* getPlayerOne () const;
 
 /*METHODS*/
         void update ();

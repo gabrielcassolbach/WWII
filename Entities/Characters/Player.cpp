@@ -1,8 +1,8 @@
 #include "Player.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp):
-Character(ident, px, py, sx, sy, vx, vy, hp)
+Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam):
+Character(ident, px, py, sx, sy, vx, vy, hp, dam)
 {
 /*Construtora da class player
 - Posição inicial do player será (px, py)
@@ -18,6 +18,10 @@ Player::~Player(){
 }
 
 /*SETTER & GETTERS*/
+void Player::setVelocity (double vx, double vy){
+    velocity_x=vx;
+    velocity_y=vy;
+}
 
 
 /*METHODS*/
@@ -44,6 +48,8 @@ void Player::update(){
 void Player::collide (Entity* ent2, double inter_x, double inter_y){
     if (ent2->getId()==1){
         Character* pAttacker = static_cast<Character*>(ent2);
+        receiveDamage(pAttacker->getDamage());
+        cout<<"Health:"<<getHealth()<<endl;
     }
     else{
         collisionMovement(ent2, inter_x, inter_y);

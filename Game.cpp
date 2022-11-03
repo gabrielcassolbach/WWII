@@ -25,11 +25,17 @@ void Game::execLevelOne() {
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                (pGM ->getWindow())->close();
-            else if (event.key.code==sf::Keyboard::Escape)
-                (pGM ->getWindow())->close();
+            switch(event.type){
+                case sf::Event::Closed:{
+                    (pGM ->getWindow())->close();  
+                } break;
+                case sf::Event::KeyPressed:{
+                    keyPressedAction(event);
+                }
+
+                default:{
+                }break;
+            }  
         }
         
         (pGM ->getWindow()) -> clear();
@@ -38,5 +44,21 @@ void Game::execLevelOne() {
         levelOne.render();
         
         (pGM ->getWindow()) -> display(); // mostra na tela.
+    }
+}
+void Game::keyPressedAction (sf::Event event){
+    switch(event.key.code){
+        case sf::Keyboard::Right:{
+            levelOne.getPlayerOne()->setVelocity(1.0, 0.0);
+        }break;
+        case sf::Keyboard::Left:{
+            levelOne.getPlayerOne()->setVelocity(-1.0, 0.0);
+        }break;
+        case sf::Keyboard::Down:{
+            levelOne.getPlayerOne()->setVelocity(0.0, 1.0);
+        }break;
+        case sf::Keyboard::Up:{
+            levelOne.getPlayerOne()->setVelocity(0.0, -1.0);
+        }break;
     }
 }

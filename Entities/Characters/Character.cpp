@@ -7,8 +7,8 @@ Character::~Character()
 */
 
 }
-Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp):
-MovingEntity(ident, px, py, sx, sy, vx, vy)
+Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam):
+MovingEntity(ident, px, py, sx, sy, vx, vy, dam)
 {
 /*Construtora da classe character
 - Posição inicial será (px, py)
@@ -22,6 +22,12 @@ MovingEntity(ident, px, py, sx, sy, vx, vy)
 }
 
 /*SETTERS & GETTERS*/
+void Character::receiveDamage(int dam){
+    health-=dam;
+}
+int Character::getHealth(){
+    return health;
+}
 
 /*METHODS*/
 
