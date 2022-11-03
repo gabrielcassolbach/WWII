@@ -14,7 +14,7 @@ Game::~Game() {
 /*METHODS*/
 void Game::execLevelOne() {
     sf::Texture backgroundTexture;
-    backgroundTexture.loadFromFile("background1.png");
+    backgroundTexture.loadFromFile("background1.jpg");
     sf::Sprite backgroundSprite;
     sf::Vector2u size=backgroundTexture.getSize();
     backgroundSprite.setTexture(backgroundTexture);
