@@ -9,7 +9,7 @@ FirstLevel::FirstLevel():
 CM()
 {
 
-    pBloco = new Player(0, 20.0, 40.0, 100.00, 100.0, 0.0, 0.2, 10);
+    pBloco = new Player(0, 20.0, 40.0, 100.00, 100.0, 0.0, 1.5, 10);
     pBloco2= new Box (2, 800.00-100.00, 40.00, 100.0, 100.0); 
     pBloco3= new Samurai (1, 400.0, 40.0, 100.0, 100.0, 0.0, 0.0, 6);
     
@@ -53,9 +53,9 @@ Player* FirstLevel::getPlayerOne () const{
 }
 
 /*METHODS*/
-void FirstLevel::update (){
-    MovingEntityList.updateAll();
-    StaticEntityList.updateAll();
+void FirstLevel::update (double timeFraction){
+    MovingEntityList.updateAll(timeFraction);
+    //StaticEntityList.updateAll();
     CM.collision();
 }
 void FirstLevel::render (){

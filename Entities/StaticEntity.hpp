@@ -16,6 +16,6 @@ public:
 
     /*METHODS*/
     virtual void collide(Entity* ent2, double inter_x, double inter_y){ };
-    virtual void update() = 0;
+    virtual void update(double timeFraction) = 0;
     virtual void init() = 0;
 };

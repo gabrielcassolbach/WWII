@@ -40,9 +40,8 @@ void Collision_Manager::collision(){
             ent2=movingEntitiesList[i];
             
             if (ent1->getPosition_y() > ent2->getPosition_y()){
-                centerDistance_y = (ent2->getSize_y() + ent1->getSize_y())/2;
                 distance_y=abs(ent2->getPosition_y()-ent1->getPosition_y());
-                intersection_y = centerDistance_y - distance_y;
+                intersection_y = ent2->getSize_y() - distance_y;
             }
             else{
                 centerDistance_y=ent1->getSize_y();
@@ -51,9 +50,8 @@ void Collision_Manager::collision(){
             }
 
             if (ent1->getPosition_x() > ent2->getPosition_x()){
-                centerDistance_x = (ent2->getSize_x() + ent1->getSize_x())/2;
                 distance_x=abs(ent2->getPosition_x()-ent1->getPosition_x());
-                intersection_x = centerDistance_x - distance_x;
+                intersection_x = ent2->getSize_x() - distance_x;
             }
             else{
                 centerDistance_x=ent1->getSize_x();
@@ -74,9 +72,8 @@ void Collision_Manager::collision(){
             ent2=movingEntitiesList[i];
             
             if (ent1->getPosition_y() > ent2->getPosition_y()){
-                centerDistance_y = (ent2->getSize_y() + ent1->getSize_y())/2;
                 distance_y=abs(ent2->getPosition_y()-ent1->getPosition_y());
-                intersection_y = centerDistance_y - distance_y;
+                intersection_y = ent2->getSize_y() - distance_y;
             }
             else{
                 centerDistance_y=ent1->getSize_y();
@@ -85,9 +82,8 @@ void Collision_Manager::collision(){
             }
 
             if (ent1->getPosition_x() > ent2->getPosition_x()){
-                centerDistance_x = (ent2->getSize_x() + ent1->getSize_x())/2;
                 distance_x=abs(ent2->getPosition_x()-ent1->getPosition_x());
-                intersection_x = centerDistance_x - distance_x;
+                intersection_x = ent2->getSize_x() - distance_x;
             }
             else{
                 centerDistance_x=ent1->getSize_x();

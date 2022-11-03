@@ -28,6 +28,6 @@ class FirstLevel : public Levels
         Player* getPlayerOne () const;
 
 /*METHODS*/
-        void update ();
+        void update (double timeFraction);
         void render ();
 };

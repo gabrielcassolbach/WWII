@@ -14,6 +14,6 @@ public:
 
     /*METHODS*/
     void init();
-    void update();
+    void update(double timeFraction);
     void collide (Entity* ent2, double inter_x, double inter_y);
 };

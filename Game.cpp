@@ -4,6 +4,9 @@
 /*CONSTRUCTORS & DESTRUCTORS*/
 Game::Game()
 {  
+    clock.restart();
+    dt=0.0;
+
     pGM = Graphic_Manager::getGraphic_Manager();
     execLevelOne();
 }
@@ -13,6 +16,7 @@ Game::~Game() {
 
 /*METHODS*/
 void Game::execLevelOne() {
+
     sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile("background1.png");
     sf::Sprite backgroundSprite;
@@ -20,8 +24,7 @@ void Game::execLevelOne() {
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);
 
-    while((pGM ->getWindow()) -> isOpen()){      
-        levelOne.update();
+    while((pGM ->getWindow()) -> isOpen()){ 
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
@@ -39,6 +42,15 @@ void Game::execLevelOne() {
         }
         
         (pGM ->getWindow()) -> clear();
+
+        if (dt<TICK_RATE){
+            dt+=clock.getElapsedTime().asSeconds();
+            clock.restart();
+        }
+        else{
+            levelOne.update(TICK_RATE);
+            dt-=TICK_RATE;
+        }
 
         pGM->getWindow()->draw(backgroundSprite);
         levelOne.render();

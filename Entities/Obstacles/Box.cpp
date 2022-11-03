@@ -11,7 +11,7 @@ Box::~Box()
 
 }
 
-void Box::update()
+void Box::update(double timeFraction)
 {
     // Empty!
 }

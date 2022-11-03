@@ -10,7 +10,7 @@ Platform::~Platform()
 
 }
 
-void Platform::update()
+void Platform::update(double timeFraction)
 {
     // Empty!
 }

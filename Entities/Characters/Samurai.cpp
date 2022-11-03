@@ -12,7 +12,7 @@ Samurai::~Samurai(){
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-void Samurai::update(){
+void Samurai::update(double timeFraction){
 }
 void Samurai::init(){
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));

@@ -17,7 +17,7 @@ public:
 /*METHODS*/
     void includeEntity(Entity* p);
     void drawAll();
-    void updateAll();
+    void updateAll(double timeFraction);
     void initAll();
     void destroyAll();
     Entity* operator[](int index);

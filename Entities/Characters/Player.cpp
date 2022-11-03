@@ -36,13 +36,13 @@ void Player::init ()
     retangulo.setFillColor(sf::Color::Blue);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-void Player::update(){
+void Player::update(double timeFraction){
 /*Função que atualiza as posições e velocidades de um objeto
 - Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.
 - Determina a nova posição do retângulo
 */ 
-    position_x+=velocity_x;
-    position_y+=velocity_y;
+    position_x+=(velocity_x);
+    position_y+=(velocity_y);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 void Player::collide (Entity* ent2, double inter_x, double inter_y){

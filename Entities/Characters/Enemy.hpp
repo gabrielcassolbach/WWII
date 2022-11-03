@@ -12,6 +12,6 @@ public:
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-    virtual void update() = 0;
+    virtual void update(double timeFraction) = 0;
     virtual void init() = 0;
 };

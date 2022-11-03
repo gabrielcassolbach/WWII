@@ -26,11 +26,11 @@ EntityList::~EntityList(){
             cur=cur->getNextElement();
         }
     }
-    void EntityList::updateAll(){
+    void EntityList::updateAll(double timeFraction){
         List<Entity*>::Element* cur=NULL;
         cur=EntitiesList.getFirstElement();
         while (cur!=NULL){
-            cur->getValue()->update();
+            cur->getValue()->update(timeFraction);
             cur=cur->getNextElement();
         }
     }
