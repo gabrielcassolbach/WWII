@@ -16,9 +16,8 @@ Game::~Game() {
 
 /*METHODS*/
 void Game::execLevelOne() {
-
     sf::Texture backgroundTexture;
-    backgroundTexture.loadFromFile("background1.png");
+    backgroundTexture.loadFromFile("background.jpg");
     sf::Sprite backgroundSprite;
     sf::Vector2u size=backgroundTexture.getSize();
     backgroundSprite.setTexture(backgroundTexture);
@@ -28,17 +27,16 @@ void Game::execLevelOne() {
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
-            switch(event.type){
-                case sf::Event::Closed:{
-                    (pGM ->getWindow())->close();  
-                } break;
-                case sf::Event::KeyPressed:{
-                    keyPressedAction(event);
-                }
-
-                default:{
-                }break;
+            if(event.type == sf::Event::Closed){
+                cout << "Entrou aqui" << endl;
+                getchar();
+                (pGM ->getWindow())-> close(); 
+                return;
             }  
+                
+            if(sf::Event::KeyPressed){
+                {keyPressedAction(event);}
+            } 
         }
         
         (pGM ->getWindow()) -> clear();
@@ -56,8 +54,15 @@ void Game::execLevelOne() {
         levelOne.render();
         
         (pGM ->getWindow()) -> display(); // mostra na tela.
+
     }
+
+    // deleção do graphic manager ocorrerá aqui. 
+    pGM -> ~Graphic_Manager();
+
 }
+
+
 void Game::keyPressedAction (sf::Event event){
     switch(event.key.code){
         case sf::Keyboard::Right:{
