@@ -53,7 +53,7 @@ void Player::init ()
     - Determina a posição inicial do retângulo
     */
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::Blue);
+    retangulo.setFillColor(sf::Color::Green);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 void Player::update(double timeFraction){
@@ -76,6 +76,7 @@ void Player::update(double timeFraction){
 
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
+
 void Player::collide (Entity* ent2, double inter_x, double inter_y){
     if (ent2->getId()==1){
         Character* pAttacker = static_cast<Character*>(ent2);

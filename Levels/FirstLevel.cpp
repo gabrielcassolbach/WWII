@@ -16,7 +16,7 @@ CM()
     pBloco2= new Box (2, 800.00-100.00, 40.00, 20.0, 20.0); 
     pBloco3= new Samurai (1, 400.0, 40.0, 20.0, 20.0, 0.0, 0.0, 6, 2);
     
-    floor= new Platform (3, 0.0, 680.0, 1280.0, 40.0);
+    floor= new Platform (3, 0.0, 640.0, 1280.0, 80.0);
     ceiling= new Platform (3, 0.0, 1.0, 1280.0, 5.0);
     leftWall= new Platform(3, 0.0, 5.0, 5.0, 635.0);
     rightWall= new Platform (3, 1275.0, 5.0, 5.0, 635.0);
