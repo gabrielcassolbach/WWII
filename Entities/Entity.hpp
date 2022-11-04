@@ -2,6 +2,8 @@
 #include "../Object.hpp"
 #include <string>
  
+#define GRAVITY 9.8f
+
 class Entity : public Object
 {
 protected:

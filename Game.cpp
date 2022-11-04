@@ -34,7 +34,7 @@ void Game::execLevelOne() {
                 } break;
                 case sf::Event::KeyPressed:{
                     keyPressedAction(event);
-                }
+                }break;
 
                 default:{
                 }break;
@@ -43,13 +43,13 @@ void Game::execLevelOne() {
         
         (pGM ->getWindow()) -> clear();
 
-        if (dt<TICK_RATE){
+        if (dt<FRAME_RATE){
             dt+=clock.getElapsedTime().asSeconds();
             clock.restart();
         }
         else{
-            levelOne.update(TICK_RATE);
-            dt-=TICK_RATE;
+            levelOne.update(0.0166);
+            dt-=FRAME_RATE;
         }
 
         pGM->getWindow()->draw(backgroundSprite);
@@ -61,16 +61,16 @@ void Game::execLevelOne() {
 void Game::keyPressedAction (sf::Event event){
     switch(event.key.code){
         case sf::Keyboard::Right:{
-            levelOne.getPlayerOne()->setVelocity(1.0, 0.0);
+            if (levelOne.getPlayerOne()->getLeftDirection())
+                levelOne.getPlayerOne()->setLeftDirection(false);  
+            levelOne.getPlayerOne()->setWalking(true);
         }break;
         case sf::Keyboard::Left:{
-            levelOne.getPlayerOne()->setVelocity(-1.0, 0.0);
-        }break;
-        case sf::Keyboard::Down:{
-            levelOne.getPlayerOne()->setVelocity(0.0, 1.0);
+                levelOne.getPlayerOne()->setWalking(true);
+                levelOne.getPlayerOne()->setLeftDirection(true);
         }break;
         case sf::Keyboard::Up:{
-            levelOne.getPlayerOne()->setVelocity(0.0, -1.0);
+            levelOne.getPlayerOne()->jump(0.01666);
         }break;
     }
 }
