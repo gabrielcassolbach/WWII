@@ -17,6 +17,9 @@ class FirstLevel : public Levels
         Platform* leftWall;
         Platform* rightWall;
 
+        Platform* plat1;
+        Platform* plat2;
+
         double gravity;
          
     public:

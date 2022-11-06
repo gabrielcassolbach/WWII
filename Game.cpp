@@ -28,8 +28,6 @@ void Game::execLevelOne() {
         while ((pGM ->getWindow())-> pollEvent(event))
         {
             if(event.type == sf::Event::Closed){
-                cout << "Entrou aqui" << endl;
-                getchar();
                 (pGM ->getWindow())-> close(); 
                 return;
             }  
@@ -66,16 +64,16 @@ void Game::execLevelOne() {
 void Game::keyPressedAction (sf::Event event){
     switch(event.key.code){
         case sf::Keyboard::Right:{
-            levelOne.getPlayerOne()->setVelocity(1.0, 0.0);
+            levelOne.getPlayerOne()->setVelocity(2.0, 0.0);
         }break;
         case sf::Keyboard::Left:{
-            levelOne.getPlayerOne()->setVelocity(-1.0, 0.0);
+            levelOne.getPlayerOne()->setVelocity(-2.0, 0.0);
         }break;
         case sf::Keyboard::Down:{
-            levelOne.getPlayerOne()->setVelocity(0.0, 1.0);
+            levelOne.getPlayerOne()->setVelocity(0.0, 2.0);
         }break;
         case sf::Keyboard::Up:{
-            levelOne.getPlayerOne()->setVelocity(0.0, -1.0);
+            levelOne.getPlayerOne()->setVelocity(0.0, -2.0);
         }break;
     }
 }

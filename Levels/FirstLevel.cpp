@@ -18,6 +18,9 @@ CM()
     leftWall= new Platform(3, 0.0, 5.0, 5.0, 635.0);
     rightWall= new Platform (3, 1275.0, 5.0, 5.0, 635.0);
 
+    plat1 = new Platform (3, 340.0, 500, 300.0, 20.0);
+
+
     cout<<"Jogadores criados"<<endl;
 
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco));
@@ -28,6 +31,7 @@ CM()
     StaticEntityList.includeEntity(static_cast<Entity*>(ceiling));
     StaticEntityList.includeEntity(static_cast<Entity*>(leftWall));
     StaticEntityList.includeEntity(static_cast<Entity*>(rightWall));
+    StaticEntityList.includeEntity(static_cast<Entity*>(plat1));
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
