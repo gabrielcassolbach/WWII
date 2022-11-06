@@ -1,7 +1,7 @@
 #pragma once
 #include "Levels/FirstLevel.hpp"
 
-#define TICK_RATE 0.015625
+#define FRAME_RATE 0.01
 
 class Game
 /*Classe responsável pela mecânica geral do jogo*/

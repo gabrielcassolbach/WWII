@@ -16,7 +16,6 @@ class FirstLevel : public Levels
         Platform* ceiling;
         Platform* leftWall;
         Platform* rightWall;
-
         Platform* plat1;
         Platform* plat2;
 

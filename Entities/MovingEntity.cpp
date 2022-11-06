@@ -7,6 +7,7 @@ Entity(ident, px, py, sx, sy)
     velocity_x = vx;
     velocity_y = vy;
     damage=dam;
+    leftDirection=false;
 }
 MovingEntity::~MovingEntity()
 {
@@ -15,6 +16,12 @@ MovingEntity::~MovingEntity()
 /*SETTERS & GETTERS*/
 int MovingEntity::getDamage() const{
     return damage;
+}
+bool MovingEntity::getLeftDirection (){
+    return leftDirection;
+}
+void MovingEntity::setLeftDirection (bool active){
+    leftDirection=active;
 }
 
 /*METHODS*/

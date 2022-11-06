@@ -7,6 +7,7 @@ class MovingEntity : public Entity
 protected:
     double velocity_x, velocity_y;
     int damage;
+    bool leftDirection;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -15,6 +16,8 @@ public:
     
     /*SETTERS & GETTERS*/
     int getDamage () const;
+    bool getLeftDirection ();
+    void setLeftDirection (bool active);
 
     /*METHODS*/
     virtual void update(double timeFraction) = 0;
