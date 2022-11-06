@@ -30,6 +30,7 @@ void Game::execLevelOne() {
             switch(event.type){
                 case sf::Event::Closed:{
                     (pGM ->getWindow())->close();  
+                    return;
                 } break;
                 case sf::Event::KeyPressed:{
                     keyPressedAction(event);
@@ -38,10 +39,6 @@ void Game::execLevelOne() {
                 default:{
                 }break;
             }  
-                
-            if(sf::Event::KeyPressed){
-                {keyPressedAction(event);}
-            } 
         }
         
         (pGM ->getWindow()) -> clear();
