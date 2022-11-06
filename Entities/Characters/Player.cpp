@@ -1,8 +1,15 @@
 #include "Player.hpp"
 
+#define PLAYER_VELOCITY 1.5
+#define PLAYER_JUMP_HEIGHT 63.0
+#define PLAYER_ATTACK_RANGE 20
+#define PLAYER_DAMAGE_COOLDOWN 0.5
+#define PLAYER_ATTACK_COOLDOWN 0.3
+
 /*CONSTRUCTORS & DESTRUCTORS*/
-Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam):
-Character(ident, px, py, sx, sy, vx, vy, hp, dam)
+Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown):
+Character(ident, px, py, sx, sy, vx, vy, hp, dam, PLAYER_ATTACK_COOLDOWN),
+attackRange(PLAYER_ATTACK_RANGE)
 {
 /*Construtora da class player
 - Posição inicial do player será (px, py)
@@ -15,6 +22,7 @@ Character(ident, px, py, sx, sy, vx, vy, hp, dam)
     velocity_x=0;
     velocity_y=0;
     walking=false;
+    damageCooldownTimer=0;
 }
 Player::~Player(){
 
@@ -43,6 +51,15 @@ void Player::setWalking (bool walk){
 bool Player::getWalking (){
     return walking;
 }
+void Player::receiveDamage (int dam){
+    if (damageCooldownTimer>PLAYER_DAMAGE_COOLDOWN){
+        health-=damage;
+        if (health<=0)
+            cout<<"Morto"<<endl;
+        cout<<health<<endl;
+        damageCooldownTimer=0;
+    }
+}
 
 /*METHODS*/
 void Player::init ()
@@ -61,6 +78,8 @@ void Player::update(double timeFraction){
 - Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.
 - Determina a nova posição do retângulo
 */ 
+    Character::increaseAttackTimer(timeFraction);
+
     if (walking){
         velocity_x=PLAYER_VELOCITY;
         if (getLeftDirection())
@@ -75,13 +94,12 @@ void Player::update(double timeFraction){
     position_y+=(velocity_y);
 
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
-}
 
+    damageCooldownTimer+=timeFraction;
+}
 void Player::collide (Entity* ent2, double inter_x, double inter_y){
     if (ent2->getId()==1){
         Character* pAttacker = static_cast<Character*>(ent2);
-        receiveDamage(pAttacker->getDamage());
-        cout<<"Health:"<<getHealth()<<endl;
     }
     else{
         collisionMovement(ent2, inter_x, inter_y);

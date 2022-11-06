@@ -2,17 +2,16 @@
 #include <math.h>
 #pragma once
 
-#define PLAYER_VELOCITY 1.0
-#define PLAYER_JUMP_HEIGHT 63.0
-
 class Player : public Character
 {
 private:
     bool walking;
+    const int attackRange;
+    double damageCooldownTimer;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-    Player(int ident=0, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx = 0.0f, double vy = 0.0f, int hp=10, int dam=2);
+    Player(int ident=0, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx = 0.0f, double vy = 0.0f, int hp=10, int dam=2, const float atkCooldown=0.0);
     ~Player();
 
     /*SETTERS & GETTERS*/
@@ -23,6 +22,7 @@ public:
     void setVelocity_y (double vy);
     void setWalking (bool walk);
     bool getWalking();
+    void receiveDamage (int dam);
 
     /*METHODS*/
     void init();

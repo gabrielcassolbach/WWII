@@ -27,7 +27,6 @@ void Game::execLevelOne() {
         sf::Event event;
         while ((pGM ->getWindow())-> pollEvent(event))
         {
-<<<<<<< HEAD
             switch(event.type){
                 case sf::Event::Closed:{
                     (pGM ->getWindow())->close();  
@@ -38,13 +37,6 @@ void Game::execLevelOne() {
 
                 default:{
                 }break;
-=======
-            if(event.type == sf::Event::Closed){
-                cout << "Entrou aqui" << endl;
-                getchar();
-                (pGM ->getWindow())-> close(); 
-                return;
->>>>>>> c5baa14e65b7e95ea5251cc78133acdfa28e7eac
             }  
                 
             if(sf::Event::KeyPressed){

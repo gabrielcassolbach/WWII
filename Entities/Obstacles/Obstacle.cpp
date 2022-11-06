@@ -5,7 +5,6 @@ StaticEntity(ident, px, py, sx, sy)
 {
 
 }
-
 Obstacle::~Obstacle()
 {
 
