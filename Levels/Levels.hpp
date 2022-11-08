@@ -10,9 +10,13 @@
 #include "../Entities/Characters/Sniper.hpp"
 class Character;
 
-class Levels
+class Levels : public Object
 {
-protected:                                                      
+protected:  
+    EntityList MovingEntityList;
+    EntityList StaticEntityList;
+    Player* pPlayer1;
+    Sniper* pSniper1;                                                    
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/

@@ -4,33 +4,24 @@
 class FirstLevel : public Levels
 {
     private:
-        EntityList MovingEntityList;
-        EntityList StaticEntityList;
-        Player* pBloco;
-        Box* pBloco2;
-        Samurai* pBloco3;
-        Sniper* pBloco4;
-        Graphic_Manager* pGM;
-        Collision_Manager CM;
-
-        Platform* floor;
-        Platform* ceiling;
-        Platform* leftWall;
-        Platform* rightWall;
-        Platform* plat1;
-        Platform* plat2;
-
-        double gravity;
+        Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum.
          
     public:
-/*CONSTRUCTORS & DESTRUCTORS*/
+    /*CONSTRUCTORS & DESTRUCTORS*/
         FirstLevel();
         ~FirstLevel();
 
-/*SETTERS & GETTERS*/
+    /*SETTERS & GETTERS*/
         Player* getPlayerOne () const;
 
-/*METHODS*/
+    /*METHODS*/
         void update (double timeFraction);
         void render ();
+        void init () {}
+
+    /*SETTERS & GETTERS*/
+        sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função
+        
+    /*METHODS*/
+        void drawThis(Graphic_Manager* pGM) {}
 };

@@ -10,8 +10,7 @@ Object::Object()
 }
 Object::~Object()
 {
-/* Destrutora da classe object
-*/
+
 }
 
 /*SETTERS & GETTERS*/
