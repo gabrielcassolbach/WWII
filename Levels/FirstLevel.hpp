@@ -9,6 +9,7 @@ class FirstLevel : public Levels
         Player* pBloco;
         Box* pBloco2;
         Samurai* pBloco3;
+        Sniper* pBloco4;
         Graphic_Manager* pGM;
         Collision_Manager CM;
 

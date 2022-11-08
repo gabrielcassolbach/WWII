@@ -98,8 +98,9 @@ void Player::update(double timeFraction){
     damageCooldownTimer+=timeFraction;
 }
 void Player::collide (Entity* ent2, double inter_x, double inter_y){
-    if (ent2->getId()==1){
+    if (ent2->getId()==4){
         Character* pAttacker = static_cast<Character*>(ent2);
+        receiveDamage(pAttacker->getDamage());
     }
     else{
         collisionMovement(ent2, inter_x, inter_y);

@@ -20,7 +20,7 @@ attackCooldown(atkCooldown)
 - Tamanho inicial default como (0, 0)
 */
     health=hp;
-    cooldownTimer=0.0;
+    cooldownAttackTimer=0.0;
 }
 
 /*SETTERS & GETTERS*/
@@ -31,12 +31,15 @@ int Character::getHealth(){
     return health;
 }
 void Character::increaseAttackTimer(double dt){
-    cooldownTimer+=dt;
+    cooldownAttackTimer+=dt;
+}
+void Character::resetAttackTimer(){
+    cooldownAttackTimer=0.0;
 }
 
 /*METHODS*/
 bool Character::canAttack(){
-    if (cooldownTimer>=attackCooldown)
+    if (cooldownAttackTimer>=attackCooldown)
         return 1;
     return 0;
 }

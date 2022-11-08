@@ -14,7 +14,8 @@ CM()
     pBloco = new Player(0, 20.0, 40.0, 18.00, 63.0, 0.0, 0.0, 10, 2);
     pBloco2= new Box (2, 800.00-100.00, 40.00, 20.0, 20.0); 
     pBloco3= new Samurai (1, 400.0, 620.0, 18.00, 63.0, 0.0, 0.0, 6, 2, 1, pBloco);
-    
+    pBloco4= new Sniper (5, 1200.0, 620.0, 18.00, 63.00, 0.0, 0.0, 3, 4, 0.0, pBloco);
+
     floor= new Platform (3, 0.0, 640.0, 1280.0, 80.0);
     ceiling= new Platform (3, 0.0, 1.0, 1280.0, 5.0);
     leftWall= new Platform(3, 0.0, 5.0, 5.0, 635.0);
@@ -23,6 +24,8 @@ CM()
 
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco));
     MovingEntityList.includeEntity(static_cast<Entity*>(pBloco3));
+    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco4));
+    MovingEntityList.includeEntity(static_cast<Entity*>(pBloco4->getBullet()));
 
     StaticEntityList.includeEntity(static_cast<Entity*>(pBloco2));
     StaticEntityList.includeEntity(static_cast<Entity*>(floor));

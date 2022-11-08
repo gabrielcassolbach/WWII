@@ -9,7 +9,7 @@ protected:
     int health;
 
     const float attackCooldown;
-    float cooldownTimer;
+    float cooldownAttackTimer;
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
@@ -21,9 +21,10 @@ public:
     virtual void receiveDamage (int dam);
     int getHealth ();
     void increaseAttackTimer (double dt);
+    void resetAttackTimer();
 
 /*METHODS*/
     virtual void update(double timeFraction)=0;
     virtual void collide (Entity* ent2, double inter_x, double inter_y)=0;
-    bool canAttack ();
+    virtual bool canAttack ();
 };

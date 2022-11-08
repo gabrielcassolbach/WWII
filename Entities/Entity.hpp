@@ -24,6 +24,8 @@ public:
     double getPosition_y() const;
     double getSize_x() const;
     double getSize_y() const;
+    void setPosition_x(double px);
+    void setPosition_y(double py);
 
 /*METHODS*/
     void drawThis(Graphic_Manager *pGM);

@@ -1,7 +1,7 @@
 #include "Samurai.hpp"
 
 #define SAMURAI_ATTACK_COOLDOWN 1.2
-#define SAMURAI_VIEWDISTANCE 400.f
+#define SAMURAI_VIEWDISTANCE 300.f
 #define SAMURAI_VELOCITY_X 0.5
 #define SAMURAI_ATTACK_RANGE 20
 #define SAMURAI_DAMAGE 2
@@ -53,7 +53,7 @@ void Samurai::collide (Entity* ent2, double inter_x, double inter_y){
 }
 void Samurai::attack(){
     pPlayer->receiveDamage(SAMURAI_DAMAGE);
-    cooldownTimer=0;
+    cooldownAttackTimer=0;
 }
 
 

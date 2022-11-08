@@ -40,6 +40,12 @@ const int Entity::getId () const{
 sf::RectangleShape Entity::getRectangleShape () const{
     return retangulo;
 }
+void Entity::setPosition_x(double px){
+    position_x=px;
+}
+void Entity::setPosition_y(double py){
+    position_y=py;
+}
 
 /*METHODS*/
 void Entity::drawThis(Graphic_Manager *pGM){
