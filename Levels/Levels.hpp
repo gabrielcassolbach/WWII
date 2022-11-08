@@ -10,7 +10,7 @@
 #include "../Entities/Characters/Sniper.hpp"
 class Character;
 
-class Levels : public Object
+class Levels : public Enty
 {
 protected:  
     EntityList MovingEntityList;

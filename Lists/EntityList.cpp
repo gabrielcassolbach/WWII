@@ -43,22 +43,7 @@ EntityList::~EntityList(){
         }
     }
     void EntityList::destroyAll(){
-        /* Aqui estava ocorrendo a deleção de um elemento da lista. No entanto, ele é uma instância estática dentro 
-        da classe Elemento. Logo, não é necessário o algoritmo que está nessa função, somente o que já é feito na 
-        função clear.
 
-        */
-            /*
-            -> Segmentation Fault.
-                List<Entity*>::Element* cur=NULL;
-                List<Entity*>::Element* aux=NULL;
-                cur=EntitiesList.getFirstElement();
-                while (cur!=NULL){
-                    aux=cur->getNextElement();
-                    delete(cur->getValue());
-                    aux=cur;
-                }
-        */
         EntitiesList.clear();
     }
     

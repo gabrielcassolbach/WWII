@@ -1,10 +1,10 @@
 #pragma once
-#include "../Object.hpp"
+#include "../Enty.hpp"
 #include <string>
- 
+
 #define GRAVITY 9.8f
 
-class Entity : public Object
+class Entity : public Enty
 {
 protected:
     int id;
@@ -13,12 +13,12 @@ protected:
     sf::RectangleShape retangulo;
 
 public:
-/*CONSTRUCTORS & DESTRUCTORS*/
-    Entity(int ident=-1, double px = 0.0f, double py = 0.0f, double sx=0.0f, double sy=0.0f);
+    /*CONSTRUCTORS & DESTRUCTORS*/
+    Entity(int ident = -1, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f);
     virtual ~Entity();
 
-/*SETTERS & GETTERS*/
-    const int getId () const;
+    /*SETTERS & GETTERS*/
+    const int getId() const;
     sf::RectangleShape getRectangleShape() const;
     double getPosition_x() const;
     double getPosition_y() const;
@@ -27,10 +27,9 @@ public:
     void setPosition_x(double px);
     void setPosition_y(double py);
 
-/*METHODS*/
+    /*METHODS*/
     void drawThis(Graphic_Manager *pGM);
     virtual void update(double timeFraction) = 0;
     virtual void init() = 0;
-    virtual void collide (Entity* ent2, double inter_x, double inter_y)=0;
+    virtual void collide(Entity *ent2, double inter_x, double inter_y) = 0;
 };
-

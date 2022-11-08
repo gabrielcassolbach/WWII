@@ -2,7 +2,7 @@
 
 #include "../stdafx.hpp"
 
-class Object;
+class Enty;
 
 /* Classe que gerencia tudo o que aparece na tela
 - Update/Spawn/Render...
@@ -29,5 +29,5 @@ public:
     sf::RenderWindow *getWindow() const;
 
 /*METHODS*/
-    void draw(Object *pObject);
+    void draw(Enty *pEnty);
 };

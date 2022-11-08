@@ -1,14 +1,12 @@
 #include "Box.hpp"
 
-Box::Box(int ident, double px, double py, double sx, double sy):
+Box::Box(int ident, double px, double py, double sx, double sy) : 
 Obstacle(ident, px, py, sx, sy)
 {
-
 }
 
 Box::~Box()
 {
-
 }
 
 void Box::update(double timeFraction)

@@ -3,15 +3,15 @@
 
 #include "Managers/Graphic_Manager.hpp"
 
-class Object // Será substituída por Enty.
+class Enty // Será substituída por Enty.
 {
     protected: 
         Graphic_Manager* pGM;
 
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        Object();
-        ~Object();
+        Enty();
+        ~Enty();
         virtual void init () = 0;
 
     /*SETTERS & GETTERS*/

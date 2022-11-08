@@ -1,5 +1,5 @@
 #include "Graphic_Manager.hpp"
-#include "../Object.hpp"
+#include "../Enty.hpp"
 
 /*CONSTRUCTOS & DESTRUCTORS*/
 /*Construtora da classe Graphic_Manager
@@ -26,9 +26,9 @@ sf::RenderWindow *Graphic_Manager::getWindow() const
 }
 
 /*METHODS*/
-void Graphic_Manager::draw(Object *pObject)
+void Graphic_Manager::draw(Enty *pEnty)
 {
-    window->draw(pObject->getRectangleShape());
+    window->draw(pEnty->getRectangleShape());
 }
 
 Graphic_Manager *Graphic_Manager::instance = nullptr;

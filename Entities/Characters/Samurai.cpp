@@ -7,53 +7,59 @@
 #define SAMURAI_DAMAGE 2
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player* pP):
+Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player *pP) : 
 Enemy(ident, px, py, sx, sy, vx, vy, hp, SAMURAI_DAMAGE, SAMURAI_ATTACK_COOLDOWN, pP)
 {
-    velocity_y=0.0;
-    velocity_x=0.0;
+    velocity_y = 0.0;
+    velocity_x = 0.0;
 }
-Samurai::~Samurai(){
 
+Samurai::~Samurai()
+{
 }
 
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-void Samurai::update(double timeFraction){
+void Samurai::update(double timeFraction)
+{
     Character::increaseAttackTimer(timeFraction);
 
-    playerDistance=(pPlayer->getPosition_x())-position_x;
-    if (playerDistance<=0)
+    playerDistance = (pPlayer->getPosition_x()) - position_x;
+    if (playerDistance <= 0)
         setLeftDirection(true);
     else
         setLeftDirection(false);
 
-    if (fabs(playerDistance)<SAMURAI_VIEWDISTANCE){
+    if (fabs(playerDistance) < SAMURAI_VIEWDISTANCE)
+    {
         if (leftDirection)
-            velocity_x=SAMURAI_VELOCITY_X*(-1);
+            velocity_x = SAMURAI_VELOCITY_X * (-1);
         else
-            velocity_x=SAMURAI_VELOCITY_X;
-        if (fabs(playerDistance)<SAMURAI_ATTACK_RANGE && canAttack())
+            velocity_x = SAMURAI_VELOCITY_X;
+        if (fabs(playerDistance) < SAMURAI_ATTACK_RANGE && canAttack())
             attack();
     }
 
-    position_x+=velocity_x;
-    position_y+=velocity_y;
+    position_x += velocity_x;
+    position_y += velocity_y;
 
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-void Samurai::init(){
+
+void Samurai::init()
+{
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
     retangulo.setFillColor(sf::Color::White);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-void Samurai::collide (Entity* ent2, double inter_x, double inter_y){
 
+void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
+{
 }
-void Samurai::attack(){
+
+void Samurai::attack()
+{
     pPlayer->receiveDamage(SAMURAI_DAMAGE);
-    cooldownAttackTimer=0;
+    cooldownAttackTimer = 0;
 }
-
-

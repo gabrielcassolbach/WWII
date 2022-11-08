@@ -5,8 +5,8 @@ FirstLevel::FirstLevel() : CM()
     pPlayer1 = new Player(0, 20.0, 40.0, 18.00, 63.0, 0.0, 0.0, 10, 2);
     MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1)); // Player 1
 
-    pSniper1 = new Sniper (5, 1200.0, 620.0, 18.00, 63.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1));
+    pSniper1 = new Sniper(5, 1200.0, 620.0, 18.00, 63.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
+    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1)); // Sniper 1
 
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 0.0, 1280.0, 5.0)));     // Ceiling
@@ -24,13 +24,11 @@ FirstLevel::FirstLevel() : CM()
 
     MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 400.0, 620.0, 20.0, 20.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 1.
     MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 800.0, 620.0, 20.0, 20.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 2.
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1 -> getBullet())); // Sniper 1
-
+    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1->getBullet()));                                                 // Sniper 1
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
     CM.init(&MovingEntityList, &StaticEntityList);
-    pGM = Graphic_Manager::getGraphic_Manager();
 }
 
 /* - Desaloca todos os objetos alocados dinamicamente
@@ -40,7 +38,6 @@ FirstLevel::~FirstLevel()
 {
     MovingEntityList.destroyAll();
     StaticEntityList.destroyAll();
-    pGM = nullptr;
 }
 
 /*SETTERS & GETTERS*/
