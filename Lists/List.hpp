@@ -27,22 +27,27 @@ public:
         {
             prevElement = p;
         }
+
         Element *getPrevElement()
         {
             return prevElement;
         }
+
         void setNextElement(Element *n)
         {
             nextElement = n;
         }
+
         Element *getNextElement()
         {
             return nextElement;
         }
+
         void setValue(TIPO c)
         {
             Value = c;
         }
+        
         TIPO getValue()
         {
             return Value;

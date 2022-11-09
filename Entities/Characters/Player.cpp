@@ -1,11 +1,11 @@
 #include "Player.hpp"
 
 #define PLAYER_VELOCITY 1.5
-#define PLAYER_JUMP_HEIGHT 63.0
+#define PLAYER_JUMP_HEIGHT 83.0
 #define PLAYER_ATTACK_RANGE 20
 #define PLAYER_DAMAGE_COOLDOWN 0.5
 #define PLAYER_ATTACK_COOLDOWN 0.3
-
+  
 /*CONSTRUCTORS & DESTRUCTORS*/
 /*Construtora da class player
     - Posição inicial do player será (px, py)
@@ -106,10 +106,10 @@ void Player::update(double timeFraction)
         if (getLeftDirection())
             velocity_x *= -1;
     }
-    else
+    else   
         velocity_x = 0.0;
 
-    velocity_y += 9.8 * timeFraction;
+    velocity_y += 9.8 * timeFraction; // Aqui.
 
     position_x += (velocity_x);
     position_y += (velocity_y);
@@ -142,5 +142,8 @@ void Player::collide(Entity *ent2, double inter_x, double inter_y)
 
 void Player::jump(double timeFraction)
 {
-    velocity_y = -sqrtf(PLAYER_JUMP_HEIGHT / 35 * 2 * 9.8); // Divide-se por 35 pois as dimensões do jogo estão numa escala 10x maior que a proporção da velocidade (valores reais).
+    if(!velocity_y)
+        velocity_y = -sqrtf(PLAYER_JUMP_HEIGHT / 35 * 2 * 9.8);
+    // Divide-se por 35 pois as dimensões do jogo estão numa escala 10x maior que a proporção da velocidade (valores reais).
 }
+ 

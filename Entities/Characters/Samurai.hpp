@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
 class Samurai : public Enemy
-{
+{ 
 private:
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

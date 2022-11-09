@@ -9,8 +9,9 @@
 - Tamanho inicial definido por (sx, sy)
 - Tamanho inicial default como (0, 0)
 */
-Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown) : MovingEntity(ident, px, py, sx, sy, vx, vy, dam),
-                                                                                                                                              attackCooldown(atkCooldown)
+Character::Character(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown) : 
+MovingEntity(ident, px, py, sx, sy, vx, vy, dam),
+attackCooldown(atkCooldown)
 {
     health = hp;
     cooldownAttackTimer = 0.0;

@@ -3,7 +3,7 @@
 
 #include "Managers/Graphic_Manager.hpp"
 
-class Enty // Será substituída por Enty.
+class Enty 
 {
     protected: 
         Graphic_Manager* pGM;

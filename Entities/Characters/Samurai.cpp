@@ -20,7 +20,7 @@ Samurai::~Samurai()
 
 /*SETTERS & GETTERS*/
 
-/*METHODS*/
+/*METHODS*/  
 void Samurai::update(double timeFraction)
 {
     Character::increaseAttackTimer(timeFraction);

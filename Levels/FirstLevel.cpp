@@ -22,8 +22,8 @@ FirstLevel::FirstLevel() : CM()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 600.00, 300.00, 50.0, 50.0)));  // Caixa 3
     StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 700.00, 200.00, 50.0, 50.0)));  // Caixa 4
 
-    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 400.0, 620.0, 20.0, 20.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 1.
-    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 800.0, 620.0, 20.0, 20.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 2.
+    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 400.0, 620.0, 50.0, 10.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 1.
+    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 800.0, 620.0, 50.0, 20.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 2.
     MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1->getBullet()));                                                 // Sniper 1
 
     StaticEntityList.initAll();
@@ -50,9 +50,10 @@ Player *FirstLevel::getPlayerOne() const
 void FirstLevel::update(double timeFraction)
 {
     MovingEntityList.updateAll(timeFraction);
-    // StaticEntityList.updateAll();
+    StaticEntityList.updateAll(timeFraction);
     CM.collision();
 }
+
 void FirstLevel::render()
 {
     MovingEntityList.drawAll();

@@ -28,6 +28,7 @@ void Collision_Manager::init(EntityList* lMoving, EntityList* lStatic){
 /*METHODS*/
 void Collision_Manager::collision(){
     std::list<Entity*>::iterator it;
+    std::list<Entity*>::iterator it2;
     int i, j;
     double intersection_x, intersection_y, centerDistance_x, centerDistance_y, distance_x, distance_y;
     Entity* ent1=NULL;
@@ -96,5 +97,37 @@ void Collision_Manager::collision(){
                 ent1->collide (ent2, intersection_x, intersection_y);
             } 
         }
-    } 
+    }
+
+    //Verificar colisão entre entidades estáticas.
+    for (it=staticEntitiesList.begin(); it!=staticEntitiesList.end(); it++){
+        for(it2=staticEntitiesList.begin(); it2!=staticEntitiesList.end(); it2++){
+            ent1 = (*it);
+            ent2 = (*it2);
+            
+            if (ent1->getPosition_y() > ent2->getPosition_y()){
+                distance_y=abs(ent2->getPosition_y()-ent1->getPosition_y());
+                intersection_y = ent2->getSize_y() - distance_y;
+            }
+            else{
+                centerDistance_y=ent1->getSize_y();
+                distance_y=abs(ent1->getPosition_y()-ent2->getPosition_y());
+                intersection_y=centerDistance_y-distance_y;
+            }
+
+            if (ent1->getPosition_x() > ent2->getPosition_x()){
+                distance_x=abs(ent2->getPosition_x()-ent1->getPosition_x());
+                intersection_x = ent2->getSize_x() - distance_x;
+            }
+            else{
+                centerDistance_x=ent1->getSize_x();
+                distance_x=abs(ent1->getPosition_x()-ent2->getPosition_x());
+                intersection_x=centerDistance_x-distance_x;
+            }
+
+            if (intersection_x>0.0 && intersection_y>0.0){
+                ent2-> collide (ent1, intersection_x, intersection_y);
+            }       
+        }
+    }
 }

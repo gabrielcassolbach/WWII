@@ -16,6 +16,7 @@ Entity::Entity(int ident, double px, double py, double sx, double sy) : Enty()
     size_x = sx;
     size_y = sy;
 }
+
 Entity::~Entity()
 {
 }
