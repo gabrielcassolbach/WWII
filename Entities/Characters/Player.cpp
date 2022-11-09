@@ -129,14 +129,6 @@ void Player::collide(Entity *ent2, double inter_x, double inter_y)
     else
     {
         collisionMovement(ent2, inter_x, inter_y);
-        switch (ent2->getId())
-        {
-        case 2:
-        {
-            cout << "Colisao com uma caixa" << endl;
-            break;
-        }
-        }
     }
 }
 

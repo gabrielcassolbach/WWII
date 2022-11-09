@@ -11,7 +11,7 @@ Sniper::Sniper(int ident, double px, double py, double sx, double sy, double vx,
 Enemy(ident, px, py, sx, sy, 0, 0, SNIPER_HEALTH, SNIPER_DAMAGE, SNIPER_SHOOTING_COOLDOWN, pP)
 {
     bullet = nullptr;
-    bullet = new Projectile(4, 0.0, -65.0, 2, 2, SNIPER_BULLET_SPEED, 0, SNIPER_DAMAGE);
+    bullet = new Projectile(4, 0.0, -65.0, 4, 4, SNIPER_BULLET_SPEED, 0, SNIPER_DAMAGE);
 }
 
 Sniper::~Sniper()

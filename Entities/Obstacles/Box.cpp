@@ -12,7 +12,7 @@ Box::~Box()
 void Box::update(double timeFraction)
 {
     
-    velocity_x = 0.0f;
+    velocity_x = 0.0f; // Aqui é necessário adicionar a parte de colisão. A fim de garantir que eu consiga mover a caixa.
     velocity_y += 9.8f * timeFraction;
     position_x += (velocity_x);
     position_y += (velocity_y);
@@ -33,7 +33,6 @@ void Box::collide(Entity *ent2, double inter_x, double inter_y)
     if(id == 3)
     {
         collisionMovement(ent2, inter_x, inter_y);       
-        cout << "Caixa colidindo com plataforma" << endl;
     }
 }
 
