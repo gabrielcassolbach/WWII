@@ -26,6 +26,9 @@ void Samurai::update(double timeFraction)
     Character::increaseAttackTimer(timeFraction);
 
     playerDistance = (pPlayer->getPosition_x()) - position_x;
+    double heightDistance;
+    heightDistance=pPlayer->getPosition_y()-position_y;
+
     if (playerDistance <= 0)
         setLeftDirection(true);
     else
@@ -37,7 +40,7 @@ void Samurai::update(double timeFraction)
             velocity_x = SAMURAI_VELOCITY_X * (-1);
         else
             velocity_x = SAMURAI_VELOCITY_X;
-        if (fabs(playerDistance) < SAMURAI_ATTACK_RANGE && canAttack())
+        if (fabs(playerDistance) < SAMURAI_ATTACK_RANGE && canAttack() && fabs(heightDistance)<getSize_y())
             attack();
     }
 
@@ -58,7 +61,7 @@ void Samurai::init()
 
 void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
 {
-    if (ent2->getId()==2 || ent2->getId()== 3)
+    if (ent2->getId()==2 || ent2->getId()== 3 || ent2->getId()==1)
         collisionMovement(ent2, inter_x, inter_y);
 }
 

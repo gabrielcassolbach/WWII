@@ -1,11 +1,12 @@
 #include "Character.hpp"
+#include "../Obstacles/Box.hpp"
 #include <math.h>
 #pragma once
 
 class Player : public Character
 {
 private:
-    bool walking;
+    bool pushingBox;
     const int attackRange;
     double damageCooldownTimer;
 
@@ -20,8 +21,8 @@ public:
     double getVelocity_x();
     void setVelocity_x(double vx);
     void setVelocity_y(double vy);
-    void setWalking(bool walk);
-    bool getWalking();
+    void setPushingBox(bool pushing);
+    bool getPushingBox();
     void receiveDamage(int dam);
 
     /*METHODS*/
@@ -29,4 +30,5 @@ public:
     void update(double timeFraction);
     void collide(Entity *ent2, double inter_x, double inter_y);
     void jump(double timeFraction);
+    void pushBox (Entity* ent2, double inter_x, double inter_y);
 };

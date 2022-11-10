@@ -83,12 +83,10 @@ void Game::keyPressedAction(sf::Event event)
     {
         if (levelOne.getPlayerOne()->getLeftDirection())
             levelOne.getPlayerOne()->setLeftDirection(false);
-        levelOne.getPlayerOne()->setWalking(true);
     }
     break;
     case sf::Keyboard::Left:
     {
-        levelOne.getPlayerOne()->setWalking(true);
         levelOne.getPlayerOne()->setLeftDirection(true);
     }
     break;

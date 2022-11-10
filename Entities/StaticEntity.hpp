@@ -13,6 +13,8 @@ public:
     ~StaticEntity();
 
     /*SETTERS & GETTERS*/
+    void setVelocity_x(double vx);
+    void setVelocity_y(double vy);
 
     /*METHODS*/
     virtual void collide(Entity *ent2, double inter_x, double inter_y) = 0;

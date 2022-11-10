@@ -22,7 +22,7 @@ attackRange(PLAYER_ATTACK_RANGE)
 {
     velocity_x = 0;
     velocity_y = 0;
-    walking = false;
+    pushingBox = false;
     damageCooldownTimer = 0;
 }
 
@@ -57,14 +57,14 @@ void Player::setVelocity_y(double vy)
     velocity_y = vy;
 }
 
-void Player::setWalking(bool walk)
+void Player::setPushingBox(bool pushing)
 {
-    walking = walk;
+    pushingBox = pushing;
 }
 
-bool Player::getWalking()
+bool Player::getPushingBox()
 {
-    return walking;
+    return pushingBox;
 }
 
 void Player::receiveDamage(int dam)
@@ -100,14 +100,15 @@ void Player::update(double timeFraction)
 {
     Character::increaseAttackTimer(timeFraction);
 
-    if (walking)
-    {
-        velocity_x = PLAYER_VELOCITY;
-        if (getLeftDirection())
-            velocity_x *= -1;
+    velocity_x=PLAYER_VELOCITY;
+    if (getLeftDirection())
+        velocity_x*=(-1);
+
+    if (pushingBox){
+        velocity_x*=0.3;
+        pushingBox=false;
     }
-    else   
-        velocity_x = 0.0;
+    
 
     velocity_y += 9.8 * timeFraction; // Aqui.
 
@@ -126,9 +127,14 @@ void Player::collide(Entity *ent2, double inter_x, double inter_y)
         Character *pAttacker = static_cast<Character *>(ent2);
         receiveDamage(pAttacker->getDamage());
     }
-    else if (ent2->getId()==2 || ent2->getId()==3)
+    else if (ent2->getId()==3)
     {
         collisionMovement(ent2, inter_x, inter_y);
+    }
+    else if (ent2->getId()==2){
+        if (inter_y>inter_x)
+            pushingBox=true;
+        pushBox (ent2, inter_x, inter_y);
     }
 }
 
@@ -137,5 +143,18 @@ void Player::jump(double timeFraction)
     if(!velocity_y)
         velocity_y = -sqrtf(PLAYER_JUMP_HEIGHT / 35 * 2 * 9.8);
     // Divide-se por 35 pois as dimensões do jogo estão numa escala 10x maior que a proporção da velocidade (valores reais).
+}
+
+void Player::pushBox(Entity* ent2, double inter_x, double inter_y){
+    if (inter_y<inter_x){
+        if (position_y > ent2->getPosition_y())
+            position_y += inter_y;
+        else
+            position_y -= inter_y;
+        velocity_y = 0.0;
+    }
+    else{ 
+        ent2->setPosition_x(ent2->getPosition_x()+this->velocity_x);
+    }
 }
  

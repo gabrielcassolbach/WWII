@@ -13,6 +13,13 @@ StaticEntity::~StaticEntity()
 }
 
 /*SETTERS & GETTERS*/
+void StaticEntity::setVelocity_x(double vx){
+    velocity_x=vx;
+}
+void StaticEntity::setVelocity_y(double vy){
+    velocity_y=vy;
+}
+
 
 /*METHODS*/
 
