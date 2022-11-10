@@ -6,7 +6,6 @@
 class Player : public Character
 {
 private:
-    bool pushingBox;
     const int attackRange;
     double damageCooldownTimer;
 
@@ -21,8 +20,6 @@ public:
     double getVelocity_x();
     void setVelocity_x(double vx);
     void setVelocity_y(double vy);
-    void setPushingBox(bool pushing);
-    bool getPushingBox();
     void receiveDamage(int dam);
 
     /*METHODS*/
@@ -30,5 +27,4 @@ public:
     void update(double timeFraction);
     void collide(Entity *ent2, double inter_x, double inter_y);
     void jump(double timeFraction);
-    void pushBox (Entity* ent2, double inter_x, double inter_y);
 };

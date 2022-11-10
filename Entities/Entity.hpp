@@ -10,11 +10,12 @@ protected:
     int id;
     double position_x, position_y;
     double size_x, size_y;
+    double velocity_x, velocity_y;
     sf::RectangleShape retangulo;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-    Entity(int ident = -1, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f);
+    Entity(int ident = -1, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx=0.0, double vy=0.0);
     virtual ~Entity();
 
     /*SETTERS & GETTERS*/
@@ -26,6 +27,8 @@ public:
     double getSize_y() const;
     void setPosition_x(double px);
     void setPosition_y(double py);
+    void setVelocity_x(double vx);
+    void setVelocity_y(double vy);
 
     /*METHODS*/
     void drawThis(Graphic_Manager *pGM);

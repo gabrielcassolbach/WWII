@@ -5,9 +5,7 @@ class MovingEntity : public Entity
 {
     // Todos os characters vão ser derivados desta classe
 protected:
-    double velocity_x, velocity_y;
     bool leftDirection;
-
     int damage;
 
 public:

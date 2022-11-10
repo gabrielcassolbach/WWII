@@ -8,13 +8,15 @@
 - Tamanho inicial definido por (sx, sy)
 - Tamanho inicial defautl como (0, 0)
 */
-Entity::Entity(int ident, double px, double py, double sx, double sy) : Enty()
+Entity::Entity(int ident, double px, double py, double sx, double sy, double vx, double vy) : Enty()
 {
     id = ident;
     position_x = px;
     position_y = py;
     size_x = sx;
     size_y = sy;
+    velocity_x=vx;
+    velocity_y=vy;
 }
 Entity::~Entity()
 {
@@ -60,6 +62,14 @@ void Entity::setPosition_y(double py)
 {
     position_y = py;
 }
+
+void Entity::setVelocity_x(double vx){
+    velocity_x=vx;
+}
+void Entity::setVelocity_y(double vy){
+    velocity_y=vy;
+}
+
 
 /*METHODS*/
 void Entity::drawThis(Graphic_Manager *pGM)

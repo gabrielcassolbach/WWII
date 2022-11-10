@@ -2,10 +2,8 @@
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 StaticEntity::StaticEntity(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
-Entity(ident, px, py, sx, sy)
+Entity(ident, px, py, sx, sy, vx, vy)
 {
-    velocity_x = vx;
-    velocity_y = vy;
 }
 
 StaticEntity::~StaticEntity()
@@ -13,12 +11,6 @@ StaticEntity::~StaticEntity()
 }
 
 /*SETTERS & GETTERS*/
-void StaticEntity::setVelocity_x(double vx){
-    velocity_x=vx;
-}
-void StaticEntity::setVelocity_y(double vy){
-    velocity_y=vy;
-}
 
 
 /*METHODS*/

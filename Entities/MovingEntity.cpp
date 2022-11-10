@@ -1,10 +1,8 @@
 #include "MovingEntity.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-MovingEntity::MovingEntity(int ident, double px, double py, double sx, double sy, double vx, double vy, int dam) : Entity(ident, px, py, sx, sy)
+MovingEntity::MovingEntity(int ident, double px, double py, double sx, double sy, double vx, double vy, int dam) : Entity(ident, px, py, sx, sy, vx, vy)
 {
-    velocity_x = vx;
-    velocity_y = vy;
     damage = dam;
     leftDirection = false;
 }
