@@ -41,6 +41,8 @@ void Samurai::update(double timeFraction)
             attack();
     }
 
+    velocity_y+=GRAVITY;
+
     position_x += velocity_x;
     position_y += velocity_y;
 
@@ -56,6 +58,8 @@ void Samurai::init()
 
 void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
 {
+    if (ent2->getId()==2 || ent2->getId()== 3)
+        collisionMovement(ent2, inter_x, inter_y);
 }
 
 void Samurai::attack()
