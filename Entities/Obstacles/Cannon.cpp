@@ -3,11 +3,13 @@
 Cannon::Cannon(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
+
 }
 
 Cannon::~Cannon()
 {
 }
+
 
 void Cannon::update(double timeFraction)
 {    

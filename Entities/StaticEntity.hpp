@@ -18,4 +18,6 @@ public:
     virtual void update(double timeFraction) = 0;
     virtual void init() = 0;
     void collisionMovement(Entity *ent2, double intersection_x, double intersection_y);
+
+    virtual void receiveDamage(int dam)=0;
 };

@@ -23,4 +23,6 @@ public:
     virtual void init() = 0;
     virtual void collide(Entity *ent2, double inter_x, double inter_y) = 0;
     void collisionMovement(Entity *ent2, double intersection_x, double intersection_y);
+
+    virtual void receiveDamage(int dam)=0;
 };

@@ -8,3 +8,7 @@ StaticEntity(ident, px, py, sx, sy, vx, vy)
 Obstacle::~Obstacle()
 {
 }
+
+void Obstacle::receiveDamage(int dam){
+    
+}

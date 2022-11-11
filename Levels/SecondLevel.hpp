@@ -1,15 +1,14 @@
-#pragma once 
 #include "Levels.hpp"
 
-class FirstLevel : public Levels
+class SecondLevel : public Levels
 {
     private:
         Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum.
          
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        FirstLevel();
-        ~FirstLevel();
+        SecondLevel();
+        ~SecondLevel();
 
     /*SETTERS & GETTERS*/
         Player* getPlayerOne () const;

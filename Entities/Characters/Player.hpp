@@ -1,6 +1,7 @@
 #include "Character.hpp"
 #include "../Obstacles/Box.hpp"
 #include <math.h>
+#include "../../Managers/Collision_Manager.hpp"
 #pragma once
 
 class Player : public Character
@@ -22,6 +23,7 @@ public:
     void setVelocity_x(double vx);
     void setVelocity_y(double vy);
     void receiveDamage(int dam);
+    void attack(Collision_Manager* CM);
 
     /*METHODS*/
     void init();

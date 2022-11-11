@@ -1,5 +1,6 @@
 #pragma once
 #include "Levels/FirstLevel.hpp"
+#include "Levels/SecondLevel.hpp"
 
 #define FRAME_RATE 0.01
 
@@ -8,7 +9,11 @@ class Game
 {
 private:
     FirstLevel levelOne;
+    SecondLevel levelTwo;
     Graphic_Manager* pGM;
+    
+    bool runningLevelOne;
+    bool runningLevelTwo;
     
     sf::Clock clock;
     double dt;
@@ -21,10 +26,9 @@ public:
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
-    //void execMenu ();
-    //void execPause ();
     void execLevelOne();
     void execLevelTwo();
 
     void keyPressedAction (sf::Event event);
+    void mousePressedAction(sf::Event event);
 };

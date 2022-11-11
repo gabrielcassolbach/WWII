@@ -20,4 +20,5 @@ public:
     void update(double timeFraction);
     void init();
     void collide(Entity *ent2, double inter_x, double inter_y);
+    void receiveDamage(int dam);
 };

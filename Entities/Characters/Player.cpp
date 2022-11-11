@@ -2,11 +2,12 @@
 
 #define PLAYER_VELOCITY 1.5
 #define PLAYER_JUMP_HEIGHT 83.0
-#define PLAYER_ATTACK_RANGE 20
+#define PLAYER_ATTACK_RANGE 50
 #define PLAYER_DAMAGE_COOLDOWN 0.5
 #define PLAYER_ATTACK_COOLDOWN 0.3
 #define SLOW_ACELERATION 0.3
 #define FAST_ACELERATION 1.5
+
 
 
 /*CONSTRUCTORS & DESTRUCTORS*/
@@ -64,7 +65,7 @@ void Player::receiveDamage(int dam)
 {
     if (damageCooldownTimer > PLAYER_DAMAGE_COOLDOWN)
     {
-        health -= damage;
+        health -= dam;
         if (health <= 0)
             cout << "Morto" << endl;
         cout << health << endl;
@@ -144,3 +145,28 @@ void Player::jump(double timeFraction)
         velocity_y = -sqrtf(PLAYER_JUMP_HEIGHT / 35 * 2 * 9.8);
     // Divide-se por 35 pois as dimensões do jogo estão numa escala 10x maior que a proporção da velocidade (valores reais).
 }
+
+void Player::attack(Collision_Manager* CM){
+    sf::RectangleShape hitBox;
+    hitBox=sf::RectangleShape(sf::Vector2f(2*PLAYER_ATTACK_RANGE+size_x, size_y));
+    hitBox.setFillColor(sf::Color(0, 0, 0, 255));
+    hitBox.setPosition(sf::Vector2f(position_x-PLAYER_ATTACK_RANGE, position_y));
+    
+    CM->playerAttack(hitBox);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
