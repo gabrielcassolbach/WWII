@@ -31,9 +31,14 @@ public:
 
 /*SETTERS & GETTERS*/
 
-
 /*METHODS*/
-    virtual void update(double timeFraction)=0;
-    virtual void render()=0;
-
+    virtual void update(double timeFraction) = 0;
+    virtual void render() = 0;
+    virtual void createEnemies() = 0;
+    virtual void createPlatforms() = 0;
+    virtual void createTrenchs() = 0;
+    virtual void createCannons() = 0;
+    virtual void createBoxes() = 0;
+    virtual void createSnipers() = 0;
+    virtual void createPlayers() = 0;
 };

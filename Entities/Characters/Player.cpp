@@ -8,17 +8,6 @@
 #define SLOW_ACELERATION 0.3
 #define FAST_ACELERATION 1.5
 
-
-/*CONSTRUCTORS & DESTRUCTORS*/
-/*Construtora da class player
-    - Posição inicial do player será (px, py)
-    - Posição definida como default é (0, 0)
-    - Velocidade inicial do player será (vx, xy)
-    - Velocidade definida como default é (0, 0)
-    - Tamanho inicial definido por (sx, sy)
-    - Tamanho inicial defautl como (0, 0)
-*/
-
 Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown) : 
 Character(ident, px, py, sx, sy, vx, vy, hp, dam, PLAYER_ATTACK_COOLDOWN),
 attackRange(PLAYER_ATTACK_RANGE)
@@ -73,11 +62,6 @@ void Player::receiveDamage(int dam)
 }
 
 /*METHODS*/
-/*  Função que determina as propriedades básicas de um retângulo
-    - Determina o tamanho do retângulo
-    - Determina a cor do retângulo (azul para player e vermelho para inimigo)
-    - Determina a posição inicial do retângulo
-*/
 void Player::init()
 {
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
@@ -85,10 +69,6 @@ void Player::init()
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 
-/*Função que atualiza as posições e velocidades de um objeto
-    - Altera a posição do objeto a cada frame de acordo com uma velocidade vx e vy.
-    - Determina a nova posição do retângulo
-*/
 void Player::update(double timeFraction)
 {
     Character::increaseAttackTimer(timeFraction);

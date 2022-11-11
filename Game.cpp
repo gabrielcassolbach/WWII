@@ -22,7 +22,6 @@ void Game::execLevelOne()
     sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile("background.jpg");
     sf::Sprite backgroundSprite;
-    sf::Vector2u size = backgroundTexture.getSize();
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);
 
@@ -33,22 +32,22 @@ void Game::execLevelOne()
         {
             switch (event.type)
             {
-            case sf::Event::Closed:
-            {
-                (pGM->getWindow())->close();
-                return;
-            }
-            break;
-            case sf::Event::KeyPressed:
-            {
-                keyPressedAction(event);
-            }
-            break;
+                case sf::Event::Closed:
+                {
+                    (pGM->getWindow())->close();
+                }
+                break;
+                
+                case sf::Event::KeyPressed:
+                {
+                    keyPressedAction(event);
+                }
+                break;
 
-            default:
-            {
-            }
-            break;
+                default:
+                {
+                }
+                break;
             }
         }
 
@@ -72,7 +71,7 @@ void Game::execLevelOne()
     }
 
     // deleção do graphic manager ocorrerá aqui.
-    pGM -> deleteInstance();
+    pGM->deleteInstance();
 }
 
 void Game::keyPressedAction(sf::Event event)
