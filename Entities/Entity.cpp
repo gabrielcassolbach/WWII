@@ -48,6 +48,16 @@ const int Entity::getId() const
     return id;
 }
 
+double Entity::getVelocity_x() const
+{
+    return velocity_x; 
+}
+
+double Entity::getVelocity_y() const
+{
+    return velocity_y; 
+}
+
 sf::RectangleShape Entity::getRectangleShape() const
 {
     return retangulo;
@@ -66,6 +76,7 @@ void Entity::setPosition_y(double py)
 void Entity::setVelocity_x(double vx){
     velocity_x=vx;
 }
+
 void Entity::setVelocity_y(double vy){
     velocity_y=vy;
 }

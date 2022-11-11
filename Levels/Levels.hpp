@@ -4,10 +4,13 @@
 #include "../Managers/Collision_Manager.hpp"
 #include "../Entities/Characters/Player.hpp"
 #include "../Entities/Obstacles/Box.hpp"
+#include "../Entities/Obstacles/Trench.hpp"
+#include "../Entities/Obstacles/Cannon.hpp"
 #include "../Entities/Characters/Samurai.hpp"
 #include "../Entities/Obstacles/Platform.hpp"
 #include "../Entities/Projectile.hpp"
 #include "../Entities/Characters/Sniper.hpp"
+
 class Character;
 
 class Levels : public Enty
@@ -16,7 +19,10 @@ protected:
     EntityList MovingEntityList;
     EntityList StaticEntityList;
     Player* pPlayer1;
-    Sniper* pSniper1;                                                    
+    Sniper* pSniper1;  
+    Sniper* pSniper2;   
+    Sniper* pSniper3;  
+    Sniper* pSniper4;                                                     
 
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/

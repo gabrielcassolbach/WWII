@@ -8,6 +8,7 @@ class Player : public Character
 private:
     const int attackRange;
     double damageCooldownTimer;
+    double aceleration;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

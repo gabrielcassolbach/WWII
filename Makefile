@@ -10,4 +10,4 @@ all:
 	$(CC) *.o $(CFLAGS) -o $(TARGET) $(LDFLAGS)
 	rm  -f *.o
 clean:
-	rm -f $(TARGET) *~
+	rm -f $(TARGET) *~ *.o

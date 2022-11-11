@@ -5,7 +5,10 @@
 #define PLAYER_ATTACK_RANGE 20
 #define PLAYER_DAMAGE_COOLDOWN 0.5
 #define PLAYER_ATTACK_COOLDOWN 0.3
-  
+#define SLOW_ACELERATION 0.3
+#define FAST_ACELERATION 1.5
+
+
 /*CONSTRUCTORS & DESTRUCTORS*/
 /*Construtora da class player
     - Posição inicial do player será (px, py)
@@ -22,6 +25,7 @@ attackRange(PLAYER_ATTACK_RANGE)
 {
     velocity_x = 0;
     velocity_y = 0;
+    
     damageCooldownTimer = 0;
 }
 
@@ -89,7 +93,8 @@ void Player::update(double timeFraction)
 {
     Character::increaseAttackTimer(timeFraction);
 
-    velocity_x=PLAYER_VELOCITY;
+    velocity_x = PLAYER_VELOCITY * aceleration;
+    
     if (getLeftDirection())
         velocity_x*=(-1);    
 
@@ -105,15 +110,32 @@ void Player::update(double timeFraction)
 
 void Player::collide(Entity *ent2, double inter_x, double inter_y)
 {
-    if (ent2->getId() == 4)
+
+    int id = ent2 -> getId();
+
+    if (id == 4)
     {
         Character *pAttacker = static_cast<Character *>(ent2);
         receiveDamage(pAttacker->getDamage());
     }
-    else if (ent2->getId()==3 || ent2->getId()==2)
-    {
+
+    if (id == 3){
         collisionMovement(ent2, inter_x, inter_y);
+        aceleration = 1;
     }
+
+    if(id == 2)
+        collisionMovement(ent2, inter_x, inter_y);
+ 
+    if(id == 6){
+        aceleration = SLOW_ACELERATION;    
+    } 
+
+    if(id == 7){
+        aceleration = FAST_ACELERATION;
+    }
+        
+    
 }
 
 void Player::jump(double timeFraction)

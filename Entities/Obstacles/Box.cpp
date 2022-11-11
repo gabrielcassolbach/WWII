@@ -31,8 +31,7 @@ void Box::collide(Entity *ent2, double inter_x, double inter_y)
     int id = ent2 -> getId();
      
     if(id == 3)
-    {
-        collisionMovement(ent2, inter_x, inter_y);       
-    }
+        collisionMovement(ent2, inter_x, inter_y);      
+                
 }
 

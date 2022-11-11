@@ -30,4 +30,11 @@ public:
 
 /*METHODS*/
     void draw(Enty *pEnty);
+    
+    static void deleteInstance()
+    {
+        if (instance)
+            delete instance;
+    }
+
 };

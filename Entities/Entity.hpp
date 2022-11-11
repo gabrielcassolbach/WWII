@@ -25,6 +25,9 @@ public:
     double getPosition_y() const;
     double getSize_x() const;
     double getSize_y() const;
+    double getVelocity_x() const;
+    double getVelocity_y() const;
+
     void setPosition_x(double px);
     void setPosition_y(double py);
     void setVelocity_x(double vx);

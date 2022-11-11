@@ -72,7 +72,7 @@ void Game::execLevelOne()
     }
 
     // deleção do graphic manager ocorrerá aqui.
-    pGM->~Graphic_Manager();
+    pGM -> deleteInstance();
 }
 
 void Game::keyPressedAction(sf::Event event)
