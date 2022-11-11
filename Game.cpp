@@ -27,7 +27,6 @@ void Game::execLevelOne()
     sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile("background.jpg");
     sf::Sprite backgroundSprite;
-    sf::Vector2u size = backgroundTexture.getSize();
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);
 
@@ -79,7 +78,7 @@ void Game::execLevelOne()
     }
 
     // deleção do graphic manager ocorrerá aqui.
-    pGM -> deleteInstance();
+    pGM->deleteInstance();
 }
 
 void Game::execLevelTwo()

@@ -18,11 +18,19 @@ class FirstLevel : public Levels
     /*METHODS*/
         void update (double timeFraction);
         void render ();
-        void init () {}
+        /*------------------------------------------------*/
+        void init () {} // pensar!!
+        void drawThis(Graphic_Manager* pGM) {} // pensar!!
+        /*------------------------------------------------*/
+        void createPlayers();
+        void createEnemies();
+        void createPlatforms();
+        void createTrenchs();
+        void createCannons();
+        void createBoxes();
+        void createSnipers();
 
     /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função
         
-    /*METHODS*/
-        void drawThis(Graphic_Manager* pGM) {}
 };
