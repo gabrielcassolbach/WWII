@@ -19,6 +19,14 @@ class SecondLevel : public Levels
         void render ();
         void init () {}
 
+        void createPlayers();
+        void createEnemies();
+        void createPlatforms();
+        void createTrenchs();
+        void createCannons();
+        void createBoxes();
+        void createSnipers();
+
     /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função
         

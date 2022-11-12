@@ -38,3 +38,32 @@ void SecondLevel::render()
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
+
+void SecondLevel::createPlayers(){
+
+}
+
+void SecondLevel::createEnemies(){
+
+}
+
+
+void SecondLevel::createPlatforms(){
+
+}
+
+void SecondLevel::createTrenchs(){
+
+}
+
+void SecondLevel::createCannons(){
+
+}
+
+void SecondLevel::createBoxes(){
+
+}
+
+void SecondLevel::createSnipers(){
+
+}
