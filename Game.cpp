@@ -17,39 +17,49 @@ Game::~Game()
 }
 
 /*METHODS*/
-void Game::execLevelOne()
+
+void Game::waitForInput()
 {
-    sf::Texture backgroundTexture;
-    backgroundTexture.loadFromFile("background.jpg");
-    sf::Sprite backgroundSprite;
+    sf::Event event;
+    while ((pGM->getWindow())->pollEvent(event))
+    {
+        switch (event.type)
+        {
+        case sf::Event::Closed:
+        {
+            (pGM->getWindow())->close();
+        }
+        break;
+
+        case sf::Event::KeyPressed:
+        {
+            keyPressedAction(event);
+        }
+        break;
+
+        default:
+        {
+        }
+        break;
+        }
+    }
+}
+
+void Game::setBackground(string path)
+{
+    backgroundTexture.loadFromFile(path);
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);
+}
+
+void Game::execLevelOne()
+{
+
+    setBackground("background.jpg");
 
     while ((pGM->getWindow())->isOpen())
     {
-        sf::Event event;
-        while ((pGM->getWindow())->pollEvent(event))
-        {
-            switch (event.type)
-            {
-                case sf::Event::Closed:
-                {
-                    (pGM->getWindow())->close();
-                }
-                break;
-                
-                case sf::Event::KeyPressed:
-                {
-                    keyPressedAction(event);
-                }
-                break;
-
-                default:
-                {
-                }
-                break;
-            }
-        }
+        waitForInput();
 
         (pGM->getWindow())->clear();
 
@@ -67,10 +77,9 @@ void Game::execLevelOne()
         pGM->getWindow()->draw(backgroundSprite);
         levelOne.render();
 
-        (pGM->getWindow())->display(); // mostra na tela.
+        (pGM->getWindow())->display(); 
     }
 
-    // deleção do graphic manager ocorrerá aqui.
     pGM->deleteInstance();
 }
 

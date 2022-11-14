@@ -10,6 +10,8 @@ private:
     FirstLevel levelOne;
     Graphic_Manager* pGM;
     
+    sf::Sprite backgroundSprite;
+    sf::Texture backgroundTexture;
     sf::Clock clock;
     double dt;
 
@@ -19,10 +21,12 @@ public:
     ~Game();
 
 /*SETTERS & GETTERS*/
+    void setBackground(string path);
 
 /*METHODS*/
     //void execMenu ();
     //void execPause ();
+    void waitForInput();
     void execLevelOne();
     void execLevelTwo();
 

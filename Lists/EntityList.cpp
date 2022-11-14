@@ -54,7 +54,6 @@ void EntityList::initAll()
 }
 void EntityList::destroyAll()
 {
-
     EntitiesList.clear();
 }
 
