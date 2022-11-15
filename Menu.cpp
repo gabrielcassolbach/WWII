@@ -4,6 +4,7 @@
 Menu::Menu(Game *pg)
 {
     setText();
+    setBackground();
     pGame = pg;
 }
 
@@ -55,6 +56,8 @@ void Menu::setText()
 /*METHODS*/
 void Menu::drawThis(Graphic_Manager *pGM)
 {   
+    pGM->getWindow()->draw(backgroundSprite);
+    
     pGM -> getWindow() -> draw(Title);
 
     for(int i = 0; i < MAX_NUMBER_OF_ITENS; i++)
@@ -68,3 +71,20 @@ void Menu::init()
 
 }
 
+void Menu::draw()
+{
+    drawThis(pGM);
+}
+
+
+void Menu::setBackground()
+{
+    backgroundTexture.loadFromFile("Images/backgroundMenu.jpg");
+    backgroundSprite.setTexture(backgroundTexture);
+    backgroundSprite.setOrigin(0, 0);   
+}
+
+void Menu::update(double timeFraction)
+{
+
+}

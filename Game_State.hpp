@@ -4,15 +4,14 @@ class Game;
 
 class Game_State
 {   
-    private:
+    protected:
         Game* game;
     
     public:
         Game_State();
         ~Game_State();
 
-        //virtual void -> imprimir();
-        //virtual void -> atualizar();
+        virtual void draw() = 0;
+        virtual void update(double timeFraction) = 0;
         //virtual void -> pegar dados do teclado().
-        
-};
+};  

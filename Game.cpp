@@ -3,14 +3,14 @@
 #include "Levels/FirstLevel.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Game::Game() : menu(this)
+Game::Game()
 {
     clock.restart();
     dt = 0.0;
-    
+
+    initGame_States();
     pGM = Graphic_Manager::getGraphic_Manager();
-    execLevelOne();
-    //execMenu(); // eu mando acessar o loop executar();
+    execute();
 }
 
 Game::~Game()
@@ -19,26 +19,22 @@ Game::~Game()
 }
 
 /*METHODS*/
+void Game::initGame_States()
+{
+    game_states.push(new Menu(this));
+}
 
 void Game::execute()
 {
-    if(menu.getMenuState())
+    while ((pGM->getWindow())->isOpen())
     {
-        execMenu();
+        screenFPS();
+        GetInput();
+        CurrentState() -> update(0.0166);
+        (pGM->getWindow())->clear();
+        CurrentState() -> draw();
+        (pGM->getWindow())->display();
     }
-
-
-
-
-}
-
-
-void Game::chooseLevel(int level_path)
-{
-    if (level_path == 1)
-        level = new FirstLevel();
-    //else
-    // level = new SecondLevel
 }
 
 void Game::GetInput()
@@ -68,72 +64,36 @@ void Game::GetInput()
     }
 }
 
-void Game::setBackground(string path)
+void Game::screenFPS()
 {
-    backgroundTexture.loadFromFile(path);
-    backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.setOrigin(0, 0);
+    if (dt < FRAME_RATE)
+    {
+        dt += clock.getElapsedTime().asSeconds();
+        clock.restart();
+    }
+    else
+    {
+        dt -= FRAME_RATE;
+    }
 }
 
-// Criar uma única função principal de execução.
-// verifico se o Menu está pausado, qual fase eu estou jogando,... dentre outras coisas.
-
-void Game::execMenu()
+void Game::pushState(Game_State *state)
 {
-    setBackground("Images/backgroundMenu.jpg");
-
-    while ((pGM->getWindow())->isOpen())
-    {
-        GetInput();
-        (pGM->getWindow())->clear();
-
-        if (dt < FRAME_RATE)
-        {
-            dt += clock.getElapsedTime().asSeconds();
-            clock.restart();
-        }
-        else
-        {
-            dt -= FRAME_RATE;
-        }
-
-        pGM->getWindow()->draw(backgroundSprite);
-
-        menu.drawThis(pGM);
-
-        (pGM->getWindow())->display();
-    }
-
-    // pGM->deleteInstance(); -> Aqui está ocorrendo um segmentation Fault.
+    game_states.push(state);
 }
 
-void Game::execLevelOne()
+void Game::popState()
 {
-    setBackground("Images/background.jpg");
+    this->game_states.top();
+    this->game_states.pop();
+}
 
-    while ((pGM->getWindow())->isOpen())
-    {
-        GetInput();
-        (pGM->getWindow())->clear();
-
-        if (dt < FRAME_RATE)
-        {
-            dt += clock.getElapsedTime().asSeconds();
-            clock.restart();
-        }
-        else
-        {
-            level->update(0.0166);
-            dt -= FRAME_RATE;
-        }
-
-        pGM->getWindow()->draw(backgroundSprite);
-        level->render();
-
-        (pGM->getWindow())->display();
-    }
-
-    // pGM->deleteInstance(); -> Aqui está ocorrendo um segmentation Fault. -> preciso pensar melhor nesta função.
+Game_State *Game::CurrentState()
+{
+    if (game_states.empty())
+        return nullptr;
+    else
+        return game_states.top();
 }
 
 void Game::keyPressedAction(sf::Event event)
@@ -154,22 +114,6 @@ void Game::keyPressedAction(sf::Event event)
     case sf::Keyboard::Up:
     {
         level->getPlayer(1)->jump(0.01666);
-    }
-    break;
-    case sf::Keyboard::Num1:
-    {
-        if(menu.getMenuState()){
-            chooseLevel(1);
-            execLevelOne();
-        }
-    }
-    break;
-    case sf::Keyboard::Num2:
-    {
-        if(menu.getMenuState()){
-            chooseLevel(2);
-            execLevelTwo();
-        }
     }
     break;
     }

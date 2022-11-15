@@ -12,6 +12,8 @@ private:
     sf::Text text[MAX_NUMBER_OF_ITENS];
     sf::Text Title;
     sf::Font font;
+    sf::Sprite backgroundSprite;
+    sf::Texture backgroundTexture;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -23,10 +25,14 @@ public:
     void setText();
     void setMenuState(bool menu_state);
     bool getMenuState() const;
+    void setBackground();
     
     /*METHODS*/
     void drawThis(Graphic_Manager *pGM); // drawItself() -> talvez seja um nome melhor!
     void init();
-    void moveUp();
-    void moveDown();
+
+    // Polimorfismo Game_State()!
+    void draw();
+    void update(double timeFraction);
+
 };

@@ -32,7 +32,7 @@ void FirstLevel::update(double timeFraction)
     CM.collision();
 }
 
-void FirstLevel::render()
+void FirstLevel::draw()
 {
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();

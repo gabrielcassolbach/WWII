@@ -10,10 +10,11 @@
 #include "../Entities/Obstacles/Platform.hpp"
 #include "../Entities/Projectile.hpp"
 #include "../Entities/Characters/Sniper.hpp"
+#include "../Game_State.hpp"
 
 class Character;
 
-class Levels : public Enty
+class Levels : public Enty, public Game_State
 {
 protected:  
     EntityList MovingEntityList;
@@ -31,7 +32,7 @@ public:
 
 /*METHODS*/
     virtual void update(double timeFraction) = 0; // não precisa ser virtual -> jogar para dentro dos level1
-    virtual void render() = 0; // não precisa ser virtual. //.... mesma coisas.
+    virtual void draw() = 0; // não precisa ser virtual. //.... mesma coisas.
     virtual void createEnemies() = 0;
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;

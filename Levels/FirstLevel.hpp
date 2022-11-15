@@ -15,7 +15,7 @@ class FirstLevel : public Levels
 
     /*METHODS*/
         void update (double timeFraction);
-        void render ();
+        void draw ();
         /*------------------------------------------------*/
         void init () {} // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!
