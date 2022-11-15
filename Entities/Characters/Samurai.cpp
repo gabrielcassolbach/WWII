@@ -50,12 +50,13 @@ void Samurai::update(double timeFraction)
     position_y += velocity_y;
 
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
-}
+} 
 
 void Samurai::init()
 {
+    text.loadFromFile("Images/tortuga.png");
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::White);
+    retangulo.setTexture(&text);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 

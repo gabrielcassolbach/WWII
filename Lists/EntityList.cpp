@@ -22,6 +22,7 @@ void EntityList::includeEntity(Entity *p)
     if (p != NULL)
         EntitiesList.includeElement(p);
 }
+
 void EntityList::drawAll()
 {
     List<Entity *>::Element *cur = NULL;
@@ -32,6 +33,7 @@ void EntityList::drawAll()
         cur = cur->getNextElement();
     }
 }
+
 void EntityList::updateAll(double timeFraction)
 {
     List<Entity *>::Element *cur = NULL;
@@ -42,6 +44,7 @@ void EntityList::updateAll(double timeFraction)
         cur = cur->getNextElement();
     }
 }
+
 void EntityList::initAll()
 {
     List<Entity *>::Element *cur = NULL;
@@ -52,6 +55,7 @@ void EntityList::initAll()
         cur = cur->getNextElement();
     }
 }
+
 void EntityList::destroyAll()
 {
     EntitiesList.clear();

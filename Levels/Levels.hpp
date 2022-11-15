@@ -18,22 +18,20 @@ class Levels : public Enty
 protected:  
     EntityList MovingEntityList;
     EntityList StaticEntityList;
-    Player* pPlayer1;
-    Sniper* pSniper1;  
-    Sniper* pSniper2;   
-    Sniper* pSniper3;  
-    Sniper* pSniper4;                                                     
-
+    std::vector<Sniper*> pSniperList;
+    std::vector<Player*> pPlayersList;
+                                                   
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
     Levels();
     ~Levels();
 
 /*SETTERS & GETTERS*/
+    Player* getPlayer(int player_selected);
 
 /*METHODS*/
-    virtual void update(double timeFraction) = 0;
-    virtual void render() = 0;
+    virtual void update(double timeFraction) = 0; // não precisa ser virtual -> jogar para dentro dos level1
+    virtual void render() = 0; // não precisa ser virtual. //.... mesma coisas.
     virtual void createEnemies() = 0;
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;

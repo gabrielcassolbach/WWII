@@ -9,14 +9,13 @@ FirstLevel::FirstLevel() : CM()
     createCannons();
     createBoxes();
     createSnipers();
+
     StaticEntityList.initAll();
     MovingEntityList.initAll();
+    
     CM.init(&MovingEntityList, &StaticEntityList);
 }
 
-/* - Desaloca todos os objetos alocados dinamicamente
-   - Faz o ponteiro da janela apontar para NULL
-*/
 FirstLevel::~FirstLevel()
 {
     MovingEntityList.destroyAll();
@@ -24,10 +23,6 @@ FirstLevel::~FirstLevel()
 }
 
 /*SETTERS & GETTERS*/
-Player *FirstLevel::getPlayerOne() const
-{
-    return pPlayer1;
-}
 
 /*METHODS*/
 void FirstLevel::update(double timeFraction)
@@ -46,10 +41,11 @@ void FirstLevel::render()
 
 void FirstLevel::createEnemies()
 {
-    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 400.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 1.
-    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 800.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 2.
-    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 900.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayer1))); // Samurai 3.
+    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 400.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0]))); // Samurai 1.
+    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 800.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0]))); // Samurai 2.
+    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, 900.0, 600.0, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0]))); // Samurai 3.
 }
+
 
 void FirstLevel::createPlatforms()
 {
@@ -86,26 +82,25 @@ void FirstLevel::createBoxes()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 700.00, 200.00, 50.0, 50.0)));  // Caixa 3
 }
 
+
 void FirstLevel::createSnipers()
 {
-    pSniper1 = new Sniper(5, 300.0, 500.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
-    pSniper2 = new Sniper(5, 460.0, 400.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
-    pSniper3 = new Sniper(5, 600.0, 300.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
-    pSniper4= new Sniper(5, 860.0, 200.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayer1);
+    pSniperList.push_back(new Sniper(5, 300.0, 500.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+    pSniperList.push_back(new Sniper(5, 460.0, 400.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+    pSniperList.push_back(new Sniper(5, 600.0, 300.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+    pSniperList.push_back(new Sniper(5, 860.0, 200.0, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
 
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1)); // Sniper 1
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper2)); // Sniper 2
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper3)); // Sniper 3
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper4)); // Sniper 3
-
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper1->getBullet())); // Bullet 1
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper2->getBullet())); // Bullet 2
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper3->getBullet())); // Bullet 3
-    MovingEntityList.includeEntity(static_cast<Entity *>(pSniper4->getBullet())); // Bullet 3
+    for(int i = 0; i < pSniperList.size(); i++)
+    {
+        MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i])); 
+        MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
+    }
 }
 
 void FirstLevel::createPlayers()
 {
-    pPlayer1 = new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2);
-    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1)); // Player 1
+    pPlayersList.push_back(new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2));
+
+    for(int i = 0; i < pPlayersList.size(); i++)
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayersList[i])); 
 }

@@ -1,13 +1,19 @@
 #pragma once
-#include "Levels/FirstLevel.hpp"
-
+#include "Menu.hpp"
+#include "Levels/Levels.hpp"
 #define FRAME_RATE 0.01
 
-class Game
 /*Classe responsável pela mecânica geral do jogo*/
+
+class Game
 {
 private:
-    FirstLevel levelOne;
+    Levels* level;    
+    Menu menu;
+    
+    std::stack <Game_States*> states;
+
+
     Graphic_Manager* pGM;
     
     sf::Sprite backgroundSprite;
@@ -24,9 +30,10 @@ public:
     void setBackground(string path);
 
 /*METHODS*/
-    //void execMenu ();
-    //void execPause ();
-    void waitForInput();
+    void chooseLevel(int level_path);
+    void execute();
+    void execMenu ();
+    void GetInput();
     void execLevelOne();
     void execLevelTwo();
 

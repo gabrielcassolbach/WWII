@@ -12,7 +12,6 @@ class FirstLevel : public Levels
         ~FirstLevel();
 
     /*SETTERS & GETTERS*/
-        Player* getPlayerOne () const;
 
     /*METHODS*/
         void update (double timeFraction);
