@@ -23,16 +23,14 @@ public:
     ~Game();
 
 /*SETTERS & GETTERS*/
-    void setBackground(string path);
 
 /*METHODS*/
     void initGame_States();
-    void chooseLevel(int level_path);
     void execute();
-    void GetInput();
     void pushState(Game_State* state);
     void popState();
-    Game_State* CurrentState();
-    void keyPressedAction (sf::Event event);
     void screenFPS();
+    Game_State* CurrentState();
 };
+
+

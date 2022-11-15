@@ -1,4 +1,5 @@
 #include "Menu.hpp"
+#include "Game.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Menu::Menu(Game *pg)
@@ -6,6 +7,7 @@ Menu::Menu(Game *pg)
     setText();
     setBackground();
     pGame = pg;
+    level = 0;
 }
 
 Menu::~Menu()
@@ -87,4 +89,77 @@ void Menu::setBackground()
 void Menu::update(double timeFraction)
 {
 
+}
+
+void Menu::input()
+{
+    sf::Event event;
+    while ((pGM->getWindow())->pollEvent(event))
+    {
+        switch (event.type)
+        {
+        case sf::Event::Closed:
+        {
+            (pGM->getWindow())->close();
+        }
+        break;
+
+        case sf::Event::KeyPressed:
+        {
+            keyPressedAction(event);
+        }
+        break;
+
+        default:
+        {
+        }
+        break;
+        }
+    }
+}
+
+void Menu::keyPressedAction(sf::Event event)
+{
+    switch (event.key.code)
+    {
+    case sf::Keyboard::Num1:
+    {
+        level = 1;
+        load_game();
+    }
+    break;
+    case sf::Keyboard::Num2:
+    {   
+        level = 2;
+        load_game();
+    }
+    break;
+    case sf::Keyboard::Num3:
+    {
+        // Entra no botão 3.
+    }
+    break;
+    case sf::Keyboard::Num4:
+    {
+       // Entra no botão 4.
+    break;
+    }
+    }
+}
+
+void Menu::load_game()
+{
+    switch(level)
+    {
+        case 1:
+        {
+            pGame -> pushState(new FirstLevel());
+        }
+        break;
+	    case 2:
+        {
+            //pGame -> pushState(new );
+        }
+        break;
+    }
 }

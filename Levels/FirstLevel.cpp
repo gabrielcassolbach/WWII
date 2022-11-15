@@ -25,6 +25,60 @@ FirstLevel::~FirstLevel()
 /*SETTERS & GETTERS*/
 
 /*METHODS*/
+
+void FirstLevel::input()
+{
+    sf::Event event;
+    while ((pGM->getWindow())->pollEvent(event))
+    {
+        switch (event.type)
+        {
+        case sf::Event::Closed:
+        {
+            (pGM->getWindow())->close();
+        }
+        break;
+
+        case sf::Event::KeyPressed:
+        {
+            keyPressedAction(event);
+        }
+        break;
+
+        default:
+        {
+        }
+        break;
+        }
+    }
+}
+
+void FirstLevel::keyPressedAction(sf::Event event)
+{
+    switch (event.key.code)
+    {
+    case sf::Keyboard::Right:
+    {
+        if (getPlayer(1)->getLeftDirection())
+            getPlayer(1)->setLeftDirection(false);
+    }
+    break;
+    case sf::Keyboard::Left:
+    {
+        getPlayer(1)->setLeftDirection(true);
+    }
+    break;
+    case sf::Keyboard::Up:
+    {
+        getPlayer(1)->jump(0.01666);
+    }
+    break;
+    }
+}
+
+
+
+
 void FirstLevel::update(double timeFraction)
 {
     MovingEntityList.updateAll(timeFraction);

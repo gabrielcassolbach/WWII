@@ -16,6 +16,8 @@ class FirstLevel : public Levels
     /*METHODS*/
         void update (double timeFraction);
         void draw ();
+        void input();
+        void keyPressedAction(sf::Event event);
         /*------------------------------------------------*/
         void init () {} // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!

@@ -13,5 +13,5 @@ class Game_State
 
         virtual void draw() = 0;
         virtual void update(double timeFraction) = 0;
-        //virtual void -> pegar dados do teclado().
+        virtual void input() = 0;
 };  
