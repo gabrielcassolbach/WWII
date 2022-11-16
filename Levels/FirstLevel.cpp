@@ -89,15 +89,13 @@ void FirstLevel::update(double timeFraction)
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
-    CheckPlayerState();
+    //CheckPlayerState();
 }
 
 void FirstLevel::CheckPlayerState()
 {
     if(getPlayer(1) -> getPlayerState()) // adicionar verificação para o player 2.
-    {
-        endCurrentState();
-    }     
+        endCurrentState();     
 }
 
 void FirstLevel::endCurrentState()
@@ -134,6 +132,7 @@ void FirstLevel::createPlatforms()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 20.0))); // Plataforma 4
 }
 
+
 void FirstLevel::createTrenchs()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, 900.00, 580.00, 50.0, 10.0))); // Trincheira 1
@@ -141,12 +140,14 @@ void FirstLevel::createTrenchs()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, 800.00, 100.00, 50.0, 10.0)));  // Trincheira 3    
 }
 
+
 void FirstLevel::createCannons()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 450.00, 530.00, 30.0, 30.0))); // Canhão 1
     StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 600.00, 430.00, 30.0, 30.0)));  // Canhão 2
     StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 950.00, 230.00, 30.0, 30.0)));  // Canhão 3   
 }
+
 
 void FirstLevel::createBoxes()
 {

@@ -29,15 +29,10 @@ void Game::execute()
     while ((pGM->getWindow())->isOpen())
     {
         screenFPS();
-        cout << "after update" << endl;
         CurrentState() -> input();
-        cout << "after input" << endl;
         (pGM->getWindow())->clear();
-        cout << "after clear" << endl;
         CurrentState() -> draw();
-        cout << "after draw" << endl;
         (pGM->getWindow())->display();
-        cout << "after display" << endl;
     }
 }
 
@@ -50,9 +45,7 @@ void Game::screenFPS()
     }
     else
     {
-        cout << "before update" << endl;   
-        CurrentState() -> update(0.0166); 
-        cout << "after update" << endl; 
+        CurrentState() -> update(0.0166);     
         dt -= FRAME_RATE;
     }
 }
@@ -65,8 +58,10 @@ void Game::pushState(Game_State *state)
 void Game::popState()
 {
     //this->game_states.top();
-    if(!game_states.empty())   
+    if(!game_states.empty()) 
+    {  
         this->game_states.pop();
+    }
 }
 
 Game_State *Game::CurrentState()

@@ -2,7 +2,10 @@
 
 Platform::Platform(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
-{  
+{
+    floatabily_constant = -9.8; 
+    velocity_x=vx;
+    velocity_y=vx; 
 }
 
 Platform::~Platform()
@@ -11,7 +14,10 @@ Platform::~Platform()
 
 void Platform::update(double timeFraction)
 {
-    
+    velocity_y+= GRAVITY + floatabily_constant;
+
+    position_x+=velocity_x;
+    position_y+=velocity_y;
 }
 
 void Platform::init()

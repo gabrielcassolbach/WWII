@@ -11,7 +11,7 @@ class Levels;
 class Menu;
 
 class Game
-{
+{  
 private:
     Levels* level;    
     Menu* menu; 
