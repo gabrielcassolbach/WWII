@@ -3,12 +3,17 @@
 #include <math.h>
 #pragma once
 
+class Projectile;
+
 class Player : public Character
 {
 private:
     const int attackRange;
     double damageCooldownTimer;
     double aceleration;
+    
+    bool dead;
+    Projectile* Copper_Bullet;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -16,14 +21,19 @@ public:
     ~Player();
 
     /*SETTERS & GETTERS*/
+    bool getPlayerState();
+    void setPlayerState(bool condition);
     void setVelocity(double vx, double vy);
     double getVelocity_y();
     double getVelocity_x();
     void setVelocity_x(double vx);
     void setVelocity_y(double vy);
     void receiveDamage(int dam);
+    Projectile* getBullet();
 
     /*METHODS*/
+    bool canAttack();
+    void attack();
     void init();
     void update(double timeFraction);
     void collide(Entity *ent2, double inter_x, double inter_y);

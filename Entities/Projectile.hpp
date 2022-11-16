@@ -3,7 +3,7 @@
 
 class Projectile : public MovingEntity
 {
-private:
+private: 
     bool active;
 
 public:

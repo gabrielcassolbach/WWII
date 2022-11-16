@@ -7,6 +7,9 @@
 
 /*Classe responsável pela mecânica geral do jogo*/
 
+class Levels;
+class Menu;
+
 class Game
 {
 private:

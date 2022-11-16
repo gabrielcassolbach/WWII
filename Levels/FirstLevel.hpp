@@ -8,7 +8,7 @@ class FirstLevel : public Levels
          
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        FirstLevel();
+        FirstLevel(Game* pg);
         ~FirstLevel();
 
     /*SETTERS & GETTERS*/
@@ -18,6 +18,8 @@ class FirstLevel : public Levels
         void draw ();
         void input();
         void keyPressedAction(sf::Event event);
+        void CheckPlayerState();
+        void endCurrentState();
         /*------------------------------------------------*/
         void init () {} // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!

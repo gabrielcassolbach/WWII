@@ -124,19 +124,17 @@ void Menu::keyPressedAction(sf::Event event)
     {
     case sf::Keyboard::Num1:
     {
-        level = 1;
-        load_game();
+        pGame -> pushState(new FirstLevel(pGame));
     }
     break;
     case sf::Keyboard::Num2:
     {   
-        level = 2;
-        load_game();
+        // pGame -> pushState(new SecondLevel());
     }
     break;
-    case sf::Keyboard::Num3:
+    case sf::Keyboard::Escape:
     {
-        // Entra no botão 3.
+        //pGame -> pushState()
     }
     break;
     case sf::Keyboard::Num4:
@@ -147,19 +145,3 @@ void Menu::keyPressedAction(sf::Event event)
     }
 }
 
-void Menu::load_game()
-{
-    switch(level)
-    {
-        case 1:
-        {
-            pGame -> pushState(new FirstLevel());
-        }
-        break;
-	    case 2:
-        {
-            //pGame -> pushState(new );
-        }
-        break;
-    }
-}

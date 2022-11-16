@@ -5,7 +5,7 @@ Projectile::Projectile(int ident, double px, double py, double sx, double sy, do
 {
     active = 0;
 }
-
+ 
 Projectile::~Projectile()
 {
 }

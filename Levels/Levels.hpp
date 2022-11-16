@@ -1,8 +1,8 @@
 #pragma once
 #include "../Lists/EntityList.hpp"
-#include "../Managers/Graphic_Manager.hpp"
-#include "../Managers/Collision_Manager.hpp"
-#include "../Entities/Characters/Player.hpp"
+#include "../Managers/Graphic_Manager.hpp" 
+#include "../Managers/Collision_Manager.hpp" 
+#include "../Entities/Characters/Player.hpp" 
 #include "../Entities/Obstacles/Box.hpp"
 #include "../Entities/Obstacles/Trench.hpp"
 #include "../Entities/Obstacles/Cannon.hpp"
@@ -11,12 +11,15 @@
 #include "../Entities/Projectile.hpp"
 #include "../Entities/Characters/Sniper.hpp"
 #include "../Game_State.hpp"
-
+ 
 class Character;
+
+class Game;
 
 class Levels : public Enty, public Game_State
 {
 protected:  
+    Game* pGame;
     EntityList MovingEntityList;
     EntityList StaticEntityList;
     std::vector<Sniper*> pSniperList;
@@ -24,7 +27,7 @@ protected:
                                                    
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Levels();
+    Levels(Game* pg = nullptr);
     ~Levels();
 
 /*SETTERS & GETTERS*/

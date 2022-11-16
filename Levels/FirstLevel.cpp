@@ -1,6 +1,9 @@
 #include "FirstLevel.hpp"
+#include "../Game.hpp"
+#include "../Menu.hpp"
 
-FirstLevel::FirstLevel() : CM()
+FirstLevel::FirstLevel(Game* pg) : CM(),
+Levels(pg)
 {
     createPlayers();
     createEnemies();
@@ -73,17 +76,34 @@ void FirstLevel::keyPressedAction(sf::Event event)
         getPlayer(1)->jump(0.01666);
     }
     break;
+    case sf::Keyboard::Space:
+    {
+        getPlayer(1)->attack();
+    }
+    break;
     }
 }
-
-
-
 
 void FirstLevel::update(double timeFraction)
 {
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
+    CheckPlayerState();
+}
+
+void FirstLevel::CheckPlayerState()
+{
+    if(getPlayer(1) -> getPlayerState()) // adicionar verificação para o player 2.
+    {
+        endCurrentState();
+    }     
+}
+
+void FirstLevel::endCurrentState()
+{   
+    if(pGame)
+        pGame -> popState();
 }
 
 void FirstLevel::draw()
@@ -91,7 +111,6 @@ void FirstLevel::draw()
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
-
 
 void FirstLevel::createEnemies()
 {
@@ -156,5 +175,8 @@ void FirstLevel::createPlayers()
     pPlayersList.push_back(new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2));
 
     for(int i = 0; i < pPlayersList.size(); i++)
+    {
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayersList[i])); 
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayersList[i]-> getBullet())); 
+    }
 }
