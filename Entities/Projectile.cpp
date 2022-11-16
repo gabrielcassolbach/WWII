@@ -5,7 +5,7 @@ Projectile::Projectile(int ident, double px, double py, double sx, double sy, do
 {
     active = 0;
 }
-
+ 
 Projectile::~Projectile()
 {
 }
@@ -55,8 +55,4 @@ void Projectile::collide(Entity *ent2, double inter_x, double inter_y)
     active = false;
     position_x = 0.0;
     position_y = -65.0;
-}
-
-void Projectile::receiveDamage(int dam){
-
 }

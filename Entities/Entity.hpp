@@ -33,11 +33,11 @@ public:
     void setVelocity_x(double vx);
     void setVelocity_y(double vy);
 
+    virtual int getDamage() const=0;
+
     /*METHODS*/
     void drawThis(Graphic_Manager *pGM);
     virtual void update(double timeFraction) = 0;
     virtual void init() = 0;
     virtual void collide(Entity *ent2, double inter_x, double inter_y) = 0;
-
-    virtual void receiveDamage(int dam)=0;
 };

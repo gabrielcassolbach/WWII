@@ -1,9 +1,9 @@
 #include "Enemy.hpp"
 
-class Samurai : public Enemy
+class Samurai : public Enemy  
 { 
 private:
-    bool rushing;
+    sf::Texture text;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

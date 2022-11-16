@@ -11,7 +11,9 @@ StaticEntity::~StaticEntity()
 }
 
 /*SETTERS & GETTERS*/
+int StaticEntity::getDamage() const{
 
+}
 
 /*METHODS*/
 

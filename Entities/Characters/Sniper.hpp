@@ -5,7 +5,7 @@
 class Sniper : public Enemy
 {
 private:
-    Projectile *bullet;
+    Projectile *bullet; 
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

@@ -44,23 +44,19 @@ void Samurai::update(double timeFraction)
             attack();
     }
 
-    if (rushing){
-        velocity_x*=1.5;
-        rushing=false;
-    }
-
     velocity_y+=GRAVITY;
 
     position_x += velocity_x;
     position_y += velocity_y;
 
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
-}
+} 
 
 void Samurai::init()
 {
+    text.loadFromFile("Images/tortuga.png");
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::White);
+    retangulo.setTexture(&text);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 
@@ -68,8 +64,10 @@ void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
 {
     if (ent2->getId()==2 || ent2->getId()== 3 || ent2->getId()==1)
         collisionMovement(ent2, inter_x, inter_y);
-    if (ent2->getId()==7){
-        rushing=true;
+    else if (ent2->getId()==4){
+        health-=ent2->getDamage();
+        if (health<=0)
+            position_y=1000;
     }
 
 }

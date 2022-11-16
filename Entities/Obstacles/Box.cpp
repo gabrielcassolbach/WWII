@@ -3,7 +3,6 @@
 Box::Box(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
-    health=3;
 }
 
 Box::~Box()
@@ -34,10 +33,5 @@ void Box::collide(Entity *ent2, double inter_x, double inter_y)
     if(id == 3)
         collisionMovement(ent2, inter_x, inter_y);      
                 
-}
-
-void Box::receiveDamage(int dam){
-    health-=dam;
-    cout<<"Vida da caixa:"<<health;
 }
 

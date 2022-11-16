@@ -16,7 +16,3 @@ void Enemy::setPPlayer(Player *pP)
 {
     pPlayer = pP;
 }
-
-
-
-

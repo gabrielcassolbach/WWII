@@ -47,7 +47,7 @@ public:
         {
             Value = c;
         }
-        
+
         TIPO getValue()
         {
             return Value;
@@ -66,41 +66,48 @@ private:
     int size;
 
 public:
-
     /*CONSTRUCTORS & DESTRUCTORS*/
-    List(){
+    List()
+    {
         firstElement = NULL;
         currentElement = NULL;
-        size=0;
+        size = 0;
     }
 
-    ~List(){
+    ~List()
+    {
         clear();
     }
 
     /*SETTERS & GETTERS*/
-    void setFirstElement(Element *f){
+    void setFirstElement(Element *f)
+    {
         firstElement = f;
     }
 
-    Element *getFirstElement(){
+    Element *getFirstElement()
+    {
         return firstElement;
     }
 
-    void setCurrentElement(Element *c){
+    void setCurrentElement(Element *c)
+    {
         currentElement = c;
     }
-    
-    Element *getCurrentElement(){
-        return(currentElement);
+
+    Element *getCurrentElement()
+    {
+        return (currentElement);
     }
 
-    int getSize (){
+    int getSize()
+    {
         return size;
     }
 
     /*METHODS*/
-    void clear(){
+    void clear()
+    {
         Element *it = NULL;
         it = firstElement;
         Element *aux = NULL;
@@ -114,11 +121,12 @@ public:
 
         firstElement = NULL;
         currentElement = NULL;
-    } 
-      
-    void includeElement(TIPO n){
+    }
+
+    void includeElement(TIPO n)
+    {
         Element *newEl = NULL;
-        newEl=new Element();
+        newEl = new Element();
         newEl->setValue(n);
 
         if (currentElement != NULL)
@@ -127,7 +135,7 @@ public:
             firstElement = newEl;
 
         newEl->setPrevElement(currentElement);
-        currentElement=newEl;
+        currentElement = newEl;
         size++;
     }
 };

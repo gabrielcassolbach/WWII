@@ -15,5 +15,4 @@ public:
     virtual void init() = 0;
     virtual void collide(Entity *ent2, double inter_x, double inter_y) = 0;
 
-    virtual void receiveDamage (int dam);
 };

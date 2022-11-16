@@ -3,13 +3,11 @@
 Cannon::Cannon(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
-
 }
 
 Cannon::~Cannon()
 {
 }
-
 
 void Cannon::update(double timeFraction)
 {    
@@ -22,8 +20,9 @@ void Cannon::update(double timeFraction)
 
 void Cannon::init()
 {
+    text.loadFromFile("Images/Cannon.png");
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::Cyan);
+    retangulo.setTexture(&text);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 

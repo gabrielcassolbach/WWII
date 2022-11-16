@@ -1,23 +1,22 @@
 #pragma once
-#include "Levels/FirstLevel.hpp"
-#include "Levels/SecondLevel.hpp"
 #include "Menu.hpp"
-
+#include "Levels/Levels.hpp"
+#include "Game_State.hpp"
+#include <stack>
 #define FRAME_RATE 0.01
 
-class Game
 /*Classe responsável pela mecânica geral do jogo*/
-{
+
+class Levels;
+class Menu;
+
+class Game
+{  
 private:
-    Menu menu;
-    FirstLevel levelOne;
-    SecondLevel levelTwo;
+    Levels* level;    
+    Menu* menu; 
+    std::stack <Game_State*> game_states;
     Graphic_Manager* pGM;
-    
-    bool runningMenu;
-    bool runningLevelOne;
-    bool runningLevelTwo;
-    
     sf::Clock clock;
     double dt;
 
@@ -27,19 +26,14 @@ public:
     ~Game();
 
 /*SETTERS & GETTERS*/
-    void setRunningLevelOne (bool l1);
-    void setRunningLevelTwo (bool l2);
-    void setRunningMenu (bool m);
-    bool getRunningLevelOne ();
-    bool getRunningLevelTwo ();
-    bool getRunningMenu();
 
 /*METHODS*/
-    void execLevelOne();
-    void execLevelTwo();
-    void execMenu();
-
-    void keyPressedActionLevel (sf::Event event);
-    void mousePressedActionLevel (sf::Event event);
-    void keyPressedActionMenu(sf::Event event);
+    void initGame_States();
+    void execute();
+    void pushState(Game_State* state);
+    void popState();
+    void screenFPS();
+    Game_State* CurrentState();
 };
+
+
