@@ -11,6 +11,14 @@ Levels::~Levels(){
 
 }
 
+EntityList* Levels::getMovingEntityList() {
+    return &MovingEntityList;
+}
+EntityList* Levels::getStaticEntityList() {
+    return &StaticEntityList;
+}
+
+
 Player* Levels::getPlayer(int player_selected)
 {
     for(int i = 0; i < pPlayersList.size(); i++)

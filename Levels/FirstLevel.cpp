@@ -83,8 +83,9 @@ void FirstLevel::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Escape:
     {
-        pGame -> pushState(new PauseMenu(pGame));
+        pGame -> pushState(new PauseMenu(pGame, this));
     }
+    break;
     }
 }
 
@@ -148,8 +149,8 @@ void FirstLevel::createTrenchs()
 void FirstLevel::createCannons()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 450.00, 530.00, 30.0, 30.0))); // Canhão 1
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 600.00, 430.00, 30.0, 30.0)));  // Canhão 2
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 950.00, 230.00, 30.0, 30.0)));  // Canhão 3   
+    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 600.00, 100.00, 30.0, 30.0)));  // Canhão 2
+    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 950.00, 100.00, 30.0, 30.0)));  // Canhão 3   
 }
 
 

@@ -2,13 +2,22 @@
 #include "Game.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-PauseMenu::PauseMenu(Game *pg)
+PauseMenu::PauseMenu(Game *pg, FirstLevel* lvl)
 {
     setText();
     setBackground();
     pGame = pg;
-    level = 0;
+    level = 1;
+    levelOne=lvl;
+    levelTwo=NULL;
 }
+/*PauseMenu::PauseMenu(Game *pg, SecondLevel* lvl)
+{
+    setText();
+    setBackground();
+    pGame = pg;
+    level = 2;
+}*/
 PauseMenu::~PauseMenu()
 {
     pGame = nullptr;
@@ -105,5 +114,48 @@ void PauseMenu::keyPressedAction(sf::Event event)
         pGame -> popState();
     }
     break;
+    case sf::Keyboard::Num2:
+    {
+        save_game();
+    }
+    break;
+    case sf::Keyboard::Num3:
+    {
+        pGame->popState();
+        pGame->popState();
+    }
+    break;
     }
 }
+void PauseMenu::save_game(){
+    int i;
+    ofstream saver ( "gameSave.dat", ios::out );
+    
+    if ( !saver ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
+
+    saver<<level<<endl;
+
+    if (level==1){
+        EntityList* moving=levelOne->getMovingEntityList();
+        EntityList* staticl=levelOne->getStaticEntityList();
+    
+        for (i=0; i<moving->getSize(); i++){
+            saver<<moving->operator[](i)->getPosition_x()<<' '
+                 <<moving->operator[](i)->getPosition_y()<<' '
+                 <<moving->operator[](i)->getVelocity_x()<<' '
+                 <<moving->operator[](i)->getVelocity_y()<<' '<<endl;
+        }  
+    }
+    pGame->popState();
+    pGame->popState();
+
+    saver.close();
+}
+
+
+

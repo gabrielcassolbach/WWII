@@ -32,6 +32,8 @@ public:
 
 /*SETTERS & GETTERS*/
     Player* getPlayer(int player_selected);
+    EntityList* getMovingEntityList();
+    EntityList* getStaticEntityList();
 
 /*METHODS*/
     virtual void update(double timeFraction) = 0; // não precisa ser virtual -> jogar para dentro dos level1

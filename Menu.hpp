@@ -40,4 +40,5 @@ public:
     void draw();
     void update(double timeFraction);
     void input();
+    void resume ();
 };

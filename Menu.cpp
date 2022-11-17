@@ -51,7 +51,7 @@ void Menu::setText()
     text[3].setFont(font);
     text[3].setCharacterSize(35);
     text[3].setFillColor(sf::Color::Red);
-    text[3].setString("Save");
+    text[3].setString("Resume");
     text[3].setPosition(sf::Vector2f(500, 520));
 }
 
@@ -85,12 +85,10 @@ void Menu::setBackground()
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);   
 }
-
 void Menu::update(double timeFraction)
 {
 
 }
-
 void Menu::input()
 {
     sf::Event event;
@@ -117,7 +115,6 @@ void Menu::input()
         }
     }
 }
-
 void Menu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -139,9 +136,47 @@ void Menu::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Num4:
     {
-       // Entra no botão 4.
+       resume();
     break;
     }
     }
 }
+void Menu::resume(){
+    ifstream recover ( "gameSave.dat", ios::in );
+    
+    if ( !recover )
+    {
+        cerr << " Arquivo não pode ser aberto" << endl;
+        fflush ( stdin );
+        getchar( );
+    }
+
+    recover>>level;
+    int i;
+    if (level==1){
+        FirstLevel* fl = new FirstLevel(pGame);
+        pGame -> pushState(fl);
+        
+        EntityList* moving=fl->getMovingEntityList();
+        EntityList* staticl=fl->getStaticEntityList();
+
+        double px, py;
+        double vx, vy;
+
+        for (i=0; i<moving->getSize(); i++){
+            recover>>px>>py>>vx>>vy;
+            moving->operator[](i)->setPosition_x(px);
+            moving->operator[](i)->setPosition_y(py);
+            moving->operator[](i)->setVelocity_x(vx);
+            moving->operator[](i)->setVelocity_y(vy);
+        }
+    }
+
+    recover.close();
+}
+
+
+
+
+
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Enty.hpp"
 #include "Game_State.hpp"
+#include "Levels/FirstLevel.hpp"
 
 #define ITENS_PAUSE_MENU 3
 
@@ -13,10 +14,13 @@ private:
     sf::RectangleShape backgroundRectangle;
     sf::Texture backgroundTexture;
     int level;
+    FirstLevel* levelOne;
+    FirstLevel* levelTwo;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-    PauseMenu(Game *pg);
+    PauseMenu(Game *pg, FirstLevel* lvl);
+    //PauseMenu(Game *pg, SecondLevel* level);
     ~PauseMenu();
 
     /*SETTERS & GETTERS*/
