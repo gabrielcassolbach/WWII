@@ -7,13 +7,14 @@
 #define SAMURAI_DAMAGE 2
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player *pP) : 
+Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player *pP, int bt) : 
 Enemy(ident, px, py, sx, sy, vx, vy, hp, SAMURAI_DAMAGE, SAMURAI_ATTACK_COOLDOWN, pP)
 {
+    belt=bt;
     velocity_y = 0.0;
     velocity_x = 0.0;
+    
 }
-
 Samurai::~Samurai()
 {
 }
@@ -45,6 +46,9 @@ void Samurai::update(double timeFraction)
     }
 
     velocity_y+=GRAVITY;
+
+    if (belt==2)
+        velocity_x*=1.25;
 
     position_x += velocity_x;
     position_y += velocity_y;

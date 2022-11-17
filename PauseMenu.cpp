@@ -139,6 +139,9 @@ void PauseMenu::save_game(){
     }
 
     saver<<level<<endl;
+    int* qtd=levelOne->getEntitiesQuantity();
+    for (i=0; i<7; i++)
+        saver<<qtd[i]<<endl;
 
     if (level==1){
         EntityList* moving=levelOne->getMovingEntityList();
@@ -149,6 +152,12 @@ void PauseMenu::save_game(){
                  <<moving->operator[](i)->getPosition_y()<<' '
                  <<moving->operator[](i)->getVelocity_x()<<' '
                  <<moving->operator[](i)->getVelocity_y()<<' '<<endl;
+        }  
+        for (i=0; i<staticl->getSize(); i++){
+            saver<<staticl->operator[](i)->getPosition_x()<<' '
+                 <<staticl->operator[](i)->getPosition_y()<<' '
+                 <<staticl->operator[](i)->getVelocity_x()<<' '
+                 <<staticl->operator[](i)->getVelocity_y()<<' '<<endl;
         }  
     }
     pGame->popState();

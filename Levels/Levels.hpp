@@ -45,4 +45,6 @@ public:
     virtual void createBoxes() = 0;
     virtual void createSnipers() = 0;
     virtual void createPlayers() = 0;
+
+    int randomQuantity();
 };

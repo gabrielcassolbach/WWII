@@ -5,13 +5,16 @@ class FirstLevel : public Levels
 {
     private:
         Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum.
+        int* entitiesQuantity;
          
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
         FirstLevel(Game* pg);
+        FirstLevel(Game* pg, int* qtd);
         ~FirstLevel();
 
     /*SETTERS & GETTERS*/
+        int* getEntitiesQuantity();
 
     /*METHODS*/
         void update (double timeFraction);

@@ -61,7 +61,7 @@ void Sniper::init()
 
 void Sniper::collide(Entity *ent2, double inter_x, double inter_y)
 {
-    if (ent2->getId()==2 || ent2->getId()== 3 || ent2->getId()==1)
+    if (ent2->getId()==2 || ent2->getId()== 3)
         collisionMovement(ent2, inter_x, inter_y);
 
     else if (ent2->getId()==4){

@@ -77,8 +77,6 @@ void Menu::draw()
 {
     drawThis(pGM);
 }
-
-
 void Menu::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundMenu.jpg");
@@ -153,8 +151,12 @@ void Menu::resume(){
 
     recover>>level;
     int i;
+    int* qtd=new int[7];
+    for (i=0; i<7; i++)
+        recover>>qtd[i];
+
     if (level==1){
-        FirstLevel* fl = new FirstLevel(pGame);
+        FirstLevel* fl = new FirstLevel(pGame, qtd);
         pGame -> pushState(fl);
         
         EntityList* moving=fl->getMovingEntityList();
@@ -169,6 +171,13 @@ void Menu::resume(){
             moving->operator[](i)->setPosition_y(py);
             moving->operator[](i)->setVelocity_x(vx);
             moving->operator[](i)->setVelocity_y(vy);
+        }
+        for (i=0; i<staticl->getSize(); i++){
+            recover>>px>>py>>vx>>vy;
+            staticl->operator[](i)->setPosition_x(px);
+            staticl->operator[](i)->setPosition_y(py);
+            staticl->operator[](i)->setVelocity_x(vx);
+            staticl->operator[](i)->setVelocity_y(vy);
         }
     }
 
