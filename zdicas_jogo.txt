@@ -1,7 +1,3 @@
 
-Não retirar das listas. Utilize um "booleano" na classe Entidades, ao 
-percorrer o booleano impede a execução.
-
-Não deletar os projéteis da lista. Resetar ele das posições iniciais.
-
+DELETAR GAMESTATES
 

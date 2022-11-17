@@ -81,6 +81,10 @@ void FirstLevel::keyPressedAction(sf::Event event)
         getPlayer(1)->attack();
     }
     break;
+    case sf::Keyboard::Escape:
+    {
+        pGame -> pushState(new PauseMenu(pGame));
+    }
     }
 }
 

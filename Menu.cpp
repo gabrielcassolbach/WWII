@@ -51,7 +51,7 @@ void Menu::setText()
     text[3].setFont(font);
     text[3].setCharacterSize(35);
     text[3].setFillColor(sf::Color::Red);
-    text[3].setString("Pause");
+    text[3].setString("Save");
     text[3].setPosition(sf::Vector2f(500, 520));
 }
 
