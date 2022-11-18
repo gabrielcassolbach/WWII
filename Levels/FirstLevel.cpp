@@ -173,8 +173,10 @@ void FirstLevel::CheckLevelEnd()
 
 void FirstLevel::goToLevel2()
 {
-    if(pGame)
+    if(pGame){
+        pGame -> popState();
         pGame -> pushState(new SecondLevel(pGame));
+    }
 }
 
 void FirstLevel::endCurrentState()

@@ -185,11 +185,8 @@ void Menu::resume(){
             staticl->operator[](i)->setVelocity_y(vy);
         }
     }
-
     recover.close();
 }
-
-
 
 
 
