@@ -167,7 +167,7 @@ void FirstLevel::endCurrentState()
 }
 void FirstLevel::createEnemies()
 {
-    ifstream recover ( "lvl1-samurais.dat", ios::in);
+    ifstream recover ( "Data/lvl1-samurais.dat", ios::in);
     
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
@@ -203,7 +203,7 @@ void FirstLevel::createPlatforms()
 
 void FirstLevel::createTrenchs()
 {
-    ifstream recover ( "lvl1-trenchs.dat", ios::in );
+    ifstream recover ( "Data/lvl1-trenchs.dat", ios::in );
     
     if ( !recover )
     {
@@ -226,7 +226,7 @@ void FirstLevel::createTrenchs()
 
 void FirstLevel::createCannons()
 {
-    ifstream recover ( "lvl1-cannons.dat", ios::in );
+    ifstream recover ( "Data/lvl1-cannons.dat", ios::in );
     
     if ( !recover )
     {
@@ -248,7 +248,7 @@ void FirstLevel::createCannons()
 
 void FirstLevel::createBoxes()
 {
-    ifstream recover ( "lvl1-boxes.dat", ios::in );
+    ifstream recover ( "Data/lvl1-boxes.dat", ios::in );
     
     if ( !recover )
     {
@@ -270,7 +270,7 @@ void FirstLevel::createBoxes()
 
 void FirstLevel::createSnipers()
 {
-    ifstream recover ( "lvl1-snipers.dat", ios::in );
+    ifstream recover ( "Data/lvl1-snipers.dat", ios::in );
     
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;

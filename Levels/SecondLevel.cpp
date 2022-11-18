@@ -167,9 +167,10 @@ void SecondLevel::endCurrentState()
     if(pGame)
         pGame -> popState();
 }
+
 void SecondLevel::createEnemies()
 {
-    ifstream recover ( "lvl2-samurais.dat", ios::in);
+    ifstream recover ( "Data/lvl2-samurais.dat", ios::in);
     
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
@@ -205,7 +206,7 @@ void SecondLevel::createPlatforms()
 
 void SecondLevel::createTrenchs()
 {
-    ifstream recover ( "lvl2-trenchs.dat", ios::in );
+    ifstream recover ( "Data/lvl2-trenchs.dat", ios::in );
     
     if ( !recover )
     {
@@ -228,7 +229,7 @@ void SecondLevel::createTrenchs()
 
 void SecondLevel::createCannons()
 {
-    ifstream recover ( "lvl2-cannons.dat", ios::in );
+    ifstream recover ( "Data/lvl2-cannons.dat", ios::in );
     
     if ( !recover )
     {
@@ -250,7 +251,7 @@ void SecondLevel::createCannons()
 
 void SecondLevel::createBoxes()
 {
-    ifstream recover ("lvl2-boxes.dat", ios::in );
+    ifstream recover ("Data/lvl2-boxes.dat", ios::in );
     
     if ( !recover )
     {
@@ -272,7 +273,7 @@ void SecondLevel::createBoxes()
 
 void SecondLevel::createSnipers()
 {
-    ifstream recover ( "lvl2-snipers.dat", ios::in );
+    ifstream recover ( "Data/lvl2-snipers.dat", ios::in );
     
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;

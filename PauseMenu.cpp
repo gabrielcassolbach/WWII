@@ -129,7 +129,7 @@ void PauseMenu::keyPressedAction(sf::Event event)
 }
 void PauseMenu::save_game(){
     int i;
-    ofstream saver ( "gameSave.dat", ios::out );
+    ofstream saver ( "Data/gameSave.dat", ios::out );
     
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;

@@ -138,8 +138,9 @@ void Menu::keyPressedAction(sf::Event event)
     break;
     }
 }
+
 void Menu::resume(){
-    ifstream recover ( "gameSave.dat", ios::in );
+    ifstream recover ( "Data/gameSave.dat", ios::in );
     
     if ( !recover )
     {
