@@ -118,12 +118,12 @@ void Menu::keyPressedAction(sf::Event event)
     {
     case sf::Keyboard::Num1:
     {
-        pGame -> pushState(new FirstLevel(pGame, 2));
+        pGame -> pushState(new FirstLevel(pGame, 1));
     }
     break;
     case sf::Keyboard::Num2:
     {   
-        // pGame -> pushState(new SecondLevel());
+        pGame -> pushState(new SecondLevel(pGame, 1));
     }
     break;
     case sf::Keyboard::Escape:

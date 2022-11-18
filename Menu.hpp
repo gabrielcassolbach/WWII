@@ -1,6 +1,7 @@
 #pragma once
 #include "Enty.hpp"
 #include "Levels/FirstLevel.hpp"
+#include "Levels/SecondLevel.hpp"
 #include "Game_State.hpp"
 #define MAX_NUMBER_OF_ITENS 4
 

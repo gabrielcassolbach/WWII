@@ -4,7 +4,7 @@
 class FirstLevel : public Levels
 {
     private:
-        Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum.
+        Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum. (PENSAR!)
         int* entitiesQuantity;
         int difficulty;
          
