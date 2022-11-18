@@ -174,7 +174,7 @@ void FirstLevel::CheckLevelEnd()
 void FirstLevel::goToLevel2()
 {
     if(pGame)
-        pGame -> pushState(new SecondLevel(pGame, 1));
+        pGame -> pushState(new SecondLevel(pGame));
 }
 
 void FirstLevel::endCurrentState()

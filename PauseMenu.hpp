@@ -3,6 +3,8 @@
 #include "Game_State.hpp"
 #include "Levels/FirstLevel.hpp"
 
+class SecondLevel;
+
 #define ITENS_PAUSE_MENU 3
 
 class PauseMenu: public Enty, public Game_State
@@ -15,12 +17,12 @@ private:
     sf::Texture backgroundTexture;
     int level;
     FirstLevel* levelOne;
-    FirstLevel* levelTwo;
+    SecondLevel* levelTwo;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
     PauseMenu(Game *pg, FirstLevel* lvl);
-    //PauseMenu(Game *pg, SecondLevel* level);
+    PauseMenu(Game *pg, SecondLevel* level);
     ~PauseMenu();
 
     /*SETTERS & GETTERS*/

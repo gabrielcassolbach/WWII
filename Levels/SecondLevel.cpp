@@ -23,11 +23,9 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<650.0<<' '<<200.0<<endl;
     saver<<700.0<<' '<<200.0<<endl;*/
 
-SecondLevel::SecondLevel(Game* pg, int diff) : CM(),
+SecondLevel::SecondLevel(Game* pg) : CM(),
 Levels(pg)
 {
-    difficulty=diff;
-
     entitiesQuantity= new int[8];
     entitiesQuantity[1]=randomQuantity();
     entitiesQuantity[2]=randomQuantity();
@@ -49,10 +47,9 @@ Levels(pg)
     CM.init(&MovingEntityList, &StaticEntityList);
 }
 
-SecondLevel::SecondLevel(Game* pg, int* qtd, int diff):CM(),
+SecondLevel::SecondLevel(Game* pg, int* qtd):CM(),
 Levels(pg)
 {
-    difficulty=diff;
     entitiesQuantity=qtd;
 
     createPlayers();
@@ -79,9 +76,6 @@ SecondLevel::~SecondLevel()
 /*SETTERS & GETTERS*/
 int* SecondLevel::getEntitiesQuantity(){
     return entitiesQuantity;
-}
-int SecondLevel::getDifficulty(){
-    return difficulty;
 }
 
 
@@ -140,7 +134,7 @@ void SecondLevel::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Escape:
     {
-        //pGame -> pushState(new PauseMenu(pGame, this));
+        pGame -> pushState(new PauseMenu(pGame, this));
     }
     break;
     }
@@ -298,17 +292,8 @@ void SecondLevel::createSnipers()
 
 void SecondLevel::createPlayers()
 {
-    if (difficulty==1){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
-        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-        pPlayersList.push_back(pPlayer1);
-    }
-    else{
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 5, 2, 0.0);
-        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-        pPlayersList.push_back(pPlayer1);
-    }
-
+    Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+    pPlayersList.push_back(pPlayer1);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Levels.hpp"
+#include "../GameOverMenu.hpp"
 
 class SecondLevel : public Levels
 {
@@ -7,17 +8,15 @@ private:
     // Boss boss;
     Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum. (PENSAR!)
     int* entitiesQuantity;
-    int difficulty;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        SecondLevel(Game* pg, int diff);
-        SecondLevel(Game* pg, int* qtd, int diff);
+        SecondLevel(Game* pg);
+        SecondLevel(Game* pg, int* qtd);
         ~SecondLevel();
 
     /*SETTERS & GETTERS*/
         int* getEntitiesQuantity();
-        int getDifficulty();
 
     /*METHODS*/
         void update (double timeFraction);
