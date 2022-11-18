@@ -24,6 +24,8 @@ class FirstLevel : public Levels
         void keyPressedAction(sf::Event event);
         void CheckPlayerState();
         void endCurrentState();
+        void CheckLevelEnd();
+        void goToLevel2();
         /*------------------------------------------------*/
         void init () {} // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!

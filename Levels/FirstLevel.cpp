@@ -152,6 +152,7 @@ void FirstLevel::update(double timeFraction)
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
     CheckPlayerState();
+    CheckLevelEnd();
 }
 
 void FirstLevel::CheckPlayerState()
@@ -160,11 +161,28 @@ void FirstLevel::CheckPlayerState()
         endCurrentState();     
 }
 
+void FirstLevel::CheckLevelEnd()
+{
+    double px, py; 
+    px = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
+    py = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
+
+    if(px > 1270 && py < 145)
+        goToLevel2();
+}
+
+void FirstLevel::goToLevel2()
+{
+    if(pGame)
+        pGame -> pushState(new SecondLevel(pGame, 1));
+}
+
 void FirstLevel::endCurrentState()
 {   
     if(pGame)
         pGame -> popState();
 }
+
 void FirstLevel::createEnemies()
 {
     ifstream recover ( "Data/lvl1-samurais.dat", ios::in);
