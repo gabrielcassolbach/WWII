@@ -22,9 +22,11 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<650.0<<' '<<200.0<<endl;
     saver<<700.0<<' '<<200.0<<endl;*/
 
-FirstLevel::FirstLevel(Game* pg) : CM(),
+FirstLevel::FirstLevel(Game* pg, int diff) : CM(),
 Levels(pg)
 {
+    difficulty=diff;
+
     entitiesQuantity=new int[8];
     entitiesQuantity[1]=randomQuantity();
     entitiesQuantity[2]=randomQuantity();
@@ -45,9 +47,10 @@ Levels(pg)
     
     CM.init(&MovingEntityList, &StaticEntityList);
 }
-FirstLevel::FirstLevel(Game* pg, int* qtd):CM(),
+FirstLevel::FirstLevel(Game* pg, int* qtd, int diff):CM(),
 Levels(pg)
 {
+    difficulty=diff;
     entitiesQuantity=qtd;
 
     createPlayers();
@@ -74,6 +77,10 @@ FirstLevel::~FirstLevel()
 int* FirstLevel::getEntitiesQuantity(){
     return entitiesQuantity;
 }
+int FirstLevel::getDifficulty(){
+    return difficulty;
+}
+
 
 /*METHODS*/
 void FirstLevel::input()
@@ -156,11 +163,6 @@ void FirstLevel::endCurrentState()
 {   
     if(pGame)
         pGame -> popState();
-}
-void FirstLevel::draw()
-{
-    MovingEntityList.drawAll();
-    StaticEntityList.drawAll();
 }
 void FirstLevel::createEnemies()
 {
@@ -292,8 +294,17 @@ void FirstLevel::createSnipers()
 
 void FirstLevel::createPlayers()
 {
-    Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
-    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-    pPlayersList.push_back(pPlayer1);
+    if (difficulty==1){
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
+        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+        pPlayersList.push_back(pPlayer1);
+    }
+    else{
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 5, 2, 0.0);
+        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+        pPlayersList.push_back(pPlayer1);
+    }
+
 }

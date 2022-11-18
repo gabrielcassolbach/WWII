@@ -44,4 +44,5 @@ public:
     void jump(double timeFraction);
 
     void operator-(double value);
+    void operator+(double value);
 };

@@ -137,8 +137,9 @@ void PauseMenu::save_game(){
         getchar( );
         return;
     }
-
     saver<<level<<endl;
+    if (level==1)
+        saver<<levelOne->getDifficulty()<<endl;
     int* qtd=levelOne->getEntitiesQuantity();
     for (i=0; i<7; i++)
         saver<<qtd[i]<<endl;

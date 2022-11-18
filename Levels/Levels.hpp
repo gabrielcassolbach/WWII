@@ -37,14 +37,12 @@ public:
 
 /*METHODS*/
     virtual void update(double timeFraction) = 0; // não precisa ser virtual -> jogar para dentro dos level1
-    virtual void draw() = 0; // não precisa ser virtual. //.... mesma coisas.
+    void draw(); // não precisa ser virtual. //.... mesma coisas.
     virtual void createEnemies() = 0;
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;
     virtual void createCannons() = 0;
-    virtual void createBoxes() = 0;
-    virtual void createSnipers() = 0;
-    virtual void createPlayers() = 0;
+    virtual void createPlayers()=0;
 
     int randomQuantity();
 };

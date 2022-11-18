@@ -70,8 +70,10 @@ void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
         collisionMovement(ent2, inter_x, inter_y);
     else if (ent2->getId()==4){
         health-=ent2->getDamage();
-        if (health<=0)
+        if (health<=0){
             position_y=1000;
+            pPlayer->operator+(15.0);
+        }
     }
 
 }

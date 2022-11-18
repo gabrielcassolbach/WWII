@@ -9,7 +9,6 @@ Menu::Menu(Game *pg)
     pGame = pg;
     level = 0;
 }
-
 Menu::~Menu()
 {
     pGame = nullptr;
@@ -119,7 +118,7 @@ void Menu::keyPressedAction(sf::Event event)
     {
     case sf::Keyboard::Num1:
     {
-        pGame -> pushState(new FirstLevel(pGame));
+        pGame -> pushState(new FirstLevel(pGame, 2));
     }
     break;
     case sf::Keyboard::Num2:
@@ -135,8 +134,8 @@ void Menu::keyPressedAction(sf::Event event)
     case sf::Keyboard::Num4:
     {
        resume();
-    break;
     }
+    break;
     }
 }
 void Menu::resume(){
@@ -150,13 +149,18 @@ void Menu::resume(){
     }
 
     recover>>level;
+    int diff;
+    
+    if (level==1){
+        recover>>diff;
+    }
     int i;
     int* qtd=new int[7];
     for (i=0; i<7; i++)
         recover>>qtd[i];
 
     if (level==1){
-        FirstLevel* fl = new FirstLevel(pGame, qtd);
+        FirstLevel* fl = new FirstLevel(pGame, qtd, diff);
         pGame -> pushState(fl);
         
         EntityList* moving=fl->getMovingEntityList();

@@ -161,7 +161,9 @@ bool Player::canAttack()
 void Player::operator-(double value){
     points-=value;
 }
-
+void Player::operator+(double value){
+    points+=value;
+}
 
 
 

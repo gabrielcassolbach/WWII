@@ -36,3 +36,8 @@ int Levels::randomQuantity(){
     cout<<ret<<endl;
     return ret;
 }
+void Levels::draw(){
+    MovingEntityList.drawAll();
+    StaticEntityList.drawAll();
+}
+
