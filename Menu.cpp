@@ -66,12 +66,10 @@ void Menu::drawThis(Graphic_Manager *pGM)
         pGM->getWindow()->draw(text[i]);   
     }
 }   
-
 void Menu::init()
 {
 
 }
-
 void Menu::draw()
 {
     drawThis(pGM);
@@ -118,12 +116,12 @@ void Menu::keyPressedAction(sf::Event event)
     {
     case sf::Keyboard::Num1:
     {
-        pGame -> pushState(new FirstLevel(pGame, 2));
+        pGame -> pushState(new FirstLevel(pGame, 1));
     }
     break;
     case sf::Keyboard::Num2:
     {   
-        // pGame -> pushState(new SecondLevel());
+        pGame -> pushState(new GameOverMenu(pGame));
     }
     break;
     case sf::Keyboard::Escape:
@@ -150,7 +148,7 @@ void Menu::resume(){
 
     recover>>level;
     int diff;
-    
+
     if (level==1){
         recover>>diff;
     }
