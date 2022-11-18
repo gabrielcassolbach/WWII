@@ -25,10 +25,12 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
 FirstLevel::FirstLevel(Game* pg) : CM(),
 Levels(pg)
 {
-    entitiesQuantity=new int[7];
+    entitiesQuantity=new int[8];
     entitiesQuantity[1]=randomQuantity();
+    entitiesQuantity[2]=randomQuantity();
     entitiesQuantity[5]=randomQuantity();
     entitiesQuantity[6]=randomQuantity();
+    entitiesQuantity[7]=randomQuantity();
 
     createPlayers();
     createEnemies();
@@ -136,6 +138,8 @@ void FirstLevel::keyPressedAction(sf::Event event)
 
 void FirstLevel::update(double timeFraction)
 {
+    for (int i=0; i<pPlayersList.size(); i++)
+        pPlayersList[i]->operator-(0.01);
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
@@ -153,13 +157,11 @@ void FirstLevel::endCurrentState()
     if(pGame)
         pGame -> popState();
 }
-
 void FirstLevel::draw()
 {
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
-
 void FirstLevel::createEnemies()
 {
     ifstream recover ( "lvl1-samurais.dat", ios::in);
@@ -221,17 +223,45 @@ void FirstLevel::createTrenchs()
 
 void FirstLevel::createCannons()
 {
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 450.00, 600.00, 30.0, 30.0))); // Canhão 1
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 600.00, 600.00, 30.0, 30.0)));  // Canhão 2
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, 950.00, 200.00, 30.0, 30.0)));  // Canhão 3   
+    ifstream recover ( "lvl1-cannons.dat", ios::in );
+    
+    if ( !recover )
+    {
+        cerr << " Arquivo não pode ser aberto" << endl;
+        fflush ( stdin );
+        getchar( );
+    }
+
+    int quantity=entitiesQuantity[2];
+    
+    double px, py;
+    while (quantity>0){
+        recover>>px>>py;
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 30.0, 30.0)));
+        quantity--;
+    }
 }
 
 
 void FirstLevel::createBoxes()
 {
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 100.00, 590.00, 50.0, 50.0)));  // Caixa 1
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 700.00, 590.00, 50.0, 50.0))); // Caixa 2
-    StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, 700.00, 300.00, 50.0, 50.0)));  // Caixa 3
+    ifstream recover ( "lvl1-boxes.dat", ios::in );
+    
+    if ( !recover )
+    {
+        cerr << " Arquivo não pode ser aberto" << endl;
+        fflush ( stdin );
+        getchar( );
+    }
+
+    int quantity=entitiesQuantity[2];
+    
+    double px, py;
+    while (quantity>0){
+        recover>>px>>py;
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, px, py, 30.0, 50.0)));
+        quantity--;
+    }
 }
 
 

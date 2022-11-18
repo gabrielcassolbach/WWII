@@ -1,5 +1,7 @@
 #include "Character.hpp"
 #include "../Obstacles/Box.hpp"
+#include "../Obstacles/Cannon.hpp"
+#include "../Obstacles/Trench.hpp"
 #include <math.h>
 #pragma once
 
@@ -14,6 +16,8 @@ private:
     
     bool dead;
     Projectile* Copper_Bullet;
+
+    double points;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -38,4 +42,6 @@ public:
     void update(double timeFraction);
     void collide(Entity *ent2, double inter_x, double inter_y);
     void jump(double timeFraction);
+
+    void operator-(double value);
 };

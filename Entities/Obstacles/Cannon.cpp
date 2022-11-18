@@ -1,12 +1,18 @@
 #include "Cannon.hpp"
 
+#define CANNON_ACELERATION 2
+
 Cannon::Cannon(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
+    acceleration=CANNON_ACELERATION;
 }
-
 Cannon::~Cannon()
 {
+}
+
+double Cannon::getAcceleration(){
+    return acceleration;
 }
 
 void Cannon::update(double timeFraction)

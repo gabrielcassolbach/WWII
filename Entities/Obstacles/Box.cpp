@@ -1,12 +1,18 @@
 #include "Box.hpp"
 
+#define BOX_DAMAGE 1
+
 Box::Box(int ident, double px, double py, double sx, double sy, double vx, double vy) : 
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
+    damage=BOX_DAMAGE;
 }
-
 Box::~Box()
 {
+}
+
+int Box::getDamage(){
+    return damage;
 }
 
 void Box::update(double timeFraction)
@@ -18,14 +24,12 @@ void Box::update(double timeFraction)
     position_y += (velocity_y);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-
 void Box::init()
 {
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
     retangulo.setFillColor(sf::Color::Yellow);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
-
 void Box::collide(Entity *ent2, double inter_x, double inter_y)
 {
     int id = ent2 -> getId();
