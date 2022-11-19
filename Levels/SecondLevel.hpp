@@ -2,10 +2,12 @@
 #include "Levels.hpp"
 #include "../GameOverMenu.hpp"
 
+class Boss;
+
 class SecondLevel : public Levels
 {
 private:
-    // Boss boss;
+    std::vector<Boss*> pBossList;
     Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum. (PENSAR!)
     int* entitiesQuantity;
 
@@ -28,6 +30,7 @@ public:
         void init () {} // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!
         /*------------------------------------------------*/
+        void createBoss();
         void createEnemies();
         void createPlatforms();
         void createTrenchs();

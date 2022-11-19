@@ -12,9 +12,9 @@ Enemy(ident, px, py, sx, sy, vx, vy, hp, SAMURAI_DAMAGE, SAMURAI_ATTACK_COOLDOWN
 {
     belt=bt;
     velocity_y = 0.0;
-    velocity_x = 0.0;
-    
+    velocity_x = 0.0;    
 }
+
 Samurai::~Samurai()
 {
 }
@@ -27,6 +27,7 @@ void Samurai::update(double timeFraction)
     Character::increaseAttackTimer(timeFraction);
 
     playerDistance = (pPlayer->getPosition_x()) - position_x;
+    
     double heightDistance;
     heightDistance=pPlayer->getPosition_y()-position_y;
 
@@ -41,6 +42,7 @@ void Samurai::update(double timeFraction)
             velocity_x = SAMURAI_VELOCITY_X * (-1);
         else
             velocity_x = SAMURAI_VELOCITY_X;
+        
         if (fabs(playerDistance) < SAMURAI_ATTACK_RANGE && canAttack() && fabs(heightDistance)<getSize_y())
             attack();
     }
@@ -68,6 +70,7 @@ void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
 {
     if (ent2->getId()==2 || ent2->getId()== 3 || ent2->getId()==1)
         collisionMovement(ent2, inter_x, inter_y);
+    
     else if (ent2->getId()==4){
         health-=ent2->getDamage();
         if (health<=0){
@@ -75,7 +78,6 @@ void Samurai::collide(Entity *ent2, double inter_x, double inter_y)
             pPlayer->operator+(15.0);
         }
     }
-
 }
 
 void Samurai::attack()

@@ -1,6 +1,7 @@
 #include "SecondLevel.hpp"
 #include "../Game.hpp"
 #include "../Menu.hpp"
+#include "../Entities/Characters/Boss.hpp"
 
 /*EXEMPLO GERAÇÃO AUTOMÁTICA
 ofstream saver ( "lvl1-trenchs.dat", ios::out );
@@ -32,14 +33,15 @@ Levels(pg)
     entitiesQuantity[5]=randomQuantity();
     entitiesQuantity[6]=randomQuantity();
     entitiesQuantity[7]=randomQuantity();
-
+ 
     createPlayers();
     createEnemies();
     createPlatforms();
     createTrenchs();
     createCannons();
     createBoxes();
-    createSnipers();
+    //createSnipers();
+    createBoss();
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
@@ -58,7 +60,8 @@ Levels(pg)
     createTrenchs();
     createCannons();
     createBoxes();
-    createSnipers();
+    //createSnipers();
+    createBoss();
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
@@ -77,7 +80,6 @@ SecondLevel::~SecondLevel()
 int* SecondLevel::getEntitiesQuantity(){
     return entitiesQuantity;
 }
-
 
 /*METHODS*/
 void SecondLevel::input()
@@ -144,6 +146,7 @@ void SecondLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
+    
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
@@ -296,4 +299,22 @@ void SecondLevel::createPlayers()
     MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
     MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
     pPlayersList.push_back(pPlayer1);
+}
+
+void SecondLevel::createBoss()
+{
+    Boss* pBoss1 = new Boss (9, 350.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss2 = new Boss (9, 700.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss3 = new Boss (9, 1000.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+
+    pBossList.push_back(pBoss1);
+    pBossList.push_back(pBoss2);
+    pBossList.push_back(pBoss3);
+
+    for(int i = 0; i < pBossList.size(); i++)
+    {
+        MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i])); 
+        MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i]->getBullet())); 
+    }
+
 }
