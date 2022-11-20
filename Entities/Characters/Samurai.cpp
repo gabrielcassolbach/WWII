@@ -4,7 +4,7 @@
 #define SAMURAI_VIEWDISTANCE 300.f
 #define SAMURAI_VELOCITY_X 0.5
 #define SAMURAI_ATTACK_RANGE 20
-#define SAMURAI_DAMAGE 2
+#define SAMURAI_DAMAGE 3
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player *pP, int bt) : 
@@ -47,7 +47,7 @@ void Samurai::update(double timeFraction)
             attack();
     }
 
-    velocity_y+=GRAVITY;
+    velocity_y += GRAVITY * timeFraction;
 
     if (belt==2)
         velocity_x*=1.25;
@@ -60,9 +60,10 @@ void Samurai::update(double timeFraction)
 
 void Samurai::init()
 {
-    text.loadFromFile("Images/samurai.png");
+    //text.loadFromFile("Images/samurai.png");
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setTexture(&text);
+    //retangulo.setTexture(&text);
+    retangulo.setFillColor(sf::Color::Blue);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 

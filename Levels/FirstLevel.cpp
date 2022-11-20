@@ -206,6 +206,7 @@ void FirstLevel::createEnemies()
     }
 
 }
+
 void FirstLevel::createPlatforms()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor

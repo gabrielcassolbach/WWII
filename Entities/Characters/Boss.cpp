@@ -59,7 +59,7 @@ void Boss::update(double timeFraction)
             velocity_x = BOSS_VELOCITY;
     }
 
-    velocity_y+=GRAVITY;
+    velocity_y+=GRAVITY* timeFraction;
 
     position_x+=velocity_x;
     position_y+=velocity_y;
@@ -70,22 +70,28 @@ void Boss::update(double timeFraction)
 void Boss::init()
 {
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::Blue);
+    retangulo.setFillColor(sf::Color::Cyan);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
 
 void Boss::collide(Entity *ent2, double inter_x, double inter_y)
 {
-    if (ent2->getId() == 2 || ent2->getId() == 3 || ent2->getId() == 9)
+
+    int id = ent2 -> getId();
+
+    if (id == 2 || id == 3 || id == 9 || id == 1)
         collisionMovement(ent2, inter_x, inter_y);
     
-    else if (ent2->getId()==4){
+    if (id == 4)
+    {
         health-=ent2->getDamage();
         if (health<=0){
             position_y=1000;
             pPlayer->operator+(32.0);
         }
     }
+
+
 }
    
 void Boss::attack()

@@ -44,7 +44,7 @@ void Sniper::update(double timeFraction)
     if (fabs(playerDistance) < SNIPER_SHOOTING_RANGE && canAttack())
         attack();
 
-    velocity_y+=GRAVITY;
+    velocity_y+=GRAVITY* timeFraction;
 
     position_x+=velocity_x;
     position_y+=velocity_y;

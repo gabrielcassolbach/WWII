@@ -32,18 +32,18 @@ void MovingEntity::collisionMovement(Entity *ent2, double intersection_x, double
 {
     if (intersection_x < intersection_y)
     {
+        velocity_x = 0.0;
         if (position_x > ent2->getPosition_x())
             position_x += intersection_x;
         else
             position_x -= intersection_x;
-        velocity_x = 0.0;
     }
     else
     {
+        velocity_y = 0.0;
         if (position_y > ent2->getPosition_y())
             position_y += intersection_y;
         else
             position_y -= intersection_y;
-        velocity_y = 0.0;
     }
 }

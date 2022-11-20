@@ -74,10 +74,12 @@ Projectile* Player::getBullet()
 /*METHODS*/
 void Player::init()
 {
+    text.loadFromFile("Images/player.png");
     retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-    retangulo.setFillColor(sf::Color::Green);
+    retangulo.setTexture(&text);
     retangulo.setPosition(sf::Vector2f(position_x, position_y));
 }
+
 void Player::update(double timeFraction)
 {
     Character::increaseAttackTimer(timeFraction);
@@ -96,6 +98,7 @@ void Player::update(double timeFraction)
 
     damageCooldownTimer += timeFraction;
 }
+
 void Player::collide(Entity *ent2, double inter_x, double inter_y)
 {
     int id = ent2 -> getId();
@@ -130,6 +133,16 @@ void Player::collide(Entity *ent2, double inter_x, double inter_y)
     if(id == 7){
         Cannon *pAttacker = static_cast<Cannon*>(ent2);
         aceleration = pAttacker->getAcceleration();
+    }
+
+    if(id == 1)
+    {
+        collisionMovement(ent2, inter_x, inter_y);
+    }
+
+    if(id == 5)
+    {
+        collisionMovement(ent2, inter_x, inter_y);
     }
            
 }
