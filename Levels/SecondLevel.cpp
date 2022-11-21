@@ -22,7 +22,8 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<380.0<<' '<<630.0<<endl;
     saver<<500.0<<' '<<600.0<<endl;
     saver<<650.0<<' '<<200.0<<endl;
-    saver<<700.0<<' '<<200.0<<endl;*/
+    saver<<700.0<<' '<<200.0<<endl;
+*/
 
 SecondLevel::SecondLevel(Game* pg) : CM(),
 Levels(pg)
@@ -187,11 +188,12 @@ void SecondLevel::createEnemies()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+        MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
         quantity--;
     }
 
 }
+
 void SecondLevel::createPlatforms()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor
@@ -223,10 +225,9 @@ void SecondLevel::createTrenchs()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 50.0, 10.0)));
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 40.0, 7.0)));
         quantity--;
     }
-
 }
 
 
@@ -246,7 +247,7 @@ void SecondLevel::createCannons()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 30.0, 30.0)));
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 40.0, 7.0)));
         quantity--;
     }
 }
@@ -289,7 +290,7 @@ void SecondLevel::createSnipers()
     int quatity=entitiesQuantity[5];
     for (int i=quatity; i>=0; i--){
         recover>>px>>py;
-        pSniperList.push_back(new Sniper(5, px, py, 30.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+        pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)
@@ -298,10 +299,10 @@ void SecondLevel::createSnipers()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
 }
-
+ 
 void SecondLevel::createPlayers()
 {
-    Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
+    Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
     MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
     MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
     pPlayersList.push_back(pPlayer1);
@@ -310,9 +311,9 @@ void SecondLevel::createPlayers()
 
 void SecondLevel::createBoss()
 {
-    Boss* pBoss1 = new Boss (9, 170.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss2 = new Boss (9, 700.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss3 = new Boss (9, 1000.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
 
     pBossList.push_back(pBoss1);
     pBossList.push_back(pBoss2);
@@ -339,22 +340,13 @@ void SecondLevel::draw()
     StaticEntityList.drawAll();
 }
 
-void SecondLevel::CheckLevelEnd(){
+void SecondLevel::CheckLevelEnd()
+{
     double px = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
     double py = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
 
     if(px > 1270 && py < 145)
         pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
-
 }
-
-
-
-
-
-
-
-
-
 
 

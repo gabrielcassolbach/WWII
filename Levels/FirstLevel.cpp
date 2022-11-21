@@ -51,6 +51,7 @@ Levels(pg)
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
 }
+
 FirstLevel::FirstLevel(Game* pg, int* qtd, int diff, int np):CM(),
 Levels(pg)
 {
@@ -72,6 +73,7 @@ Levels(pg)
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
 }
+
 FirstLevel::~FirstLevel()
 {
     MovingEntityList.destroyAll();
@@ -83,9 +85,11 @@ FirstLevel::~FirstLevel()
 int* FirstLevel::getEntitiesQuantity(){
     return entitiesQuantity;
 }
+
 int FirstLevel::getDifficulty(){
     return difficulty;
 }
+
 void FirstLevel::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundlevel1.png");
@@ -120,6 +124,7 @@ void FirstLevel::input()
         }
     }
 }
+
 void FirstLevel::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -176,6 +181,7 @@ void FirstLevel::keyPressedAction(sf::Event event)
         break;
     }
 }
+
 void FirstLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
@@ -186,6 +192,7 @@ void FirstLevel::update(double timeFraction)
     CheckPlayerState();
     CheckLevelEnd();
 }
+
 void FirstLevel::CheckPlayerState()
 {
     if (nPlayers==1){
@@ -198,8 +205,8 @@ void FirstLevel::CheckPlayerState()
             endCurrentState();
     } 
 }
-void FirstLevel::CheckLevelEnd()
 
+void FirstLevel::CheckLevelEnd()
 {
     if (nPlayers==2){
         double px1, py1, px2, py2; 
@@ -221,21 +228,21 @@ void FirstLevel::CheckLevelEnd()
             goToLevel2();
     }
 }
+
 void FirstLevel::goToLevel2()
 {
     if(pGame){
         pGame -> popState();
-        if (nPlayers==2)
-            pGame -> pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints() + pPlayersList[1]->getPoints()));
-        else
-            pGame -> pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
+        pGame -> pushState(new SecondLevel(pGame));
     }
 }
+
 void FirstLevel::endCurrentState()
 {   
     if(pGame)
         pGame -> popState();
 }
+
 void FirstLevel::createEnemies()
 {
     ifstream recover ( "Data/lvl1-samurais.dat", ios::in);
@@ -263,6 +270,7 @@ void FirstLevel::createEnemies()
         quantity--;
     }
 }
+
 void FirstLevel::createPlatforms()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor
@@ -276,6 +284,7 @@ void FirstLevel::createPlatforms()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 800.0, 240.0, 200.0, 30.0))); // Plataforma 4
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
 }
+
 void FirstLevel::createTrenchs()
 {
     ifstream recover ( "Data/lvl1-trenchs.dat", ios::in );
@@ -292,11 +301,12 @@ void FirstLevel::createTrenchs()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 50.0, 10.0)));
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 40.0, 11.0)));
         quantity--;
     }
 
 }
+
 void FirstLevel::createCannons()
 {
     ifstream recover ( "Data/lvl1-cannons.dat", ios::in );
@@ -313,10 +323,11 @@ void FirstLevel::createCannons()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 30.0, 30.0)));
+        StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 40.0, 11.0)));
         quantity--;
     }
 }
+
 void FirstLevel::createBoxes()
 {
     ifstream recover ( "Data/lvl1-boxes.dat", ios::in );
@@ -337,6 +348,7 @@ void FirstLevel::createBoxes()
         quantity--;
     }
 }
+
 void FirstLevel::createSnipers()
 {
     ifstream recover ( "Data/lvl1-snipers.dat", ios::in );
@@ -368,6 +380,7 @@ void FirstLevel::createSnipers()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
 }
+ 
 void FirstLevel::createPlayers()
 {
     if (nPlayers==1){
@@ -411,6 +424,7 @@ void FirstLevel::createPlayers()
         }
     }
 }
+
 void FirstLevel::draw()
 {
     pGM->getWindow()->draw(backgroundSprite);

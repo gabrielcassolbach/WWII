@@ -6,6 +6,7 @@ class Sniper : public Enemy
 {
 private:
     Projectile *bullet; 
+    sf::Texture text;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

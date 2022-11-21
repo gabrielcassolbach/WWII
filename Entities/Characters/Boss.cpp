@@ -16,6 +16,8 @@ Enemy(ident, px, py, sx, sy, 0, 0, BOSS_HEALTH, BOSS_DAMAGE, BOSS_SHOOTING_COOLD
 {
     bullet = nullptr;
     bullet = new Projectile(4, 0.0, -65.0, 4, 4, BOSS_BULLET_SPEED, 0, BOSS_DAMAGE);
+
+    evilness = rand() % 2 + 1;
 }
 
 Boss::~Boss()
@@ -37,15 +39,15 @@ void Boss::update(double timeFraction)
     playerDistance = (pPlayer->getPosition_x()) - position_x;
 
     double heightDistance;
-    heightDistance=pPlayer->getPosition_y()-position_y;
+    heightDistance = pPlayer->getPosition_y()-position_y;
 
     if (playerDistance <= 0){
         setLeftDirection(true);
-        velocity_x=-BOSS_VELOCITY;
+        velocity_x=-BOSS_VELOCITY*evilness;
     }
     else{
         setLeftDirection(false);
-        velocity_x=BOSS_VELOCITY;
+        velocity_x=BOSS_VELOCITY*evilness;
     }
 
     if (fabs(playerDistance) < BOSS_SHOOTING_RANGE && canAttack())
@@ -54,9 +56,9 @@ void Boss::update(double timeFraction)
     if (fabs(playerDistance) < BOSS_VIEWDISTANCE)
     {
         if (leftDirection)
-            velocity_x = BOSS_VELOCITY * (-1);
+            velocity_x = BOSS_VELOCITY * (-1) * evilness;
         else
-            velocity_x = BOSS_VELOCITY;
+            velocity_x = BOSS_VELOCITY * evilness;
     }
 
     velocity_y+=GRAVITY* timeFraction;

@@ -16,6 +16,7 @@ GameOverMenu::GameOverMenu(Game *pg, double points)
     setBackground();
     pGame = pg;
 }
+
 GameOverMenu::~GameOverMenu()
 {
     pGame = nullptr;
@@ -69,6 +70,7 @@ void GameOverMenu::setText()
     text[5].setString(str); // 1 item
     text[5].setPosition(sf::Vector2f(460, 460));
 }
+
 void GameOverMenu::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundPauseMenu.jpg");
@@ -87,10 +89,12 @@ void GameOverMenu::drawThis(Graphic_Manager *pGM)
         pGM->getWindow()->draw(text[i]);
     }
 }
+
 void GameOverMenu::draw()
 {
     drawThis(pGM);
 }
+
 void GameOverMenu::input()
 {
     sf::Event event;
@@ -117,6 +121,7 @@ void GameOverMenu::input()
         }
     }
 }
+
 void GameOverMenu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -156,7 +161,9 @@ void GameOverMenu::writeLetter(sf::Event event){
     text[6].setString(name); // 1 item
     text[6].setPosition(sf::Vector2f(650, 400));
 }
-void GameOverMenu::saveLeaderboard(){
+
+void GameOverMenu::saveLeaderboard()
+{
     ofstream saver ( "Leaderboard.dat", ios::out | ios::app);
     
     if ( !saver ){
@@ -169,7 +176,9 @@ void GameOverMenu::saveLeaderboard(){
     saver<<name<<' '<<totalPoints1<<endl;
     saver.close();
 }
-void GameOverMenu::goToLevelTwo(){
+
+void GameOverMenu::goToLevelTwo()
+{
     pGame->popState();
     pGame->pushState(new SecondLevel(pGame));
 }

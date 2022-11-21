@@ -6,7 +6,7 @@ class Boss : public Enemy
 {
 private:
     Projectile *bullet; 
-    int malvadeza;  // é necessário pensar sobre este atributo! ele é importante para diferenciar as classes.
+    int evilness;  // é necessário pensar sobre este atributo! ele é importante para diferenciar as classes.
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
