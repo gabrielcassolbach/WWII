@@ -1,8 +1,9 @@
 #pragma once
-#include "Enty.hpp"
-#include "Levels/FirstLevel.hpp"
-#include "Levels/SecondLevel.hpp"
-#include "Game_State.hpp"
+#include "../Enty.hpp"
+#include "../Levels/FirstLevel.hpp"
+#include "../Levels/SecondLevel.hpp"
+#include "../Game_State.hpp"
+#include "Leaderboard.hpp"
 #define MAX_NUMBER_OF_ITENS 4
 
 class Game;

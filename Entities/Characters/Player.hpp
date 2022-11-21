@@ -35,6 +35,8 @@ public:
     void setVelocity_y(double vy);
     void receiveDamage(int dam);
     Projectile* getBullet();
+    double getPoints ();
+    void setPoints (double pt);
 
     /*METHODS*/
     bool canAttack();

@@ -78,6 +78,13 @@ Projectile* Player::getBullet()
 {
     return Copper_Bullet;
 }
+double Player::getPoints(){
+    return points;
+}
+void Player::setPoints(double pt){
+    points=pt;
+}
+
 
 /*METHODS*/
 void Player::init()

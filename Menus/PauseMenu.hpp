@@ -1,7 +1,7 @@
 #pragma once
-#include "Enty.hpp"
-#include "Game_State.hpp"
-#include "Levels/FirstLevel.hpp"
+#include "../Enty.hpp"
+#include "../Game_State.hpp"
+#include "../Levels/FirstLevel.hpp"
 
 class SecondLevel;
 

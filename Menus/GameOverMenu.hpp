@@ -1,9 +1,12 @@
 #pragma once
-#include "Game_State.hpp"
-#include "Enty.hpp"
-#include "Game.hpp"
+#include "../Game_State.hpp"
+#include "../Enty.hpp"
+#include "../Game.hpp"
+#include <iostream>
+#include <string.h>
+using namespace std;
 
-#define ITENS_GAMEOVER_MENU 4
+#define ITENS_GAMEOVER_MENU 7
 
 class GameOverMenu: public Enty, public Game_State{
     private:
@@ -13,8 +16,12 @@ class GameOverMenu: public Enty, public Game_State{
         sf::RectangleShape backgroundRectangle;
         sf::Texture backgroundTexture;
 
+        double totalPoints1;
+        char name [10];
+        int nameSize;
+
     public:
-        GameOverMenu(Game* pg);
+        GameOverMenu(Game* pg, double points);
         ~GameOverMenu();
         void setText();
         void setBackground();
@@ -26,4 +33,6 @@ class GameOverMenu: public Enty, public Game_State{
         void draw();
         void input();
         void keyPressedAction (sf::Event event);
+        void writeLetter(sf::Event event);
+        void saveLeaderboard();
 };

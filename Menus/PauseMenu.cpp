@@ -1,6 +1,6 @@
 #include "PauseMenu.hpp"
-#include "Levels/SecondLevel.hpp"
-#include "Game.hpp"
+#include "../Levels/SecondLevel.hpp"
+#include "../Game.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 PauseMenu::PauseMenu(Game *pg, FirstLevel* lvl)

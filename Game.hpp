@@ -1,6 +1,6 @@
 #pragma once
-#include "Menu.hpp"
-#include "PauseMenu.hpp"
+#include "Menus/Menu.hpp"
+#include "Menus/PauseMenu.hpp"
 #include "Levels/Levels.hpp"
 #include "Game_State.hpp"
 #include <stack>

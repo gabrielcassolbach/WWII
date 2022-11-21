@@ -1,6 +1,6 @@
 #include "FirstLevel.hpp"
 #include "../Game.hpp"
-#include "../Menu.hpp"
+#include "../Menus/Menu.hpp"
 
 /*EXEMPLO GERAÇÃO AUTOMÁTICA
 ofstream saver ( "lvl1-trenchs.dat", ios::out );

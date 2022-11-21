@@ -1,6 +1,6 @@
 #include "SecondLevel.hpp"
 #include "../Game.hpp"
-#include "../Menu.hpp"
+#include "../Menus/Menu.hpp"
 #include "../Entities/Characters/Boss.hpp"
 
 /*EXEMPLO GERAÇÃO AUTOMÁTICA
@@ -150,11 +150,13 @@ void SecondLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
+    cout<<pPlayersList[0]->getPoints()<<endl;
     
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
     CheckPlayerState();
+    CheckLevelEnd();
 }
 
 void SecondLevel::CheckPlayerState()
@@ -199,8 +201,8 @@ void SecondLevel::createPlatforms()
 
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 200.0, 540.0, 300.0, 30.0))); // Plataforma 1
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 400.0, 440.0, 200.0, 30.0))); // Plataforma 2
-    //StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 600.0, 340.0, 200.0, 30.0))); // Plataforma 3
-    //StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 800.0, 240.0, 200.0, 30.0))); // Plataforma 4
+    StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 600.0, 340.0, 200.0, 30.0))); // Plataforma 3
+    StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 800.0, 240.0, 200.0, 30.0))); // Plataforma 4
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
 }
 
@@ -303,11 +305,12 @@ void SecondLevel::createPlayers()
     MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
     MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
     pPlayersList.push_back(pPlayer1);
+    pPlayer1->setPoints(100);
 }
 
 void SecondLevel::createBoss()
 {
-    Boss* pBoss1 = new Boss (9, 350.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss1 = new Boss (9, 170.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
     Boss* pBoss2 = new Boss (9, 700.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
     Boss* pBoss3 = new Boss (9, 1000.0, 590, 40.0, 40.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
 
@@ -335,3 +338,23 @@ void SecondLevel::draw()
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
+
+void SecondLevel::CheckLevelEnd(){
+    double px = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
+    double py = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
+
+    if(px > 1270 && py < 145)
+        pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
+
+}
+
+
+
+
+
+
+
+
+
+
+

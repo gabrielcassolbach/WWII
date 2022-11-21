@@ -1,5 +1,5 @@
 #include "Menu.hpp"
-#include "Game.hpp"
+#include "../Game.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Menu::Menu(Game *pg)
@@ -126,6 +126,10 @@ void Menu::keyPressedAction(sf::Event event)
         pGame -> pushState(new SecondLevel(pGame));
     }
     break;
+    case sf::Keyboard::Num3:
+    {
+        pGame -> pushState (new Leaderboard(pGame));
+    }break;
     case sf::Keyboard::Escape:
     {
         //pGame -> pushState()

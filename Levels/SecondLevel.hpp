@@ -1,6 +1,6 @@
 #pragma once
 #include "Levels.hpp"
-#include "../GameOverMenu.hpp"
+#include "../Menus/GameOverMenu.hpp"
 
 class Boss;
 
@@ -46,5 +46,6 @@ public:
 
     /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função
+        void CheckLevelEnd();
 
 };
