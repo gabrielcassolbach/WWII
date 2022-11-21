@@ -49,12 +49,6 @@ void GameOverMenu::setText()
     text[2].setString("1- Back to menu"); // 1 item
     text[2].setPosition(sf::Vector2f(100, 680));
 
-    text[3].setFont(font);
-    text[3].setCharacterSize(10);
-    text[3].setFillColor(sf::Color::Yellow);
-    text[3].setString("2- Next level"); // 1 item
-    text[3].setPosition(sf::Vector2f(400, 680));
-
     text[4].setFont(font);
     text[4].setCharacterSize(30);
     text[4].setFillColor(sf::Color::Yellow);
@@ -135,10 +129,6 @@ void GameOverMenu::keyPressedAction(sf::Event event)
     {
         saveLeaderboard();
     }break;
-    case sf::Keyboard::Num2:
-    {
-        goToLevelTwo();
-    }break;
     default:
     {
         writeLetter(event);
@@ -175,12 +165,6 @@ void GameOverMenu::saveLeaderboard()
 
     saver<<name<<' '<<totalPoints1<<endl;
     saver.close();
-}
-
-void GameOverMenu::goToLevelTwo()
-{
-    pGame->popState();
-    pGame->pushState(new SecondLevel(pGame));
 }
 
 

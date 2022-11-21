@@ -16,8 +16,8 @@ private:
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        SecondLevel(Game* pg);
-        SecondLevel(Game* pg, int* qtd);
+        SecondLevel(Game* pg, int np);
+        SecondLevel(Game* pg, int* qtd, int np);
         ~SecondLevel();
 
     /*SETTERS & GETTERS*/

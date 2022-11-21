@@ -129,7 +129,7 @@ void Menu::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Num2:
     {   
-        pGame -> pushState(new SecondLevel(pGame));
+        pGame -> pushState(new SecondLevel(pGame, 1));
     }
     break;
     case sf::Keyboard::Num5:
@@ -141,6 +141,10 @@ void Menu::keyPressedAction(sf::Event event)
         pGame -> pushState(new FirstLevel(pGame, 1, 2));
     }
     break;
+    case sf::Keyboard::Num4:
+    {
+        pGame->pushState(new SecondLevel(pGame, 2));
+    }
     case sf::Keyboard::Escape:
     {
         //pGame -> pushState()

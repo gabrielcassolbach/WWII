@@ -2,9 +2,11 @@
 
 // Início do desenvolvimento dia 28/10/22.
 /*CONSTRUCTORS & DESTRUCTORS*/
-Levels::Levels(Game* pg)
+Levels::Levels(Game* pg, int np)
 {
+    srand(time(0));
     pGame = pg;
+    nPlayers=np;
 }
 
 Levels::~Levels(){
@@ -17,8 +19,6 @@ EntityList* Levels::getMovingEntityList() {
 EntityList* Levels::getStaticEntityList() {
     return &StaticEntityList;
 }
-
-
 Player* Levels::getPlayer(int player_selected)
 {
     for(int i = 0; i < pPlayersList.size(); i++)
@@ -28,9 +28,7 @@ Player* Levels::getPlayer(int player_selected)
 }
 
 int Levels::randomQuantity()
-{
-    srand(time(0));
-    
+{   
     int ret;
     ret=rand()%3+3;
 

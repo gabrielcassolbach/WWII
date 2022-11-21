@@ -25,10 +25,9 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<700.0<<' '<<200.0<<endl;*/
 
 FirstLevel::FirstLevel(Game* pg, int diff, int np) : CM(),
-Levels(pg)
+Levels(pg, np)
 {
     difficulty=diff;
-    nPlayers=np;
 
     entitiesQuantity=new int[8];
     entitiesQuantity[1]=randomQuantity();
@@ -53,7 +52,7 @@ Levels(pg)
 }
 
 FirstLevel::FirstLevel(Game* pg, int* qtd, int diff, int np):CM(),
-Levels(pg)
+Levels(pg, np)
 {
     difficulty=diff;
     entitiesQuantity=qtd;
@@ -213,8 +212,8 @@ void FirstLevel::CheckLevelEnd()
         px1 = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
         py1 = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
 
-        px1 = getPlayer(2) -> getPosition_x() + getPlayer(2) -> getSize_x();
-        py1 = getPlayer(2) -> getPosition_y() + getPlayer(2) -> getSize_y();
+        px2 = getPlayer(2) -> getPosition_x() + getPlayer(2) -> getSize_x();
+        py2 = getPlayer(2) -> getPosition_y() + getPlayer(2) -> getSize_y();
 
         if((px1 > 1270 && py1 < 145) || (px2 > 1270 && py2 < 145))
             goToLevel2();
@@ -231,9 +230,13 @@ void FirstLevel::CheckLevelEnd()
 
 void FirstLevel::goToLevel2()
 {
-    if(pGame){
+    if(pGame && nPlayers==1){
         pGame -> popState();
-        pGame -> pushState(new SecondLevel(pGame));
+        pGame -> pushState(new SecondLevel(pGame, 1));
+    }
+    else if(pGame && nPlayers==2){
+        pGame -> popState();
+        pGame -> pushState(new SecondLevel(pGame, 2));
     }
 }
 

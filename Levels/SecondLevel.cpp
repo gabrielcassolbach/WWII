@@ -25,8 +25,8 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<700.0<<' '<<200.0<<endl;
 */
 
-SecondLevel::SecondLevel(Game* pg) : CM(),
-Levels(pg)
+SecondLevel::SecondLevel(Game* pg, int np) : CM(),
+Levels(pg, np)
 {
     entitiesQuantity= new int[8];
     entitiesQuantity[1]=randomQuantity();
@@ -52,8 +52,8 @@ Levels(pg)
     setBackground();
 }
 
-SecondLevel::SecondLevel(Game* pg, int* qtd):CM(),
-Levels(pg)
+SecondLevel::SecondLevel(Game* pg, int* qtd, int np):CM(),
+Levels(pg, np)
 {
     entitiesQuantity=qtd;
 
@@ -144,14 +144,36 @@ void SecondLevel::keyPressedAction(sf::Event event)
         pGame -> pushState(new PauseMenu(pGame, this));
     }
     break;
+    if (nPlayers==2){
+        case sf::Keyboard::D:
+        {
+            if (getPlayer(2)->getLeftDirection())
+                getPlayer(2)->setLeftDirection(false);
+        }
+        break;
+        case sf::Keyboard::A:
+        {
+            getPlayer(2)->setLeftDirection(true);
+        }
+        break;
+        case sf::Keyboard::W:
+        {
+            getPlayer(2)->jump(0.01666);
+        }
+        break;
+        case sf::Keyboard::R:
+        {
+            getPlayer(2)->attack();
+        }break;
     }
+    }
+
 }
 
 void SecondLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
-    cout<<pPlayersList[0]->getPoints()<<endl;
     
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
@@ -162,8 +184,12 @@ void SecondLevel::update(double timeFraction)
 
 void SecondLevel::CheckPlayerState()
 {
-    if(getPlayer(1) -> getPlayerState()) // adicionar verificação para o player 2.
-        endCurrentState();     
+    if (nPlayers==2)
+        if(getPlayer(1) -> getPlayerState() && getPlayer(2)->getPlayerState()) // adicionar verificação para o player 2.
+            endCurrentState(); 
+    else
+        if (getPlayer(1) -> getPlayerState())    
+            endCurrentState();
 }
 
 void SecondLevel::endCurrentState()
@@ -188,7 +214,15 @@ void SecondLevel::createEnemies()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+            if (nPlayers==2){
+                if (px<640)
+                    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+                else
+                    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[1], 1)));
+            }
+        
+        else
+            MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
         quantity--;
     }
 
@@ -290,7 +324,14 @@ void SecondLevel::createSnipers()
     int quatity=entitiesQuantity[5];
     for (int i=quatity; i>=0; i--){
         recover>>px>>py;
-        pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+        if (nPlayers==2){
+            if (px<640)
+                pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+            else
+                pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[1]));
+        }
+        else
+            pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)
@@ -302,18 +343,33 @@ void SecondLevel::createSnipers()
  
 void SecondLevel::createPlayers()
 {
-    Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
-    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-    pPlayersList.push_back(pPlayer1);
-    pPlayer1->setPoints(100);
+    if (nPlayers==1){
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+        pPlayersList.push_back(pPlayer1);
+        pPlayer1->setPoints(100);
+    }
+    else{
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+        pPlayersList.push_back(pPlayer1);
+        pPlayer1->setPoints(100);
+
+        Player* pPlayer2=new Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
+        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
+        pPlayersList.push_back(pPlayer2);
+        pPlayer2->setPoints(100);
+    }
 }
 
 void SecondLevel::createBoss()
 {
     Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
     Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
+    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[1]);
 
     pBossList.push_back(pBoss1);
     pBossList.push_back(pBoss2);
@@ -342,11 +398,23 @@ void SecondLevel::draw()
 
 void SecondLevel::CheckLevelEnd()
 {
-    double px = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
-    double py = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
+    if (nPlayers==2){
+        double px1 = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
+        double py1 = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
 
-    if(px > 1270 && py < 145)
-        pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
+        double px2 = getPlayer(2) -> getPosition_x() + getPlayer(2) -> getSize_x();
+        double py2 = getPlayer(2) -> getPosition_y() + getPlayer(2) -> getSize_y();
+
+        if((px1 > 1270 && py1 < 145) || (px2>1270 && py2<145))
+            pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
+    }
+    else{
+        double px1 = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
+        double py1 = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
+
+        if(px1 > 1270 && py1 < 145)
+            pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
+    }
 }
 
 

@@ -8,8 +8,6 @@ class FirstLevel : public Levels
         int* entitiesQuantity;
         int difficulty;
 
-        int nPlayers;
-
         sf::Sprite backgroundSprite;
         sf::Texture backgroundTexture;
          

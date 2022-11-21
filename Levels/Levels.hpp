@@ -24,10 +24,12 @@ protected:
     EntityList StaticEntityList;
     std::vector<Sniper*> pSniperList;
     std::vector<Player*> pPlayersList;
+
+    int nPlayers;
                                                    
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/
-    Levels(Game* pg = nullptr);
+    Levels(Game* pg = nullptr, int np=1);
     ~Levels();
 
 /*SETTERS & GETTERS*/
