@@ -4,7 +4,7 @@
 #include "../Levels/SecondLevel.hpp"
 #include "../Game_State.hpp"
 #include "Leaderboard.hpp"
-#define MAX_NUMBER_OF_ITENS 4
+#define MAX_NUMBER_OF_ITENS 5
 
 class Game;
 

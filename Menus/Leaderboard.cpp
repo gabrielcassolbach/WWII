@@ -52,7 +52,27 @@ void Leaderboard::sortLeaderboard(){
 
 }
 void Leaderboard::readLeaderboard(){
+    /*ifstream recover ( "Leaderboard.dat", ios::in );
+    
+    if ( !recover )
+    {
+        cerr << " Arquivo não pode ser aberto" << endl;
+        fflush ( stdin );
+        getchar( );
+    }
 
+    
+    
+    while (RecuperadorAlunos >> id >> RA >> nome;){
+        if ( 0 != strcmp ( nome, "" ) ){
+            pauxAluno = new Aluno ( -1 );
+            pauxAluno->setId ( id );
+            pauxAluno->setRA ( RA );
+            pauxAluno->setNome ( nome );
+            incluaAluno ( pauxAluno );
+        }
+    }
+    RecuperadorAlunos.close ();*/
 }
 
 

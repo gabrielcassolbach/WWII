@@ -8,13 +8,15 @@ class FirstLevel : public Levels
         int* entitiesQuantity;
         int difficulty;
 
+        int nPlayers;
+
         sf::Sprite backgroundSprite;
         sf::Texture backgroundTexture;
          
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        FirstLevel(Game* pg, int diff);
-        FirstLevel(Game* pg, int* qtd, int diff);
+        FirstLevel(Game* pg, int diff, int np);
+        FirstLevel(Game* pg, int* qtd, int diff, int np);
         ~FirstLevel();
 
     /*SETTERS & GETTERS*/

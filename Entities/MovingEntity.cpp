@@ -6,7 +6,6 @@ MovingEntity::MovingEntity(int ident, double px, double py, double sx, double sy
     damage = dam;
     leftDirection = false;
 }
-
 MovingEntity::~MovingEntity()
 {
 }

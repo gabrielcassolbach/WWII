@@ -70,9 +70,8 @@ void Player::receiveDamage(int dam)
     health -=  dam;
     if (health<=0){
         dead=true;
-        cout<<"Points: "<<points<<endl;
+        position_y=1000;
     }
-    cout<<"Vida: "<<health<<endl;
 }
 Projectile* Player::getBullet()
 {

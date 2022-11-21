@@ -32,26 +32,32 @@ void Menu::setText()
     text[0].setFont(font);
     text[0].setCharacterSize(35);
     text[0].setFillColor(sf::Color::Red);
-    text[0].setString("First Level"); // 1 item
-    text[0].setPosition(sf::Vector2f(500, 220));
+    text[0].setString("First Level (1 player)"); // 1 item
+    text[0].setPosition(sf::Vector2f(350, 220));
 
     text[1].setFont(font);
     text[1].setCharacterSize(35);
     text[1].setFillColor(sf::Color::Red);
-    text[1].setString("Second Level"); // 2 item ...
-    text[1].setPosition(sf::Vector2f(500, 320)); // Janela 1280 x 720.
+    text[1].setString("Second Level (1 player)"); // 2 item ...
+    text[1].setPosition(sf::Vector2f(350, 320)); // Janela 1280 x 720.
 
     text[2].setFont(font);
     text[2].setCharacterSize(35);
     text[2].setFillColor(sf::Color::Red);;
     text[2].setString("Ranking");
-    text[2].setPosition(sf::Vector2f(500, 420));
+    text[2].setPosition(sf::Vector2f(500, 620));
 
     text[3].setFont(font);
     text[3].setCharacterSize(35);
     text[3].setFillColor(sf::Color::Red);
     text[3].setString("Resume");
-    text[3].setPosition(sf::Vector2f(500, 520));
+    text[3].setPosition(sf::Vector2f(500, 720));
+
+    text[4].setFont(font);
+    text[4].setCharacterSize(35);
+    text[4].setFillColor(sf::Color::Red);
+    text[4].setString("First Leval (2 players)");
+    text[4].setPosition(sf::Vector2f(350, 420));
 }
 
 /*METHODS*/
@@ -118,7 +124,7 @@ void Menu::keyPressedAction(sf::Event event)
     {
     case sf::Keyboard::Num1:
     {
-        pGame -> pushState(new FirstLevel(pGame, 1));
+        pGame -> pushState(new FirstLevel(pGame, 1, 1));
     }
     break;
     case sf::Keyboard::Num2:
@@ -126,16 +132,21 @@ void Menu::keyPressedAction(sf::Event event)
         pGame -> pushState(new SecondLevel(pGame));
     }
     break;
-    case sf::Keyboard::Num3:
+    case sf::Keyboard::Num5:
     {
         pGame -> pushState (new Leaderboard(pGame));
     }break;
+    case sf::Keyboard::Num3:
+    {
+        pGame -> pushState(new FirstLevel(pGame, 1, 2));
+    }
+    break;
     case sf::Keyboard::Escape:
     {
         //pGame -> pushState()
     }
     break;
-    case sf::Keyboard::Num4:
+    case sf::Keyboard::Num6:
     {
        resume();
     }
@@ -165,7 +176,7 @@ void Menu::resume(){
         recover>>qtd[i];
 
     if (level==1){
-        FirstLevel* fl = new FirstLevel(pGame, qtd, diff);
+        FirstLevel* fl = new FirstLevel(pGame, qtd, diff, 1);
         pGame -> pushState(fl);
         
         EntityList* moving=fl->getMovingEntityList();

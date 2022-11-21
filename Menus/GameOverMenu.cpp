@@ -130,6 +130,10 @@ void GameOverMenu::keyPressedAction(sf::Event event)
     {
         saveLeaderboard();
     }break;
+    case sf::Keyboard::Num2:
+    {
+        goToLevelTwo();
+    }break;
     default:
     {
         writeLetter(event);
@@ -164,9 +168,11 @@ void GameOverMenu::saveLeaderboard(){
 
     saver<<name<<' '<<totalPoints1<<endl;
     saver.close();
-
-    pGame->popState();
-    pGame->popState();
 }
+void GameOverMenu::goToLevelTwo(){
+    pGame->popState();
+    pGame->pushState(new SecondLevel(pGame));
+}
+
 
 

@@ -35,4 +35,5 @@ class GameOverMenu: public Enty, public Game_State{
         void keyPressedAction (sf::Event event);
         void writeLetter(sf::Event event);
         void saveLeaderboard();
+        void goToLevelTwo();
 };
