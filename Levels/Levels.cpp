@@ -27,7 +27,8 @@ Player* Levels::getPlayer(int player_selected)
     }
 }
 
-int Levels::randomQuantity(){
+int Levels::randomQuantity()
+{
     srand(time(0));
     
     int ret;
@@ -36,8 +37,3 @@ int Levels::randomQuantity(){
     cout<<ret<<endl;
     return ret;
 }
-void Levels::draw(){
-    MovingEntityList.drawAll();
-    StaticEntityList.drawAll();
-}
-

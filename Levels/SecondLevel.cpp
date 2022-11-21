@@ -47,6 +47,8 @@ Levels(pg)
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
+
+    setBackground();
 }
 
 SecondLevel::SecondLevel(Game* pg, int* qtd):CM(),
@@ -67,6 +69,8 @@ Levels(pg)
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
+
+    setBackground();
 }
 
 SecondLevel::~SecondLevel()
@@ -283,7 +287,7 @@ void SecondLevel::createSnipers()
     int quatity=entitiesQuantity[5];
     for (int i=quatity; i>=0; i--){
         recover>>px>>py;
-        pSniperList.push_back(new Sniper(5, px, py, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+        pSniperList.push_back(new Sniper(5, px, py, 30.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)
@@ -316,5 +320,18 @@ void SecondLevel::createBoss()
         MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i])); 
         MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i]->getBullet())); 
     }
+}
 
+void SecondLevel::setBackground()
+{
+    backgroundTexture.loadFromFile("Images/backgroundlevel2.png");
+    backgroundSprite.setTexture(backgroundTexture);
+    backgroundSprite.setOrigin(0, 0);  
+}
+
+void SecondLevel::draw()
+{
+    pGM->getWindow()->draw(backgroundSprite);
+    MovingEntityList.drawAll();
+    StaticEntityList.drawAll();
 }

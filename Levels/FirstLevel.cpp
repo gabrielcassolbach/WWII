@@ -47,7 +47,9 @@ Levels(pg)
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
+    setBackground();
 }
+
 FirstLevel::FirstLevel(Game* pg, int* qtd, int diff):CM(),
 Levels(pg)
 {
@@ -66,7 +68,9 @@ Levels(pg)
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
+    setBackground();
 }
+
 FirstLevel::~FirstLevel()
 {
     MovingEntityList.destroyAll();
@@ -80,6 +84,13 @@ int* FirstLevel::getEntitiesQuantity(){
 }
 int FirstLevel::getDifficulty(){
     return difficulty;
+}
+
+void FirstLevel::setBackground()
+{
+    backgroundTexture.loadFromFile("Images/backgroundlevel1.png");
+    backgroundSprite.setTexture(backgroundTexture);
+    backgroundSprite.setOrigin(0, 0);  
 }
 
 
@@ -201,7 +212,7 @@ void FirstLevel::createEnemies()
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-        MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 30.0, 40.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+        MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
         quantity--;
     }
 
@@ -304,7 +315,7 @@ void FirstLevel::createSnipers()
     int quatity=entitiesQuantity[5];
     for (int i=quatity; i>=0; i--){
         recover>>px>>py;
-        pSniperList.push_back(new Sniper(5, px, py, 40.00, 40.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+        pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)
@@ -317,16 +328,23 @@ void FirstLevel::createSnipers()
 void FirstLevel::createPlayers()
 {
     if (difficulty==1){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 10, 2, 0.0);
+        Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
         pPlayersList.push_back(pPlayer1);
     }
     else{
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 30.00, 40.0, 0.0, 0.0, 5, 2, 0.0);
+        Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 5, 2, 0.0);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
         pPlayersList.push_back(pPlayer1);
     }
-
 }
+
+void FirstLevel::draw()
+{
+    pGM->getWindow()->draw(backgroundSprite);
+    MovingEntityList.drawAll();
+    StaticEntityList.drawAll();
+}
+

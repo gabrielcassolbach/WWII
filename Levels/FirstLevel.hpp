@@ -7,6 +7,9 @@ class FirstLevel : public Levels
         Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum. (PENSAR!)
         int* entitiesQuantity;
         int difficulty;
+
+        sf::Sprite backgroundSprite;
+        sf::Texture backgroundTexture;
          
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -17,10 +20,12 @@ class FirstLevel : public Levels
     /*SETTERS & GETTERS*/
         int* getEntitiesQuantity();
         int getDifficulty();
+        void setBackground();
 
     /*METHODS*/
         void update (double timeFraction);
         void input();
+        void draw(); // Implementar
         void keyPressedAction(sf::Event event);
         void CheckPlayerState();
         void endCurrentState();
@@ -37,6 +42,7 @@ class FirstLevel : public Levels
         void createBoxes();
         void createSnipers();
         void createPlayers();
+
 
     /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função

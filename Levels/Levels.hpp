@@ -36,8 +36,6 @@ public:
     EntityList* getStaticEntityList();
 
 /*METHODS*/
-    virtual void update(double timeFraction) = 0; // não precisa ser virtual -> jogar para dentro dos level1
-    void draw(); // não precisa ser virtual. //.... mesma coisas.
     virtual void createEnemies() = 0;
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;

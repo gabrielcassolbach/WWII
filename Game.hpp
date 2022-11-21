@@ -17,6 +17,7 @@ private:
     Levels* level;    
     Menu* menu; 
     std::stack <Game_State*> game_states;
+
     Graphic_Manager* pGM;
     sf::Clock clock;
     double dt;

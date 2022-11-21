@@ -22,6 +22,7 @@ attackRange(PLAYER_ATTACK_RANGE)
     aceleration=1;
     points=100;
 }
+
 Player::~Player()
 {
     Copper_Bullet = nullptr;
@@ -32,31 +33,38 @@ bool Player::getPlayerState()
 {
     return dead;
 }
+
 void Player::setPlayerState(bool condition)
 {   
     dead = condition;
-}   
+}
+
 void Player::setVelocity(double vx, double vy)
 {
     velocity_x = vx;
     velocity_y = vy;
 }
+
 double Player::getVelocity_x()
 {
     return velocity_x;
 }
+
 double Player::getVelocity_y()
 {
     return velocity_y;
 }
+
 void Player::setVelocity_x(double vx)
 {
     velocity_x = vx;
 }
+
 void Player::setVelocity_y(double vy)
 {
     velocity_y = vy;
 }
+
 void Player::receiveDamage(int dam)
 {
     health -=  dam;
@@ -144,7 +152,11 @@ void Player::collide(Entity *ent2, double inter_x, double inter_y)
     {
         collisionMovement(ent2, inter_x, inter_y);
     }
-           
+
+    if(id == 9)
+    {
+        collisionMovement(ent2, inter_x, inter_y);
+    }           
 }
 void Player::jump(double timeFraction)
 {
@@ -152,6 +164,7 @@ void Player::jump(double timeFraction)
         velocity_y = -sqrtf(PLAYER_JUMP_HEIGHT / 35 * 2 * 9.8);
     // Divide-se por 35 pois as dimensões do jogo estão numa escala 10x maior que a proporção da velocidade (valores reais).
 }
+
 void Player::attack()
 {
     if (this->canAttack()){
@@ -164,6 +177,7 @@ void Player::attack()
             Copper_Bullet->projectileReset(position_x+size_x+1.0, position_y, PLAYER_BULLET_SPEED, 0); 
     }
 }
+
 bool Player::canAttack()
 {
     if (!Copper_Bullet->getActive() && cooldownAttackTimer > attackCooldown)

@@ -57,14 +57,8 @@ void Game::pushState(Game_State *state)
 
 void Game::popState()
 {
-    //this->game_states.top();
     if(!game_states.empty()) 
-    {  
-        //Game_State* wantToDel=NULL;
-        //wantToDel=game_states.top();
         this->game_states.pop();
-        //delete(wantToDel);
-    }
 }
 
 Game_State *Game::CurrentState()

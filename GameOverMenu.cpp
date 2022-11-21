@@ -1,15 +1,22 @@
 #include "GameOverMenu.hpp"
 
-GameOverMenu::GameOverMenu(Game* pg){
+GameOverMenu::GameOverMenu(Game *pg)
+{
     setText();
     setBackground();
-    pGame=pg;
+    pGame = pg;
 }
-GameOverMenu::~GameOverMenu(){
-    pGame=nullptr;
+GameOverMenu::~GameOverMenu()
+{
+    pGame = nullptr;
 }
-void GameOverMenu::setText(){
-    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+void GameOverMenu::setText()
+{
+    if (!font.loadFromFile("Font/PIXEARG_.TTF"))
+    {
+        cout << "error" << endl;
+        exit(1);
+    }
 
     text[0].setFont(font);
     text[0].setCharacterSize(50);
@@ -23,23 +30,30 @@ void GameOverMenu::setText(){
     text[1].setString("Insert your name:"); // 1 item
     text[1].setPosition(sf::Vector2f(300, 400));
 }
-void GameOverMenu::setBackground(){
+
+void GameOverMenu::setBackground()
+{
     backgroundTexture.loadFromFile("Images/backgroundPauseMenu.jpg");
-    backgroundRectangle=sf::RectangleShape(sf::Vector2f(1280, 720)); 
+    backgroundRectangle = sf::RectangleShape(sf::Vector2f(1280, 720));
     backgroundRectangle.setTexture(&backgroundTexture);
     backgroundRectangle.setPosition(sf::Vector2f(0, 0));
 }
-void GameOverMenu::drawThis(Graphic_Manager* pGM){
+
+void GameOverMenu::drawThis(Graphic_Manager *pGM)
+{
     pGM->getWindow()->draw(backgroundRectangle);
 
-    for(int i = 0; i < ITENS_GAMEOVER_MENU; i++)
+    for (int i = 0; i < ITENS_GAMEOVER_MENU; i++)
     {
-        pGM->getWindow()->draw(text[i]);   
+        pGM->getWindow()->draw(text[i]);
     }
 }
-void GameOverMenu::draw(){
+
+void GameOverMenu::draw()
+{
     drawThis(pGM);
 }
+
 void GameOverMenu::input()
 {
     sf::Event event;
@@ -66,14 +80,15 @@ void GameOverMenu::input()
         }
     }
 }
+
 void GameOverMenu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
     {
     case sf::Keyboard::Num1:
     {
-        pGame -> popState();
-        pGame -> popState();
+        pGame->popState();
+        pGame->popState();
     }
     break;
     }

@@ -76,7 +76,6 @@ void Boss::init()
 
 void Boss::collide(Entity *ent2, double inter_x, double inter_y)
 {
-
     int id = ent2 -> getId();
 
     if (id == 2 || id == 3 || id == 9 || id == 1)
@@ -91,6 +90,8 @@ void Boss::collide(Entity *ent2, double inter_x, double inter_y)
         }
     }
 
+    if(id == 1)
+        collisionMovement(ent2, inter_x, inter_y);
 
 }
    

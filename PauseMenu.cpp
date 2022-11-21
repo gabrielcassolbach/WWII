@@ -23,7 +23,7 @@ PauseMenu::PauseMenu(Game *pg, SecondLevel* lvl)
 }
 PauseMenu::~PauseMenu()
 {
-    pGame = nullptr;
+    // pGame = nullptr;
 }
 
 /*SETTERS & GETTERS*/
@@ -108,6 +108,7 @@ void PauseMenu::input()
         }
     }
 }
+
 void PauseMenu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -130,6 +131,8 @@ void PauseMenu::keyPressedAction(sf::Event event)
     break;
     }
 }
+
+
 void PauseMenu::save_game(){
     int i;
     EntityList* moving=nullptr;
@@ -168,7 +171,9 @@ void PauseMenu::save_game(){
             <<staticl->operator[](i)->getPosition_y()<<' '
             <<staticl->operator[](i)->getVelocity_x()<<' '
             <<staticl->operator[](i)->getVelocity_y()<<' '<<endl;
-    }  
+    }
+
+
     pGame->popState();
     pGame->popState();
 
