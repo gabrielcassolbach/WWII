@@ -143,7 +143,7 @@ void PauseMenu::saveLevelOne(){
     EntityList* moving=levelOne->getMovingEntityList();
     EntityList* staticl=levelOne->getStaticEntityList();
     
-    ofstream saver ("data/GameSave.dat", ios::out);
+    ofstream saver ("Data/gameSave.dat", ios::out);
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );

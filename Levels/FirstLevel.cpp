@@ -55,15 +55,49 @@ Levels(pg, np)
 FirstLevel::FirstLevel(Game* pg, int diff, int np, int rec):CM(),
 Levels(pg, np)
 {
-    ifstream recover ("../Data/GameSave.dat", ios::in);
+    double px, py, vx, vy, nPoints, level;
+    int hp, id;
+    ifstream recover ("Data/gameSave.dat", ios::in);
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );
         getchar( );
         return;
     }
-    
+     
+    recover>>level;
+    recover>>difficulty;
+    recover>>nPlayers;
+
+    while (recover>>id){
+        recover>>px>>py>>vx>>vy>>hp;
+        if (id==0)
+            recover>>nPoints;
+        
+        switch (id)
+        {
+        case 0:
+        {
+            if (nPlayers==1){
+                Player* pPlayer1=new Player(id, px, py, 35.00, 60.0, vx, vy, hp);
+                MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+                MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+                pPlayersList.push_back(pPlayer1);
+            }
+
+        }break;
+        
+        default:
+            break;
+        }
+    }
     cout<<"Oi"<<endl;
+
+    StaticEntityList.initAll();
+    MovingEntityList.initAll();
+    
+    CM.init(&MovingEntityList, &StaticEntityList);
+    setBackground();
 }
 
 FirstLevel::~FirstLevel()

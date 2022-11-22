@@ -160,7 +160,7 @@ void Menu::keyPressedAction(sf::Event event)
 void Menu::recover(){
     int level, nP, diff, id, hp;
     double px, py, vx, vy;
-    ifstream recover ("data/GameSave.dat", ios::in);
+    ifstream recover ("Data/gameSave.dat", ios::in);
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );
@@ -169,13 +169,12 @@ void Menu::recover(){
     }
 
     recover>>level;
-    recover>>diff;
-    recover>>nP;
-
-    /*while (recover>>id){
-        
-
-    }*/
+    if (level==1){
+        recover>>diff;
+        recover>>nP;
+        FirstLevel* fl=new FirstLevel(pGame, diff, nP, 1);
+        pGame->pushState(fl);
+    }
 
     recover.close();
 }
