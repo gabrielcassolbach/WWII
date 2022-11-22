@@ -70,21 +70,50 @@ Levels(pg, np)
     recover>>nPlayers;
 
     while (recover>>id){
-        recover>>px>>py>>vx>>vy>>hp;
-        if (id==0)
-            recover>>nPoints;
-        
         switch (id)
         {
         case 0:
         {
             if (nPlayers==1){
+                recover>>px>>py>>vx>>vy>>hp;
                 Player* pPlayer1=new Player(id, px, py, 35.00, 60.0, vx, vy, hp);
                 MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
                 MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
                 pPlayersList.push_back(pPlayer1);
             }
-
+        }break;
+        case 1:
+        {
+            recover>>px>>py>>vx>>vy>>hp;
+        }break;
+        case 2:
+        {
+            recover>>px>>py>>vx>>vy;
+        }
+        case 3:
+        {
+            recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, px, py, 1280.0, 80.0)));
+        }break;
+        case 4:
+        {
+            recover>>px>>py>>vx>>vy>>hp;
+        }break;
+        case 5:
+        {
+            recover>>px>>py>>vx>>vy>>hp;
+        }break;
+        case 6:
+        {
+            recover>>px>>py>>vx>>vy;
+        }break;
+        case 7:
+        {
+            recover>>px>>py>>vx>>vy;
+        }break;
+        case 8:
+        {
+            recover>>px>>py>>vx>>vy;
         }break;
         
         default:
@@ -92,6 +121,8 @@ Levels(pg, np)
         }
     }
     cout<<"Oi"<<endl;
+
+    //ARRUMAR PONTOS
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();

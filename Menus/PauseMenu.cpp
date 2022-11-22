@@ -138,11 +138,7 @@ void PauseMenu::saveGame(){
     pGame->popState();
     pGame->popState();
 }
-void PauseMenu::saveLevelOne(){
-    int id;
-    EntityList* moving=levelOne->getMovingEntityList();
-    EntityList* staticl=levelOne->getStaticEntityList();
-    
+void PauseMenu::saveLevelOne(){    
     ofstream saver ("Data/gameSave.dat", ios::out);
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;
@@ -155,32 +151,44 @@ void PauseMenu::saveLevelOne(){
     saver<<levelOne->getDifficulty()<<endl;
     saver<<levelOne->getNPlayers()<<endl;
 
+    saveMovingEntities(&saver);
+    //saveStaticEntities(&saver);
+
+    saver<<levelOne->getPlayer(1)->getPoints()<<endl;
+    if (levelOne->getNPlayers()==2)
+        saver<<levelOne->getPlayer(2)->getPoints()<<endl;
+
+    saver.close();
+}
+
+void PauseMenu::saveMovingEntities(ofstream* saver){
+    int id;
+    EntityList* moving=levelOne->getMovingEntityList();
+
     for (int i=0; i<moving->getSize(); i++){
         id=moving->operator[](i)->getId();
-        saver<<moving->operator[](i)->getId()<<endl;
-        saver<<moving->operator[](i)->getPosition_x()<<' '
+        (*saver)<<moving->operator[](i)->getId()<<endl;
+        (*saver)<<moving->operator[](i)->getPosition_x()<<' '
              <<moving->operator[](i)->getPosition_y()<<' '
              <<moving->operator[](i)->getVelocity_x()<<' '
              <<moving->operator[](i)->getVelocity_y()<<' '
              <<moving->operator[](i)->getHealth()<<endl;
     }  
-
-    saver<<levelOne->getPlayer(1)->getPoints()<<endl;
-            if (levelOne->getNPlayers()==2)
-                saver<<levelOne->getPlayer(2)->getPoints()<<endl;
-
-    for (int i=0; i<moving->getSize(); i++){
-        id=moving->operator[](i)->getId();
-        saver<<moving->operator[](i)->getId()<<' '
-             <<moving->operator[](i)->getPosition_x()<<' '
-             <<moving->operator[](i)->getPosition_y()<<' '
-             <<moving->operator[](i)->getVelocity_x()<<' '
-             <<moving->operator[](i)->getVelocity_y()<<' '
-             <<moving->operator[](i)->getHealth()<<endl;
-    }
-
-    saver.close();
 }
+void PauseMenu::saveStaticEntities(ofstream* saver){
+    int id;
+    EntityList* staticl=levelOne->getStaticEntityList();
+    
+    for (int i=0; i<staticl->getSize(); i++){
+        id=staticl->operator[](i)->getId();
+        (*saver)<<staticl->operator[](i)->getId()<<endl;
+        (*saver)<<staticl->operator[](i)->getPosition_x()<<' '
+             <<staticl->operator[](i)->getPosition_y()<<' '
+             <<staticl->operator[](i)->getVelocity_x()<<' '
+             <<staticl->operator[](i)->getVelocity_y()<<endl;
+    }  
+}
+
 
 
 

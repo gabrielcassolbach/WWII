@@ -40,6 +40,8 @@ public:
     void keyPressedAction(sf::Event event);
     void saveGame();
     void saveLevelOne();
+    void saveMovingEntities(ofstream* saver);
+    void saveStaticEntities(ofstream* saver);
 
     // Polimorfismo Game_State()!
     /*---------------------------*/
