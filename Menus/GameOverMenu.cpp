@@ -8,7 +8,7 @@ GameOverMenu::GameOverMenu(Game *pg, double points)
     cout<<points<<endl;
 
     for (int i=0; i<10; i++){
-        name[i]='_';
+        name[i]=' ';
     }
     name[9]='\0';
 
@@ -137,7 +137,8 @@ void GameOverMenu::keyPressedAction(sf::Event event)
 }
 
 void GameOverMenu::writeLetter(sf::Event event){
-    if (nameSize<10){
+    if (nameSize<10)
+    {
         if (event.text.unicode < 128){
             char character= static_cast<char>(event.text.unicode+65);
             name[nameSize]=character;
@@ -162,7 +163,8 @@ void GameOverMenu::saveLeaderboard()
         getchar( );
         return;
     }
-
+    
+    saver << endl;
     saver<<name<<' '<<totalPoints1<<endl;
     saver.close();
 }
