@@ -4,7 +4,7 @@
 #include "../Levels/SecondLevel.hpp"
 #include "../Game_State.hpp"
 #include "Leaderboard.hpp"
-#define MAX_NUMBER_OF_ITENS 5
+#define MAX_NUMBER_OF_ITENS 7
 
 class Game;
 
@@ -15,7 +15,7 @@ private:
     sf::Text text[MAX_NUMBER_OF_ITENS];
     sf::Text Title;
     sf::Font font;
-    sf::Sprite backgroundSprite;
+    sf::RectangleShape backgroundRectangle;
     sf::Texture backgroundTexture;
     int level;
 
@@ -42,5 +42,4 @@ public:
     void draw();
     void update(double timeFraction);
     void input();
-    void resume ();
 };

@@ -29,7 +29,8 @@ Levels(pg, np)
 {
     difficulty=diff;
 
-    entitiesQuantity=new int[8];
+    entitiesQuantity=new int[7];
+    entitiesQuantity[0]=np;
     entitiesQuantity[1]=randomQuantity();
     entitiesQuantity[2]=randomQuantity();
     entitiesQuantity[5]=randomQuantity();
@@ -55,8 +56,19 @@ FirstLevel::FirstLevel(Game* pg, int* qtd, int diff, int np):CM(),
 Levels(pg, np)
 {
     difficulty=diff;
-    entitiesQuantity=qtd;
-    nPlayers=np;
+    entitiesQuantity=new int[7];
+
+    entitiesQuantity[0]=qtd[0];
+    entitiesQuantity[1]=qtd[1];
+    entitiesQuantity[2]=qtd[2];
+    entitiesQuantity[3]=qtd[3];
+    entitiesQuantity[4]=qtd[4];
+    entitiesQuantity[5]=qtd[5];
+    entitiesQuantity[6]=qtd[6];
+
+    for (int i=0; i<7; i++)
+        cout<<entitiesQuantity[i]<<endl;
+    system("pause");
 
     createPlayers();
     createEnemies();
@@ -84,11 +96,9 @@ FirstLevel::~FirstLevel()
 int* FirstLevel::getEntitiesQuantity(){
     return entitiesQuantity;
 }
-
 int FirstLevel::getDifficulty(){
     return difficulty;
 }
-
 void FirstLevel::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundlevel1.png");
@@ -191,7 +201,6 @@ void FirstLevel::update(double timeFraction)
     CheckPlayerState();
     CheckLevelEnd();
 }
-
 void FirstLevel::CheckPlayerState()
 {
     if (nPlayers==1){
@@ -204,7 +213,6 @@ void FirstLevel::CheckPlayerState()
             endCurrentState();
     } 
 }
-
 void FirstLevel::CheckLevelEnd()
 {
     if (nPlayers==2){
@@ -369,12 +377,12 @@ void FirstLevel::createSnipers()
         recover>>px>>py;
         if (nPlayers==2){
             if (px<640)
-                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]));
             else
-                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[1]));
+                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[1]));
         }
         else
-            pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+            pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)

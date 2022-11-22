@@ -26,12 +26,15 @@ Player* Levels::getPlayer(int player_selected)
         if(i+1 == player_selected)  return pPlayersList[i];
     }
 }
+int Levels::getNPlayers(){
+    return nPlayers;
+}
 
 int Levels::randomQuantity()
 {   
     int ret;
     ret=rand()%3+3;
 
-    cout<<ret<<endl;
+    cout<<"--"<<ret<<endl;
     return ret;
 }

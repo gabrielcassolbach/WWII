@@ -13,6 +13,8 @@ protected:
     double velocity_x, velocity_y;
     sf::RectangleShape retangulo;
 
+    sf::Texture text;
+
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
     Entity(int ident = -1, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx=0.0, double vy=0.0);

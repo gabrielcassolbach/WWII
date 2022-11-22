@@ -15,12 +15,10 @@ int MovingEntity::getDamage() const
 {
     return damage;
 }
-
 bool MovingEntity::getLeftDirection()
 {
     return leftDirection;
 }
-
 void MovingEntity::setLeftDirection(bool active)
 {
     leftDirection = active;

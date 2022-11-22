@@ -4,7 +4,6 @@
 class Platform : public Obstacle
 {
 private:
-    sf::Texture text;
     float floatabily_constant;
 
 public:

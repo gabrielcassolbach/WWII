@@ -18,22 +18,21 @@ Menu::~Menu()
 sf::RectangleShape Menu::getRectangleShape() const
 {
 }
-
 void Menu::setText()
 {
     if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
     
     Title.setFont(font);
     Title.setCharacterSize(40);
-    Title.setFillColor(sf::Color::Black);
+    Title.setFillColor(sf::Color::White);
     Title.setString("Battle for Monte Castello"); // 1 item
-    Title.setPosition(sf::Vector2f(400, 30));
+    Title.setPosition(sf::Vector2f(310, 30));
 
     text[0].setFont(font);
     text[0].setCharacterSize(35);
     text[0].setFillColor(sf::Color::Red);
     text[0].setString("First Level (1 player)"); // 1 item
-    text[0].setPosition(sf::Vector2f(350, 220));
+    text[0].setPosition(sf::Vector2f(380, 220));
 
     text[1].setFont(font);
     text[1].setCharacterSize(35);
@@ -58,12 +57,24 @@ void Menu::setText()
     text[4].setFillColor(sf::Color::Red);
     text[4].setString("First Leval (2 players)");
     text[4].setPosition(sf::Vector2f(350, 420));
+
+    text[5].setFont(font);
+    text[5].setCharacterSize(35);
+    text[5].setFillColor(sf::Color::Red);
+    text[5].setString("Second Leval (2 players)");
+    text[5].setPosition(sf::Vector2f(320, 520));
+
+    text[6].setFont(font);
+    text[6].setCharacterSize(35);
+    text[6].setFillColor(sf::Color::Red);
+    text[6].setString("Resume");
+    text[6].setPosition(sf::Vector2f(520, 120));
 }
 
 /*METHODS*/
 void Menu::drawThis(Graphic_Manager *pGM)
 {   
-    pGM->getWindow()->draw(backgroundSprite);
+    pGM->getWindow()->draw(backgroundRectangle);
     
     pGM -> getWindow() -> draw(Title);
 
@@ -72,21 +83,20 @@ void Menu::drawThis(Graphic_Manager *pGM)
         pGM->getWindow()->draw(text[i]);   
     }
 }   
-
 void Menu::init()
 {
 
 }
-
 void Menu::draw()
 {
     drawThis(pGM);
 }
 void Menu::setBackground()
 {
-    backgroundTexture.loadFromFile("Images/backgroundMenu.jpg");
-    backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.setOrigin(0, 0);   
+    backgroundTexture.loadFromFile("Images/backgroundPauseMenu.jpg");
+    backgroundRectangle = sf::RectangleShape(sf::Vector2f(1280, 720));
+    backgroundRectangle.setTexture(&backgroundTexture);
+    backgroundRectangle.setPosition(sf::Vector2f(0, 0)); 
 }
 void Menu::update(double timeFraction)
 {
@@ -122,91 +132,29 @@ void Menu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
     {
-    case sf::Keyboard::Num1:
-    {
-        pGame -> pushState(new FirstLevel(pGame, 1, 1));
-    }
-    break;
-    case sf::Keyboard::Num2:
-    {   
-        pGame -> pushState(new SecondLevel(pGame, 1));
-    }
-    break;
-    case sf::Keyboard::Num5:
-    {
-        pGame -> pushState (new Leaderboard(pGame));
-    }break;
-    case sf::Keyboard::Num3:
-    {
-        pGame -> pushState(new FirstLevel(pGame, 1, 2));
-    }
-    break;
-    case sf::Keyboard::Num4:
-    {
-        pGame->pushState(new SecondLevel(pGame, 2));
-    }
-    case sf::Keyboard::Escape:
-    {
-        //pGame -> pushState()
-    }
-    break;
-    case sf::Keyboard::Num6:
-    {
-       resume();
-    }
-    break;
+        case sf::Keyboard::Num1:
+        {
+            //resume();
+        }break;
+        case sf::Keyboard::Num2:
+        {
+            pGame -> pushState(new FirstLevel(pGame, 1, 1));
+        }break;
+        case sf::Keyboard::Num3:
+        {   
+            pGame -> pushState(new SecondLevel(pGame, 1));
+        }break;
+        case sf::Keyboard::Num4:
+        {
+            pGame -> pushState(new FirstLevel(pGame, 1, 2));
+        }break;
+        case sf::Keyboard::Num6:
+        {
+            pGame -> pushState (new Leaderboard(pGame));
+        }break;
+        case sf::Keyboard::Num5:
+        {
+            pGame->pushState(new SecondLevel(pGame, 2));
+        }break;
     }
 }
-
-void Menu::resume(){
-    ifstream recover ( "Data/gameSave.dat", ios::in );
-    
-    if ( !recover )
-    {
-        cerr << " Arquivo não pode ser aberto" << endl;
-        fflush ( stdin );
-        getchar( );
-    }
-
-    recover>>level;
-    int diff;
-    
-    if (level==1){
-        recover>>diff;
-    }
-    int i;
-    int* qtd=new int[7];
-    for (i=0; i<7; i++)
-        recover>>qtd[i];
-
-    if (level==1){
-        FirstLevel* fl = new FirstLevel(pGame, qtd, diff, 1);
-        pGame -> pushState(fl);
-        
-        EntityList* moving=fl->getMovingEntityList();
-        EntityList* staticl=fl->getStaticEntityList();
-
-        double px, py;
-        double vx, vy;
-
-        for (i=0; i<moving->getSize(); i++){
-            recover>>px>>py>>vx>>vy;
-            moving->operator[](i)->setPosition_x(px);
-            moving->operator[](i)->setPosition_y(py);
-            moving->operator[](i)->setVelocity_x(vx);
-            moving->operator[](i)->setVelocity_y(vy);
-        }
-        for (i=0; i<staticl->getSize(); i++){
-            recover>>px>>py>>vx>>vy;
-            staticl->operator[](i)->setPosition_x(px);
-            staticl->operator[](i)->setPosition_y(py);
-            staticl->operator[](i)->setVelocity_x(vx);
-            staticl->operator[](i)->setVelocity_y(vy);
-        }
-    }
-    recover.close();
-}
-
-
-
-

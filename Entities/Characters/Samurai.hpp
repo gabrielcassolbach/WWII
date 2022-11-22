@@ -4,7 +4,6 @@ class Samurai : public Enemy
 { 
 private:
     int belt;
-    sf::Texture text;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

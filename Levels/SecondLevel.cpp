@@ -29,6 +29,7 @@ SecondLevel::SecondLevel(Game* pg, int np) : CM(),
 Levels(pg, np)
 {
     entitiesQuantity= new int[8];
+    entitiesQuantity[0]=np;
     entitiesQuantity[1]=randomQuantity();
     entitiesQuantity[2]=randomQuantity();
     entitiesQuantity[5]=randomQuantity();
@@ -46,12 +47,11 @@ Levels(pg, np)
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
-    
+
     CM.init(&MovingEntityList, &StaticEntityList);
 
     setBackground();
 }
-
 SecondLevel::SecondLevel(Game* pg, int* qtd, int np):CM(),
 Levels(pg, np)
 {
@@ -73,7 +73,6 @@ Levels(pg, np)
 
     setBackground();
 }
-
 SecondLevel::~SecondLevel()
 {
     MovingEntityList.destroyAll();
@@ -142,8 +141,7 @@ void SecondLevel::keyPressedAction(sf::Event event)
     case sf::Keyboard::Escape:
     {
         pGame -> pushState(new PauseMenu(pGame, this));
-    }
-    break;
+    }break;
     if (nPlayers==2){
         case sf::Keyboard::D:
         {
@@ -175,7 +173,7 @@ void SecondLevel::update(double timeFraction)
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
     
-    MovingEntityList.updateAll(timeFraction);
+    MovingEntityList.updateAll(timeFraction);//ERRO AQUI
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
     CheckPlayerState();
@@ -184,12 +182,14 @@ void SecondLevel::update(double timeFraction)
 
 void SecondLevel::CheckPlayerState()
 {
-    if (nPlayers==2)
+    if (nPlayers==2){
         if(getPlayer(1) -> getPlayerState() && getPlayer(2)->getPlayerState()) // adicionar verificação para o player 2.
             endCurrentState(); 
-    else
+    }
+    else{
         if (getPlayer(1) -> getPlayerState())    
             endCurrentState();
+    }
 }
 
 void SecondLevel::endCurrentState()
@@ -209,18 +209,17 @@ void SecondLevel::createEnemies()
         return;
     }
 
-    int quantity=entitiesQuantity[6];
+    int quantity=entitiesQuantity[1];
     
     double px, py;
     while (quantity>0){
         recover>>px>>py;
-            if (nPlayers==2){
-                if (px<640)
-                    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
-                else
-                    MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[1], 1)));
-            }
-        
+        if (nPlayers==2){
+            if (px<640)
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+            else
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[1], 1)));
+        }      
         else
             MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
         quantity--;
@@ -309,7 +308,7 @@ void SecondLevel::createBoxes()
 }
 
 
-void SecondLevel::createSnipers()
+/*void SecondLevel::createSnipers()
 {
     ifstream recover ( "Data/lvl2-snipers.dat", ios::in );
     
@@ -321,8 +320,8 @@ void SecondLevel::createSnipers()
     }
 
     double px, py;
-    int quatity=entitiesQuantity[5];
-    for (int i=quatity; i>=0; i--){
+    int quantity=entitiesQuantity[5];
+    for (int i=1; i>=0; i--){
         recover>>px>>py;
         if (nPlayers==2){
             if (px<640)
@@ -339,7 +338,7 @@ void SecondLevel::createSnipers()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i])); 
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
-}
+}*/
  
 void SecondLevel::createPlayers()
 {
@@ -350,7 +349,7 @@ void SecondLevel::createPlayers()
         pPlayersList.push_back(pPlayer1);
         pPlayer1->setPoints(100);
     }
-    else{
+    else if (nPlayers==2){
         Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
@@ -369,7 +368,7 @@ void SecondLevel::createBoss()
 {
     Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
     Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[1]);
+    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[nPlayers-1]);
 
     pBossList.push_back(pBoss1);
     pBossList.push_back(pBoss2);
@@ -408,7 +407,7 @@ void SecondLevel::CheckLevelEnd()
         if((px1 > 1270 && py1 < 145) || (px2>1270 && py2<145))
             pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
     }
-    else{
+    else if (nPlayers==1){
         double px1 = getPlayer(1) -> getPosition_x() + getPlayer(1) -> getSize_x();
         double py1 = getPlayer(1) -> getPosition_y() + getPlayer(1) -> getSize_y();
 

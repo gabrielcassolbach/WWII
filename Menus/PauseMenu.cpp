@@ -108,7 +108,6 @@ void PauseMenu::input()
         }
     }
 }
-
 void PauseMenu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -120,7 +119,7 @@ void PauseMenu::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Num2:
     {
-        save_game();
+        //save_game();
     }
     break;
     case sf::Keyboard::Num3:
@@ -131,54 +130,43 @@ void PauseMenu::keyPressedAction(sf::Event event)
     break;
     }
 }
-
-
-void PauseMenu::save_game(){
-    int i;
-    EntityList* moving=nullptr;
-    EntityList* staticl=nullptr;
-    int* qtd=nullptr;
-    ofstream saver ( "Data/gameSave.dat", ios::out );
+/*void PauseMenu::saveGame(){
+    if (level==1)
+        saveLevelOne();
+    else
+        saveLevelTwo();
+}*/
+/*void PauseMenu::saveLevelOne(){
+    EntityList* moving=levelOne->getMovingEntityList();
+    EntityList* staticl=levelOne->getStaticEntityList();
     
+    ofstream saver ("data/GameSave.dat", ios::out | std::app);
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );
         getchar( );
         return;
     }
+
     saver<<level<<endl;
-    if (level==1){
-        saver<<levelOne->getDifficulty()<<endl;
-        qtd=levelOne->getEntitiesQuantity();
-        moving=levelOne->getMovingEntityList();
-        staticl=levelOne->getStaticEntityList();
-    }
-    else if (level==2){
-        qtd=levelTwo->getEntitiesQuantity(); //ERRO AQUI
-        moving=levelTwo->getMovingEntityList();
-        staticl=levelTwo->getStaticEntityList();
-    }
-    for (i=0; i<7; i++)
-        saver<<qtd[i]<<endl;
-    for (i=0; i<moving->getSize(); i++){
-        saver<<moving->operator[](i)->getPosition_x()<<' '
-            <<moving->operator[](i)->getPosition_y()<<' '
-            <<moving->operator[](i)->getVelocity_x()<<' '
-            <<moving->operator[](i)->getVelocity_y()<<' '<<endl;
+    saver<<levelOne->getDifficulty()<<endl;
+
+    for (int i=0; i<moving->getSize(); i++){
+        saver<<moving->operator[](i)->getId()<<' '
+             <<moving->operator[](i)->getPosition_x()<<' '
+             <<moving->operator[](i)->getPosition_y()<<' '
+             <<moving->operator[](i)->getVelocity_x()<<' '
+             <<moving->operator[](i)->getVelocity_y()<<' '
     }  
-    for (i=0; i<staticl->getSize(); i++){
-        saver<<staticl->operator[](i)->getPosition_x()<<' '
-            <<staticl->operator[](i)->getPosition_y()<<' '
-            <<staticl->operator[](i)->getVelocity_x()<<' '
-            <<staticl->operator[](i)->getVelocity_y()<<' '<<endl;
-    }
+    
 
 
-    pGame->popState();
-    pGame->popState();
 
-    saver.close();
-}
+
+}*/
+
+
+
 
 
 

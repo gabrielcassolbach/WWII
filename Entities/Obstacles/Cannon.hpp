@@ -4,7 +4,6 @@
 class Cannon : public Obstacle
 {
 private:
-    sf::Texture text;
     double acceleration;
 
 public: 

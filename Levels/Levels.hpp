@@ -36,6 +36,7 @@ public:
     Player* getPlayer(int player_selected);
     EntityList* getMovingEntityList();
     EntityList* getStaticEntityList();
+    int getNPlayers ();
 
 /*METHODS*/
     virtual void createEnemies() = 0;

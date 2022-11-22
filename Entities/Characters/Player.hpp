@@ -17,7 +17,6 @@ private:
     bool dead;
     Projectile* Copper_Bullet;
 
-    sf::Texture text;
     double points;
 
 public:
