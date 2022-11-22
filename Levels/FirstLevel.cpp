@@ -52,10 +52,10 @@ Levels(pg, np)
     setBackground();
 }
 
-FirstLevel::FirstLevel(Game* pg, int diff, int np, int recover):CM(),
+FirstLevel::FirstLevel(Game* pg, int diff, int np, int rec):CM(),
 Levels(pg, np)
 {
-    ifstream recover ("data/GameSave.dat", ios::in);
+    ifstream recover ("../Data/GameSave.dat", ios::in);
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );
@@ -216,7 +216,6 @@ void FirstLevel::CheckLevelEnd()
             goToLevel2();
     }
 }
-
 void FirstLevel::goToLevel2()
 {
     if(pGame && nPlayers==1){
@@ -228,7 +227,6 @@ void FirstLevel::goToLevel2()
         pGame -> pushState(new SecondLevel(pGame, 2));
     }
 }
-
 void FirstLevel::endCurrentState()
 {   
     if(pGame)

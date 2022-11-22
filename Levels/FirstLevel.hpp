@@ -14,7 +14,7 @@ class FirstLevel : public Levels
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
         FirstLevel(Game* pg, int diff, int np);
-        FirstLevel(Game* pg, int diff, int np, int recover);
+        FirstLevel(Game* pg, int diff, int np, int rec);
         ~FirstLevel();
 
     /*SETTERS & GETTERS*/

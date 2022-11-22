@@ -157,8 +157,8 @@ void PauseMenu::saveLevelOne(){
 
     for (int i=0; i<moving->getSize(); i++){
         id=moving->operator[](i)->getId();
-        saver<<moving->operator[](i)->getId()<<' '
-             <<moving->operator[](i)->getPosition_x()<<' '
+        saver<<moving->operator[](i)->getId()<<endl;
+        saver<<moving->operator[](i)->getPosition_x()<<' '
              <<moving->operator[](i)->getPosition_y()<<' '
              <<moving->operator[](i)->getVelocity_x()<<' '
              <<moving->operator[](i)->getVelocity_y()<<' '
@@ -168,6 +168,16 @@ void PauseMenu::saveLevelOne(){
     saver<<levelOne->getPlayer(1)->getPoints()<<endl;
             if (levelOne->getNPlayers()==2)
                 saver<<levelOne->getPlayer(2)->getPoints()<<endl;
+
+    for (int i=0; i<moving->getSize(); i++){
+        id=moving->operator[](i)->getId();
+        saver<<moving->operator[](i)->getId()<<' '
+             <<moving->operator[](i)->getPosition_x()<<' '
+             <<moving->operator[](i)->getPosition_y()<<' '
+             <<moving->operator[](i)->getVelocity_x()<<' '
+             <<moving->operator[](i)->getVelocity_y()<<' '
+             <<moving->operator[](i)->getHealth()<<endl;
+    }
 
     saver.close();
 }
