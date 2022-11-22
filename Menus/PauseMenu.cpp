@@ -119,7 +119,7 @@ void PauseMenu::keyPressedAction(sf::Event event)
     break;
     case sf::Keyboard::Num2:
     {
-        //save_game();
+        saveGame();
     }
     break;
     case sf::Keyboard::Num3:
@@ -130,17 +130,20 @@ void PauseMenu::keyPressedAction(sf::Event event)
     break;
     }
 }
-/*void PauseMenu::saveGame(){
+void PauseMenu::saveGame(){
     if (level==1)
         saveLevelOne();
-    else
-        saveLevelTwo();
-}*/
-/*void PauseMenu::saveLevelOne(){
+    //else
+       // saveLevelTwo();
+    pGame->popState();
+    pGame->popState();
+}
+void PauseMenu::saveLevelOne(){
+    int id;
     EntityList* moving=levelOne->getMovingEntityList();
     EntityList* staticl=levelOne->getStaticEntityList();
     
-    ofstream saver ("data/GameSave.dat", ios::out | std::app);
+    ofstream saver ("data/GameSave.dat", ios::out);
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;
         fflush ( stdin );
@@ -150,20 +153,24 @@ void PauseMenu::keyPressedAction(sf::Event event)
 
     saver<<level<<endl;
     saver<<levelOne->getDifficulty()<<endl;
+    saver<<levelOne->getNPlayers()<<endl;
 
     for (int i=0; i<moving->getSize(); i++){
+        id=moving->operator[](i)->getId();
         saver<<moving->operator[](i)->getId()<<' '
              <<moving->operator[](i)->getPosition_x()<<' '
              <<moving->operator[](i)->getPosition_y()<<' '
              <<moving->operator[](i)->getVelocity_x()<<' '
              <<moving->operator[](i)->getVelocity_y()<<' '
+             <<moving->operator[](i)->getHealth()<<endl;
     }  
-    
 
+    saver<<levelOne->getPlayer(1)->getPoints()<<endl;
+            if (levelOne->getNPlayers()==2)
+                saver<<levelOne->getPlayer(2)->getPoints()<<endl;
 
-
-
-}*/
+    saver.close();
+}
 
 
 

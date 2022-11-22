@@ -38,8 +38,8 @@ public:
     void drawThis(Graphic_Manager *pGM); // drawItself() -> talvez seja um nome melhor!
     void init();
     void keyPressedAction(sf::Event event);
-    //void saveGame();
-    //void saveLevelOne();
+    void saveGame();
+    void saveLevelOne();
 
     // Polimorfismo Game_State()!
     /*---------------------------*/

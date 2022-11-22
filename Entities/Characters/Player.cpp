@@ -9,8 +9,8 @@
 #define PLAYER_BULLET_SPEED 6
 #define PLAYER_DAMAGE 10
 
-Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown) : 
-Character(ident, px, py, sx, sy, vx, vy, hp, dam, PLAYER_ATTACK_COOLDOWN),
+Player::Player(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp) : 
+Character(ident, px, py, sx, sy, vx, vy, hp, PLAYER_DAMAGE, PLAYER_ATTACK_COOLDOWN),
 attackRange(PLAYER_ATTACK_RANGE)
 {   
     dead = false;

@@ -36,6 +36,7 @@ public:
     void setVelocity_y(double vy);
 
     virtual int getDamage() const=0;
+    virtual int getHealth(){}
 
     /*METHODS*/
     void drawThis(Graphic_Manager *pGM);

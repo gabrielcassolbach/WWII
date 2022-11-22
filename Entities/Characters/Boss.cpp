@@ -11,8 +11,8 @@
 
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Boss::Boss(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCooldown, Player *pP) : 
-Enemy(ident, px, py, sx, sy, 0, 0, BOSS_HEALTH, BOSS_DAMAGE, BOSS_SHOOTING_COOLDOWN , pP)
+Boss::Boss(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, Player *pP) : 
+Enemy(ident, px, py, sx, sy, 0, 0, hp, BOSS_DAMAGE, BOSS_SHOOTING_COOLDOWN , pP)
 {
     bullet = nullptr;
     bullet = new Projectile(4, 0.0, -65.0, 4, 4, BOSS_BULLET_SPEED, 0, BOSS_DAMAGE);

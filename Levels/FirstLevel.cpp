@@ -52,37 +52,18 @@ Levels(pg, np)
     setBackground();
 }
 
-FirstLevel::FirstLevel(Game* pg, int* qtd, int diff, int np):CM(),
+FirstLevel::FirstLevel(Game* pg, int diff, int np, int recover):CM(),
 Levels(pg, np)
 {
-    difficulty=diff;
-    entitiesQuantity=new int[7];
-
-    entitiesQuantity[0]=qtd[0];
-    entitiesQuantity[1]=qtd[1];
-    entitiesQuantity[2]=qtd[2];
-    entitiesQuantity[3]=qtd[3];
-    entitiesQuantity[4]=qtd[4];
-    entitiesQuantity[5]=qtd[5];
-    entitiesQuantity[6]=qtd[6];
-
-    for (int i=0; i<7; i++)
-        cout<<entitiesQuantity[i]<<endl;
-    system("pause");
-
-    createPlayers();
-    createEnemies();
-    createPlatforms();
-    createTrenchs();
-    createCannons();
-    createBoxes();
-    createSnipers();
-
-    StaticEntityList.initAll();
-    MovingEntityList.initAll();
+    ifstream recover ("data/GameSave.dat", ios::in);
+    if ( !recover ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
     
-    CM.init(&MovingEntityList, &StaticEntityList);
-    setBackground();
+    cout<<"Oi"<<endl;
 }
 
 FirstLevel::~FirstLevel()
@@ -272,12 +253,12 @@ void FirstLevel::createEnemies()
         recover>>px>>py;
         if (nPlayers==2){
             if (px<640)
-                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[0], 1)));
             else
-                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[1], 1)));
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[1], 1)));
         }
         else
-            MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+            MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[0], 1)));
         quantity--;
     }
 }
@@ -396,13 +377,13 @@ void FirstLevel::createPlayers()
 {
     if (nPlayers==1){
         if (difficulty==1){
-            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
             pPlayersList.push_back(pPlayer1);
         }
         else{
-            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 5, 2, 0.0);
+            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 5);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
             pPlayersList.push_back(pPlayer1);
@@ -412,23 +393,23 @@ void FirstLevel::createPlayers()
 
     else{
         if (difficulty==1){
-            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
             pPlayersList.push_back(pPlayer1);
         
-            Player* pPlayer2=new Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+            Player* pPlayer2=new Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
             pPlayersList.push_back(pPlayer2);
         }
         else{
-            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 5, 2, 0.0);
+            Player* pPlayer1=new Player(0, 15.0, 500.0, 35.00, 60.0, 0.0, 0.0, 5);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
             pPlayersList.push_back(pPlayer1);
 
-            Player* pPlayer2=new Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+            Player* pPlayer2=new Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
             MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
             MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
             pPlayersList.push_back(pPlayer2);

@@ -7,7 +7,7 @@
 #define SAMURAI_DAMAGE 3
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, int dam, const float atkCoooldown, Player *pP, int bt) : 
+Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, Player *pP, int bt) : 
 Enemy(ident, px, py, sx, sy, vx, vy, hp, SAMURAI_DAMAGE, SAMURAI_ATTACK_COOLDOWN, pP)
 {
     belt=bt;

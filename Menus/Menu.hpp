@@ -17,7 +17,6 @@ private:
     sf::Font font;
     sf::RectangleShape backgroundRectangle;
     sf::Texture backgroundTexture;
-    int level;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -42,4 +41,5 @@ public:
     void draw();
     void update(double timeFraction);
     void input();
+    void recover();
 };

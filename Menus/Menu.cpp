@@ -7,7 +7,6 @@ Menu::Menu(Game *pg)
     setText();
     setBackground();
     pGame = pg;
-    level = 0;
 }
 Menu::~Menu()
 {
@@ -134,7 +133,7 @@ void Menu::keyPressedAction(sf::Event event)
     {
         case sf::Keyboard::Num1:
         {
-            //resume();
+            recover();
         }break;
         case sf::Keyboard::Num2:
         {
@@ -158,3 +157,27 @@ void Menu::keyPressedAction(sf::Event event)
         }break;
     }
 }
+void Menu::recover(){
+    int level, nP, diff;
+    ifstream recover ("data/GameSave.dat", ios::in);
+    if ( !recover ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
+
+    recover>>level;
+    recover>>diff;
+    recover>>nP;
+
+    if (level==1)
+        new FirstLevel(pGame, diff, nP, 1);
+
+    recover.close();
+}
+
+
+
+
+

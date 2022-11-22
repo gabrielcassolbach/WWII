@@ -216,12 +216,12 @@ void SecondLevel::createEnemies()
         recover>>px>>py;
         if (nPlayers==2){
             if (px<640)
-                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[0], 1)));
             else
-                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[1], 1)));
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[1], 1)));
         }      
         else
-            MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, 2, 1, pPlayersList[0], 1)));
+            MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, 0.0, 0.0, 6, pPlayersList[0], 1)));
         quantity--;
     }
 
@@ -262,8 +262,6 @@ void SecondLevel::createTrenchs()
         quantity--;
     }
 }
-
-
 void SecondLevel::createCannons()
 {
     ifstream recover ( "Data/lvl2-cannons.dat", ios::in );
@@ -284,8 +282,6 @@ void SecondLevel::createCannons()
         quantity--;
     }
 }
-
-
 void SecondLevel::createBoxes()
 {
     ifstream recover ("Data/lvl2-boxes.dat", ios::in );
@@ -343,32 +339,31 @@ void SecondLevel::createBoxes()
 void SecondLevel::createPlayers()
 {
     if (nPlayers==1){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
         pPlayersList.push_back(pPlayer1);
         pPlayer1->setPoints(100);
     }
     else if (nPlayers==2){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
         pPlayersList.push_back(pPlayer1);
         pPlayer1->setPoints(100);
 
-        Player* pPlayer2=new Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10, 2, 0.0);
+        Player* pPlayer2=new Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10);
         MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
         MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
         pPlayersList.push_back(pPlayer2);
         pPlayer2->setPoints(100);
     }
 }
-
 void SecondLevel::createBoss()
 {
-    Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[0]);
-    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, 15, 0.0f, pPlayersList[nPlayers-1]);
+    Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
+    Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
+    Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[nPlayers-1]);
 
     pBossList.push_back(pBoss1);
     pBossList.push_back(pBoss2);
@@ -380,21 +375,18 @@ void SecondLevel::createBoss()
         MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i]->getBullet())); 
     }
 }
-
 void SecondLevel::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundlevel2.png");
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);  
 }
-
 void SecondLevel::draw()
 {
     pGM->getWindow()->draw(backgroundSprite);
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
-
 void SecondLevel::CheckLevelEnd()
 {
     if (nPlayers==2){
