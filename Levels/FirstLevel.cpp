@@ -145,7 +145,7 @@ Levels(pg, np)
         }
         i++;
     }
-    //ARRUMAR PONTOS
+    
     recover>>nPoints1;
     this->getPlayer(1)->setPoints(nPoints1);
     if (nPlayers==2){
