@@ -3,6 +3,7 @@
 #include <string>
 
 #define GRAVITY 9.8f
+class Player;
 
 class Entity : public Enty
 {
@@ -36,7 +37,8 @@ public:
     void setVelocity_y(double vy);
 
     virtual int getDamage() const=0;
-    virtual int getHealth(){}
+    virtual int getHealth();
+    virtual Player* getFollowingPlayer (){}
 
     /*METHODS*/
     void drawThis(Graphic_Manager *pGM);

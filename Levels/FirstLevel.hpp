@@ -42,6 +42,7 @@ class FirstLevel : public Levels
         void createBoxes();
         void createSnipers();
         void createPlayers();
+        void recoverPlayer(ifstream* recover);
 
 
     /*SETTERS & GETTERS*/

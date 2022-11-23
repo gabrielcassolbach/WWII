@@ -150,9 +150,11 @@ void PauseMenu::saveLevelOne(){
     saver<<level<<endl;
     saver<<levelOne->getDifficulty()<<endl;
     saver<<levelOne->getNPlayers()<<endl;
+    int size=levelOne->getMovingEntityList()->getSize()+levelOne->getStaticEntityList()->getSize();
+    saver<<size<<endl;
 
     saveMovingEntities(&saver);
-    //saveStaticEntities(&saver);
+    saveStaticEntities(&saver);
 
     saver<<levelOne->getPlayer(1)->getPoints()<<endl;
     if (levelOne->getNPlayers()==2)
@@ -160,7 +162,6 @@ void PauseMenu::saveLevelOne(){
 
     saver.close();
 }
-
 void PauseMenu::saveMovingEntities(ofstream* saver){
     int id;
     EntityList* moving=levelOne->getMovingEntityList();
@@ -173,6 +174,18 @@ void PauseMenu::saveMovingEntities(ofstream* saver){
              <<moving->operator[](i)->getVelocity_x()<<' '
              <<moving->operator[](i)->getVelocity_y()<<' '
              <<moving->operator[](i)->getHealth()<<endl;
+        if (id==1){
+            if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
+                (*saver)<<1<<endl;
+            else
+                (*saver)<<2<<endl;
+        }
+        if (id==5){
+            if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
+                (*saver)<<1<<endl;
+            else
+                (*saver)<<2<<endl;
+        }
     }  
 }
 void PauseMenu::saveStaticEntities(ofstream* saver){
@@ -183,10 +196,15 @@ void PauseMenu::saveStaticEntities(ofstream* saver){
         id=staticl->operator[](i)->getId();
         (*saver)<<staticl->operator[](i)->getId()<<endl;
         (*saver)<<staticl->operator[](i)->getPosition_x()<<' '
-             <<staticl->operator[](i)->getPosition_y()<<' '
-             <<staticl->operator[](i)->getVelocity_x()<<' '
-             <<staticl->operator[](i)->getVelocity_y()<<endl;
-    }  
+                <<staticl->operator[](i)->getPosition_y()<<' '
+                <<staticl->operator[](i)->getVelocity_x()<<' '
+                <<staticl->operator[](i)->getVelocity_y()<<endl;
+    
+        if (id==3){
+            (*saver)<<staticl->operator[](i)->getSize_x()<<' '
+                    <<staticl->operator[](i)->getSize_y()<<endl;
+        }
+    }
 }
 
 

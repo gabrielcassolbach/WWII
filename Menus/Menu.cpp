@@ -158,7 +158,7 @@ void Menu::keyPressedAction(sf::Event event)
     }
 }
 void Menu::recover(){
-    int level, nP, diff, id, hp;
+    int level, nP, diff, id, hp, size;
     double px, py, vx, vy;
     ifstream recover ("Data/gameSave.dat", ios::in);
     if ( !recover ){
@@ -172,7 +172,8 @@ void Menu::recover(){
     if (level==1){
         recover>>diff;
         recover>>nP;
-        FirstLevel* fl=new FirstLevel(pGame, diff, nP, 1);
+        recover>>size;
+        FirstLevel* fl=new FirstLevel(pGame, diff, nP, size);
         pGame->pushState(fl);
     }
 

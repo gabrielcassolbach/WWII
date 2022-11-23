@@ -8,7 +8,6 @@ Levels::Levels(Game* pg, int np)
     pGame = pg;
     nPlayers=np;
 }
-
 Levels::~Levels(){
 
 }
@@ -29,7 +28,6 @@ Player* Levels::getPlayer(int player_selected)
 int Levels::getNPlayers(){
     return nPlayers;
 }
-
 int Levels::randomQuantity()
 {   
     int ret;

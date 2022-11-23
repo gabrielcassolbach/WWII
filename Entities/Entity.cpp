@@ -69,7 +69,9 @@ void Entity::setVelocity_x(double vx){
 void Entity::setVelocity_y(double vy){
     velocity_y=vy;
 }
-
+int Entity::getHealth(){
+    return 0;
+}
 
 /*METHODS*/
 void Entity::drawThis(Graphic_Manager *pGM)
