@@ -2,28 +2,6 @@
 #include "../Game.hpp"
 #include "../Menus/Menu.hpp"
 
-/*EXEMPLO GERAÇÃO AUTOMÁTICA
-ofstream saver ( "lvl1-trenchs.dat", ios::out );
-
-    
-    if ( !saver ){
-        cerr << " Arquivo não pode ser aberto " << endl;
-        fflush ( stdin );
-        getchar( );
-        return;
-    }
-
-    saver<<920.0<<' '<<620.0<<endl;
-    saver<<1000.0<<' '<<620.0<<endl;
-    saver<<800.0<<' '<<200.0<<endl;
-    saver<<1100.0<<' '<<200.0<<endl;
-    saver<<200.0<<' '<<200.0<<endl;
-    saver<<350.0<<' '<<200.0<<endl;
-    saver<<380.0<<' '<<630.0<<endl;
-    saver<<500.0<<' '<<600.0<<endl;
-    saver<<650.0<<' '<<200.0<<endl;
-    saver<<700.0<<' '<<200.0<<endl;*/
-
 FirstLevel::FirstLevel(Game* pg, int diff, int np) : CM(),
 Levels(pg, np)
 {

@@ -163,11 +163,7 @@ void GameOverMenu::saveLeaderboard()
         getchar( );
         return;
     }
-    
     saver << endl;
-    saver<<name<<' '<<totalPoints1<<endl;
+    saver<<name<<' '<<totalPoints1;
     saver.close();
 }
-
-
-

@@ -1,10 +1,12 @@
 #include "Game.hpp"
 #include "Entities/Characters/Character.hpp"
 #include "Levels/FirstLevel.hpp"
+#include "time.h"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Game::Game()
 {
+    srand(time(nullptr));
     clock.restart();
     dt = 0.0;
 
@@ -28,10 +30,10 @@ void Game::execute()
 {
     while ((pGM->getWindow())->isOpen())
     {
-        screenFPS();
-        CurrentState() -> input();
+        screenFPS(); cout << "UPDATE" << endl;
+        CurrentState() -> input(); cout << "INPUT" << endl;
         (pGM->getWindow())->clear();
-        CurrentState() -> draw();
+        CurrentState() -> draw(); cout << "DRAW" << endl;
         (pGM->getWindow())->display();
     }
 }

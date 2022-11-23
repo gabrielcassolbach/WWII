@@ -3,28 +3,6 @@
 #include "../Menus/Menu.hpp"
 #include "../Entities/Characters/Boss.hpp"
 
-/*EXEMPLO GERAÇÃO AUTOMÁTICA
-ofstream saver ( "lvl1-trenchs.dat", ios::out );
-    
-    if ( !saver ){
-        cerr << " Arquivo não pode ser aberto " << endl;
-        fflush ( stdin );
-        getchar( );
-        return;
-    }
-
-    saver<<920.0<<' '<<620.0<<endl;
-    saver<<1000.0<<' '<<620.0<<endl;
-    saver<<800.0<<' '<<200.0<<endl;
-    saver<<1100.0<<' '<<200.0<<endl;
-    saver<<200.0<<' '<<200.0<<endl;
-    saver<<350.0<<' '<<200.0<<endl;
-    saver<<380.0<<' '<<630.0<<endl;
-    saver<<500.0<<' '<<600.0<<endl;
-    saver<<650.0<<' '<<200.0<<endl;
-    saver<<700.0<<' '<<200.0<<endl;
-*/
-
 SecondLevel::SecondLevel(Game* pg, int np) : CM(),
 Levels(pg, np)
 {
@@ -241,7 +219,6 @@ void SecondLevel::createPlatforms()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
 }
 
-
 void SecondLevel::createTrenchs()
 {
     ifstream recover ( "Data/lvl2-trenchs.dat", ios::in );
@@ -262,6 +239,7 @@ void SecondLevel::createTrenchs()
         quantity--;
     }
 }
+
 void SecondLevel::createCannons()
 {
     ifstream recover ( "Data/lvl2-cannons.dat", ios::in );
@@ -359,6 +337,7 @@ void SecondLevel::createPlayers()
         pPlayer2->setPoints(100);
     }
 }
+
 void SecondLevel::createBoss()
 {
     Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
@@ -375,18 +354,21 @@ void SecondLevel::createBoss()
         MovingEntityList.includeEntity(static_cast<Entity *>(pBossList[i]->getBullet())); 
     }
 }
+
 void SecondLevel::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundlevel2.png");
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setOrigin(0, 0);  
 }
+
 void SecondLevel::draw()
 {
     pGM->getWindow()->draw(backgroundSprite);
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
+
 void SecondLevel::CheckLevelEnd()
 {
     if (nPlayers==2){

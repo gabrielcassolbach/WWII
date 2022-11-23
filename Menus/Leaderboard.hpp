@@ -7,12 +7,10 @@ using namespace std;
 
 #define MAX_LEADERBOARD_ITENS 4
 
-// INSPIRADO NO TRABALHO ENZO E FELIPE...
 typedef multimap<float, string, std::greater<float> > map_;
 typedef pair<float, string> pair_;
 
 class Game;
-
 
 class Leaderboard: public Enty, public Game_State
 {
@@ -41,7 +39,6 @@ public:
     void draw();
     void update(double timeFraction){};
     void input();
-    void sortLeaderboard();
     void readLeaderboard();
     void keyPressedAction(sf::Event event);
 };
