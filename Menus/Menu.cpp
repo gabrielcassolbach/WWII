@@ -176,6 +176,12 @@ void Menu::recover(){
         FirstLevel* fl=new FirstLevel(pGame, diff, nP, size);
         pGame->pushState(fl);
     }
+    else{
+        recover>>nP;
+        recover>>size;
+        SecondLevel* sl=new SecondLevel(pGame, nP, size);
+        pGame->pushState(sl);
+    }
 
     recover.close();
 }

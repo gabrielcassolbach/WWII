@@ -17,7 +17,7 @@ private:
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
         SecondLevel(Game* pg, int np);
-        SecondLevel(Game* pg, int* qtd, int np);
+        SecondLevel(Game* pg, int np, int size);
         ~SecondLevel();
 
     /*SETTERS & GETTERS*/
@@ -43,6 +43,7 @@ public:
         void createSnipers();
         void createPlayers();
         void setBackground();
+        void recoverPlayer(ifstream* recover);
 
     /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função

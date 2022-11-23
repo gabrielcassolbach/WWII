@@ -133,8 +133,8 @@ void PauseMenu::keyPressedAction(sf::Event event)
 void PauseMenu::saveGame(){
     if (level==1)
         saveLevelOne();
-    //else
-       // saveLevelTwo();
+    else
+        saveLevelTwo();
     pGame->popState();
     pGame->popState();
 }
@@ -164,7 +164,11 @@ void PauseMenu::saveLevelOne(){
 }
 void PauseMenu::saveMovingEntities(ofstream* saver){
     int id;
-    EntityList* moving=levelOne->getMovingEntityList();
+    EntityList* moving;
+    if (level==1)
+        moving=levelOne->getMovingEntityList();
+    else
+        moving=levelTwo->getMovingEntityList();
 
     for (int i=0; i<moving->getSize(); i++){
         id=moving->operator[](i)->getId();
@@ -175,22 +179,57 @@ void PauseMenu::saveMovingEntities(ofstream* saver){
              <<moving->operator[](i)->getVelocity_y()<<' '
              <<moving->operator[](i)->getHealth()<<endl;
         if (id==1){
-            if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
-                (*saver)<<1<<endl;
-            else
-                (*saver)<<2<<endl;
+            if (level==1){
+                if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+            }
+            else{
+                if (moving->operator[](i)->getFollowingPlayer()==levelTwo->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+
+            }
         }
         if (id==5){
-            if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
-                (*saver)<<1<<endl;
-            else
-                (*saver)<<2<<endl;
+            if (level==1){
+                if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+            }
+            else{
+                if (moving->operator[](i)->getFollowingPlayer()==levelTwo->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+            }
+        }
+        if (id==9){
+            if (level==1){
+                if (moving->operator[](i)->getFollowingPlayer()==levelOne->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+            }
+            else{
+                if (moving->operator[](i)->getFollowingPlayer()==levelTwo->getPlayer(1))
+                    (*saver)<<1<<endl;
+                else
+                    (*saver)<<2<<endl;
+            }
         }
     }  
 }
 void PauseMenu::saveStaticEntities(ofstream* saver){
     int id;
-    EntityList* staticl=levelOne->getStaticEntityList();
+    EntityList* staticl;
+    if (level==1)
+        staticl=levelOne->getStaticEntityList();
+    else
+        staticl=levelTwo->getStaticEntityList();
     
     for (int i=0; i<staticl->getSize(); i++){
         id=staticl->operator[](i)->getId();
@@ -206,6 +245,31 @@ void PauseMenu::saveStaticEntities(ofstream* saver){
         }
     }
 }
+void PauseMenu::saveLevelTwo(){
+    ofstream saver ("Data/gameSave.dat", ios::out);
+    if ( !saver ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
+
+    saver<<level<<endl;
+    saver<<levelTwo->getNPlayers()<<endl;
+    int size=levelTwo->getMovingEntityList()->getSize()+levelTwo->getStaticEntityList()->getSize();
+    saver<<size<<endl;
+
+    saveMovingEntities(&saver);
+    saveStaticEntities(&saver);
+
+    saver<<levelTwo->getPlayer(1)->getPoints()<<endl;
+    if (levelTwo->getNPlayers()==2)
+        saver<<levelTwo->getPlayer(2)->getPoints()<<endl;
+
+    saver.close();
+
+}
+
 
 
 

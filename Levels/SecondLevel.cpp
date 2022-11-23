@@ -52,25 +52,152 @@ Levels(pg, np)
 
     setBackground();
 }
-SecondLevel::SecondLevel(Game* pg, int* qtd, int np):CM(),
+SecondLevel::SecondLevel(Game* pg, int np, int size):CM(),
 Levels(pg, np)
 {
-    entitiesQuantity=qtd;
+    double px, py, vx, vy, nPoints1, level, s, nPoints2;
+    int hp, id, i=0;
+    ifstream recover ("Data/gameSave.dat", ios::in);
+    if ( !recover ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
+     
+    recover>>level;
+    recover>>nPlayers;
+    recover>>s;
 
-    createPlayers();
-    createEnemies();
-    createPlatforms();
-    createTrenchs();
-    createCannons();
-    createBoxes();
-    //createSnipers();
-    createBoss();
+    while (i<size){
+        recover>>id;
+        switch (id)
+        {
+        case 0:
+        {
+            //cout<<"0"<<endl;
+            //system("pause");
+            recoverPlayer(&recover);
+            i++;
+        }break;
+        case 1:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy>>hp;
+            double p;
+            recover>>p;
+            if (p==1)
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, vx, vy, hp, pPlayersList[0], 1)));
+            else
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, vx, vy, hp, pPlayersList[1], 1)));
+        }break;
+        case 2:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, px, py, 30.0, 50.0)));
+
+        }break;
+        case 3:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            double sx, sy;
+            recover>>px>>py>>vx>>vy;
+            recover>>sx>>sy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, px, py, sx, sy)));
+        }break;
+        case 4:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy>>hp;
+        }break;
+        case 5:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy>>hp;
+            double p;
+            recover>>p;
+            Sniper* pSniper=nullptr;
+            if (p==1)
+                pSniper=new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]);
+            else
+                pSniper=new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[1]);
+            pSniperList.push_back(pSniper);
+            MovingEntityList.includeEntity(static_cast<Entity*>(pSniper));
+            recover>>id;
+            recover>>px>>py>>vx>>vy>>hp;
+            pSniper->getBullet()->setPosition_x(px);
+            pSniper->getBullet()->setPosition_y(py);
+            pSniper->getBullet()->setVelocity_x(vx);
+            pSniper->getBullet()->setVelocity_y(py);
+            MovingEntityList.includeEntity(static_cast<Entity *>(pSniper-> getBullet()));
+            i++;
+        }break;
+        case 6:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 40.0, 11.0)));
+        }break;
+        case 7:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 40.0, 11.0)));
+        }break;
+        case 8:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy;
+        }break;
+        case 9:
+        {
+            //cout<<"1"<<endl;
+            //system("pause");
+            recover>>px>>py>>vx>>vy>>hp;
+            double p;
+            recover>>p;
+            Boss* pBoss=nullptr;
+            if (p==1)
+                pBoss=new Boss(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]);
+            else
+                pBoss=new Boss(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[1]);
+            MovingEntityList.includeEntity(static_cast<Entity*>(pBoss));
+            recover>>id;
+            recover>>px>>py>>vx>>vy>>hp;
+            pBoss->getBullet()->setPosition_x(px);
+            pBoss->getBullet()->setPosition_y(py);
+            pBoss->getBullet()->setVelocity_x(vx);
+            pBoss->getBullet()->setVelocity_y(py);
+            MovingEntityList.includeEntity(static_cast<Entity *>(pBoss-> getBullet()));
+            i++;
+        }
+        
+        default:
+            break;
+        }
+        i++;
+    }
+    
+    recover>>nPoints1;
+    this->getPlayer(1)->setPoints(nPoints1);
+    if (nPlayers==2){
+        recover>>nPoints1;
+        this->getPlayer(2)->setPoints(nPoints1);
+    }
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
-
     setBackground();
 }
 SecondLevel::~SecondLevel()
@@ -197,7 +324,6 @@ void SecondLevel::endCurrentState()
     if(pGame)
         pGame -> popState();
 }
-
 void SecondLevel::createEnemies()
 {
     ifstream recover ( "Data/lvl2-samurais.dat", ios::in);
@@ -226,7 +352,6 @@ void SecondLevel::createEnemies()
     }
 
 }
-
 void SecondLevel::createPlatforms()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor
@@ -240,8 +365,6 @@ void SecondLevel::createPlatforms()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 800.0, 240.0, 200.0, 30.0))); // Plataforma 4
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
 }
-
-
 void SecondLevel::createTrenchs()
 {
     ifstream recover ( "Data/lvl2-trenchs.dat", ios::in );
@@ -407,5 +530,24 @@ void SecondLevel::CheckLevelEnd()
             pGame->pushState(new GameOverMenu(pGame, pPlayersList[0]->getPoints()));
     }
 }
+void SecondLevel::recoverPlayer(ifstream* recover){
+    double px, py, vx, vy;
+    int id, hp;
+    (*recover)>>px>>py>>vx>>vy>>hp;
+    Player* pPlayer1=new Player(0, px, py, 35.00, 60.0, vx, vy, hp);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    (*recover)>>id;
+    (*recover)>>px>>py>>vx>>vy>>hp;
+    pPlayer1->getBullet()->setPosition_x(px);
+    pPlayer1->getBullet()->setPosition_y(py);
+    pPlayer1->getBullet()->setVelocity_x(vx);
+    pPlayer1->getBullet()->setVelocity_y(py);
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+    pPlayersList.push_back(pPlayer1);
+
+
+
+}
+
 
 
