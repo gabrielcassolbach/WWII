@@ -14,10 +14,12 @@ public:
     ~Boss();
 
     /*SETTERS & GETTERS*/
-    Projectile *getBullet();
+    Projectile *getBullet() const;
 
     /*METHODS*/
-    void update(double timeFraction);
+    void update(const double timeFraction);
+    void updateVelocity(const double timeFraction);
+    void updatePosition();
     void init();
     void collide(Entity *ent2, double inter_x, double inter_y);
     void attack();

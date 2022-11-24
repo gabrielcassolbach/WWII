@@ -28,48 +28,14 @@ FirstLevel::FirstLevel(Game* pg, int diff, int np) : CM(),
 Levels(pg, np)
 {
     difficulty=diff;
+    entitiesQuantity=new int[8];
 
-    entitiesQuantity=new int[7];
     entitiesQuantity[0]=np;
-    entitiesQuantity[1]=randomQuantity();
-    entitiesQuantity[2]=randomQuantity();
-    entitiesQuantity[5]=randomQuantity();
-    entitiesQuantity[6]=randomQuantity();
-    entitiesQuantity[7]=randomQuantity();
+    for (int i=1; i<8; i++)
+        entitiesQuantity[i]=randomQuantity();
 
-    createPlayers();
-    createEnemies();
-    createPlatforms();
-    createTrenchs();
-    createCannons();
-    createBoxes();
-    createSnipers();
-
-    StaticEntityList.initAll();
-    MovingEntityList.initAll();
-    
-    CM.init(&MovingEntityList, &StaticEntityList);
-    setBackground();
-
-    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
-    
-    showPoints1.setFont(font);
-    showPoints1.setCharacterSize(20);
-    showPoints1.setFillColor(sf::Color::Black);
-    int points1=pPlayersList[0]->getPoints();
-    string str= to_string(points1);
-    showPoints1.setString(str);
-    showPoints1.setPosition(sf::Vector2f(30, 30));
-
-    if (np==2){
-        showPoints2.setFont(font);
-        showPoints2.setCharacterSize(20);
-        showPoints2.setFillColor(sf::Color::Black);
-        int points2=pPlayersList[0]->getPoints();
-        string str= to_string(points2);
-        showPoints2.setString(str);
-        showPoints2.setPosition(sf::Vector2f(30, 57));
-    }
+    init();
+    initPointsText();
 }
 FirstLevel::FirstLevel(Game* pg, int diff, int np, int rec):CM(),
 Levels(pg, np)
@@ -221,6 +187,21 @@ void FirstLevel::setBackground()
 }
 
 /*METHODS*/
+void FirstLevel::init(){
+    createPlayers();
+    createEnemies();
+    createPlatforms();
+    createTrenchs();
+    createCannons();
+    createBoxes();
+    createSnipers();
+
+    StaticEntityList.initAll();
+    MovingEntityList.initAll();
+    
+    CM.init(&MovingEntityList, &StaticEntityList);
+    setBackground();
+}
 void FirstLevel::input()
 {
     sf::Event event;

@@ -28,6 +28,28 @@ Player* Levels::getPlayer(int player_selected)
 int Levels::getNPlayers(){
     return nPlayers;
 }
+
+void Levels::initPointsText(){
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+    
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    int points1=pPlayersList[0]->getPoints();
+    string str= to_string(points1);
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (nPlayers==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
+}
 int Levels::randomQuantity()
 {   
     int ret;

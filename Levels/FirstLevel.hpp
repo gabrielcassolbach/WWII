@@ -32,7 +32,7 @@ class FirstLevel : public Levels
         void CheckLevelEnd();
         void goToLevel2();
         /*------------------------------------------------*/
-        void init () {} // pensar!!
+        void init (); // pensar!!
         void drawThis(Graphic_Manager* pGM) {} // pensar!!
         /*------------------------------------------------*/
         void createEnemies();

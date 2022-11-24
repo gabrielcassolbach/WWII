@@ -46,6 +46,7 @@ public:
     int getNPlayers ();
 
 /*METHODS*/
+    void initPointsText();
     virtual void createEnemies() = 0;
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;

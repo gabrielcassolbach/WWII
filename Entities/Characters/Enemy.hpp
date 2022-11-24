@@ -6,6 +6,7 @@ class Enemy : public Character
 protected:
     Player *pPlayer;
     double playerDistance;
+    double heightDistance;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
