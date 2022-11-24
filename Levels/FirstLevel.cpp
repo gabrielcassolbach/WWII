@@ -312,11 +312,11 @@ void FirstLevel::goToLevel2()
 {
     if(pGame && nPlayers==1){
         pGame -> popState();
-        pGame -> pushState(new SecondLevel(pGame, 1));
+        pGame -> pushState(new SecondLevel(pGame, 1, getPlayer(1)->getPoints()));
     }
     else if(pGame && nPlayers==2){
         pGame -> popState();
-        pGame -> pushState(new SecondLevel(pGame, 2));
+        pGame -> pushState(new SecondLevel(pGame, 2, getPlayer(1)->getPoints(), getPlayer(2)->getPoints()));
     }
 }
 void FirstLevel::endCurrentState()

@@ -25,7 +25,7 @@ ofstream saver ( "lvl1-trenchs.dat", ios::out );
     saver<<700.0<<' '<<200.0<<endl;
 */
 
-SecondLevel::SecondLevel(Game* pg, int np) : CM(),
+SecondLevel::SecondLevel(Game* pg, int np, double p1, double p2) : CM(),
 Levels(pg, np)
 {
     entitiesQuantity= new int[8];
@@ -36,7 +36,34 @@ Levels(pg, np)
     entitiesQuantity[6]=randomQuantity();
     entitiesQuantity[7]=randomQuantity();
  
-    createPlayers();
+    createPlayers(p1, p2);
+    createEnemies();
+    createPlatforms();
+    createTrenchs();
+    createCannons();
+    createBoxes();
+    //createSnipers();
+    createBoss();
+
+    StaticEntityList.initAll();
+    MovingEntityList.initAll();
+
+    CM.init(&MovingEntityList, &StaticEntityList);
+
+    setBackground();
+}
+SecondLevel::SecondLevel(Game* pg, int np, double p1) : CM(),
+Levels(pg, np)
+{
+    entitiesQuantity= new int[8];
+    entitiesQuantity[0]=np;
+    entitiesQuantity[1]=randomQuantity();
+    entitiesQuantity[2]=randomQuantity();
+    entitiesQuantity[5]=randomQuantity();
+    entitiesQuantity[6]=randomQuantity();
+    entitiesQuantity[7]=randomQuantity();
+ 
+    createPlayers(p1);
     createEnemies();
     createPlatforms();
     createTrenchs();
@@ -239,7 +266,6 @@ void SecondLevel::input()
         }
     }
 }
-
 void SecondLevel::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -294,7 +320,6 @@ void SecondLevel::keyPressedAction(sf::Event event)
     }
 
 }
-
 void SecondLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
@@ -306,7 +331,6 @@ void SecondLevel::update(double timeFraction)
     CheckPlayerState();
     CheckLevelEnd();
 }
-
 void SecondLevel::CheckPlayerState()
 {
     if (nPlayers==2){
@@ -318,7 +342,6 @@ void SecondLevel::CheckPlayerState()
             endCurrentState();
     }
 }
-
 void SecondLevel::endCurrentState()
 {   
     if(pGame)
@@ -458,29 +481,27 @@ void SecondLevel::createBoxes()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
 }*/
- 
-void SecondLevel::createPlayers()
-{
-    if (nPlayers==1){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
-        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-        pPlayersList.push_back(pPlayer1);
-        pPlayer1->setPoints(100);
-    }
-    else if (nPlayers==2){
-        Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
-        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-        pPlayersList.push_back(pPlayer1);
-        pPlayer1->setPoints(100);
 
-        Player* pPlayer2=new Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10);
-        MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
-        MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
-        pPlayersList.push_back(pPlayer2);
-        pPlayer2->setPoints(100);
-    }
+void SecondLevel::createPlayers(double p1){
+    Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+    pPlayersList.push_back(pPlayer1);
+    pPlayer1->setPoints(p1);
+}
+void SecondLevel::createPlayers(double p1, double p2)
+{
+    Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+    pPlayersList.push_back(pPlayer1);
+    pPlayer1->setPoints(p1);
+
+    Player* pPlayer2=new Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer2));
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer2-> getBullet()));
+    pPlayersList.push_back(pPlayer2);
+    pPlayer2->setPoints(p2);
 }
 void SecondLevel::createBoss()
 {

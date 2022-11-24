@@ -16,7 +16,6 @@ GameOverMenu::GameOverMenu(Game *pg, double points)
     setBackground();
     pGame = pg;
 }
-
 GameOverMenu::~GameOverMenu()
 {
     pGame = nullptr;
@@ -64,7 +63,6 @@ void GameOverMenu::setText()
     text[5].setString(str); // 1 item
     text[5].setPosition(sf::Vector2f(460, 460));
 }
-
 void GameOverMenu::setBackground()
 {
     backgroundTexture.loadFromFile("Images/backgroundPauseMenu.jpg");
@@ -83,12 +81,10 @@ void GameOverMenu::drawThis(Graphic_Manager *pGM)
         pGM->getWindow()->draw(text[i]);
     }
 }
-
 void GameOverMenu::draw()
 {
     drawThis(pGM);
 }
-
 void GameOverMenu::input()
 {
     sf::Event event;
@@ -115,7 +111,6 @@ void GameOverMenu::input()
         }
     }
 }
-
 void GameOverMenu::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -128,6 +123,9 @@ void GameOverMenu::keyPressedAction(sf::Event event)
     case sf::Keyboard::Enter:
     {
         saveLeaderboard();
+        pGame->popState();
+        pGame->popState();
+        pGame->pushState(new Leaderboard(pGame));
     }break;
     default:
     {
@@ -135,7 +133,6 @@ void GameOverMenu::keyPressedAction(sf::Event event)
     }
     }
 }
-
 void GameOverMenu::writeLetter(sf::Event event){
     if (nameSize<10)
     {
@@ -152,7 +149,6 @@ void GameOverMenu::writeLetter(sf::Event event){
     text[6].setString(name); // 1 item
     text[6].setPosition(sf::Vector2f(650, 400));
 }
-
 void GameOverMenu::saveLeaderboard()
 {
     ofstream saver ( "Data/Leaderboard.dat", ios::out | ios::app);

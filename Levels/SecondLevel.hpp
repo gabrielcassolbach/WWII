@@ -16,7 +16,8 @@ private:
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
-        SecondLevel(Game* pg, int np);
+        SecondLevel(Game* pg, int np, double p1, double p2);
+        SecondLevel(Game* pg, int np, double p1);
         SecondLevel(Game* pg, int np, int size);
         ~SecondLevel();
 
@@ -41,7 +42,8 @@ public:
         void createCannons();
         void createBoxes();
         void createSnipers();
-        void createPlayers();
+        void createPlayers(double p1, double p2);
+        void createPlayers(double p1);
         void setBackground();
         void recoverPlayer(ifstream* recover);
 

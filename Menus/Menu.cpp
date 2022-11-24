@@ -2,21 +2,17 @@
 #include "../Game.hpp"
 
 /*CONSTRUCTORS & DESTRUCTORS*/
-Menu::Menu(Game *pg)
+Menu::Menu(Game *pg):
+MenuCore(pg)
 {
     setText();
     setBackground();
-    pGame = pg;
 }
 Menu::~Menu()
 {
-    pGame = nullptr;
 }
 
 /*SETTERS & GETTERS*/
-sf::RectangleShape Menu::getRectangleShape() const
-{
-}
 void Menu::setText()
 {
     if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
@@ -82,10 +78,6 @@ void Menu::drawThis(Graphic_Manager *pGM)
         pGM->getWindow()->draw(text[i]);   
     }
 }   
-void Menu::init()
-{
-
-}
 void Menu::draw()
 {
     drawThis(pGM);
@@ -141,7 +133,7 @@ void Menu::keyPressedAction(sf::Event event)
         }break;
         case sf::Keyboard::Num3:
         {   
-            pGame -> pushState(new SecondLevel(pGame, 1));
+            pGame -> pushState(new SecondLevel(pGame, 1, 0.0));
         }break;
         case sf::Keyboard::Num4:
         {
@@ -153,7 +145,7 @@ void Menu::keyPressedAction(sf::Event event)
         }break;
         case sf::Keyboard::Num5:
         {
-            pGame->pushState(new SecondLevel(pGame, 2));
+            pGame->pushState(new SecondLevel(pGame, 2, 0, 0.0));
         }break;
     }
 }

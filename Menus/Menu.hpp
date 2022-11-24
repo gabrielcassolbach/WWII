@@ -4,14 +4,14 @@
 #include "../Levels/SecondLevel.hpp"
 #include "../Game_State.hpp"
 #include "Leaderboard.hpp"
+#include "MenuCore.hpp"
 #define MAX_NUMBER_OF_ITENS 7
 
 class Game;
 
-class Menu : public Enty, public Game_State
+class Menu : public MenuCore
 {
 private:
-    Game* pGame;
     sf::Text text[MAX_NUMBER_OF_ITENS];
     sf::Text Title;
     sf::Font font;
@@ -24,20 +24,18 @@ public:
     ~Menu();
 
     /*SETTERS & GETTERS*/
-    sf::RectangleShape getRectangleShape() const;
     void setText();
     void setMenuState(bool menu_state);
     bool getMenuState() const;
     void setBackground();
     
     /*METHODS*/
-    void drawThis(Graphic_Manager *pGM); // drawItself() -> talvez seja um nome melhor!
-    void init();
     void keyPressedAction(sf::Event event);
     void load_game();
 
     // Polimorfismo Game_State()!
     /*---------------------------*/
+    void drawThis(Graphic_Manager *pGM);
     void draw();
     void update(double timeFraction);
     void input();

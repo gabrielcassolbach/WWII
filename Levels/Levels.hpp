@@ -43,7 +43,6 @@ public:
     virtual void createPlatforms() = 0;
     virtual void createTrenchs() = 0;
     virtual void createCannons() = 0;
-    virtual void createPlayers()=0;
 
     int randomQuantity();
 };
