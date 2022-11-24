@@ -4,6 +4,7 @@
 class Obstacle : public StaticEntity
 { 
 protected:
+    bool crossable;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/

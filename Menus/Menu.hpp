@@ -14,9 +14,6 @@ class Menu : public MenuCore
 private:
     sf::Text text[MAX_NUMBER_OF_ITENS];
     sf::Text Title;
-    sf::Font font;
-    sf::RectangleShape backgroundRectangle;
-    sf::Texture backgroundTexture;
 
 public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -37,7 +34,6 @@ public:
     /*---------------------------*/
     void drawThis(Graphic_Manager *pGM);
     void draw();
-    void update(double timeFraction);
     void input();
     void recover();
 };

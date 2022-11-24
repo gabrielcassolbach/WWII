@@ -5,6 +5,9 @@
 class MenuCore: public Enty, public Game_State{
     protected:
         Game* pGame;
+        sf::Font font;
+        sf::RectangleShape backgroundRectangle;
+        sf::Texture backgroundTexture;
 
     public:
         /*CONSTRUCTORS & DESTRUCTORS*/
@@ -13,8 +16,11 @@ class MenuCore: public Enty, public Game_State{
         void init (){}
 
     /*SETTERS & GETTERS*/
+        virtual void setText()=0;
+        virtual void setBackground()=0;
         sf::RectangleShape getRectangleShape() const{}
 
     /*METHODS*/
         virtual void drawThis(Graphic_Manager* pGM){};
+        void update(double timeFraction){};
 };

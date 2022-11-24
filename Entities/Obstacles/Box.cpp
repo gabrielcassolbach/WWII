@@ -6,6 +6,7 @@ Box::Box(int ident, double px, double py, double sx, double sy, double vx, doubl
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
     damage=BOX_DAMAGE;
+    crossable=0;
 }
 Box::~Box()
 {
@@ -14,7 +15,6 @@ Box::~Box()
 int Box::getDamage(){
     return damage;
 }
-
 void Box::update(double timeFraction)
 {
     

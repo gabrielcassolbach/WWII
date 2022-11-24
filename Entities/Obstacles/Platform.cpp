@@ -6,6 +6,7 @@ Obstacle(ident, px, py, sx, sy, vx, vy)
     floatabily_constant = -9.8; 
     velocity_x=vx;
     velocity_y=vx; 
+    crossable=0;
 }
 
 Platform::~Platform()

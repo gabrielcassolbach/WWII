@@ -89,10 +89,6 @@ void Menu::setBackground()
     backgroundRectangle.setTexture(&backgroundTexture);
     backgroundRectangle.setPosition(sf::Vector2f(0, 0)); 
 }
-void Menu::update(double timeFraction)
-{
-
-}
 void Menu::input()
 {
     sf::Event event;
@@ -133,7 +129,7 @@ void Menu::keyPressedAction(sf::Event event)
         }break;
         case sf::Keyboard::Num3:
         {   
-            pGame -> pushState(new SecondLevel(pGame, 1, 0.0));
+            pGame -> pushState(new SecondLevel(pGame, 1, 100.0));
         }break;
         case sf::Keyboard::Num4:
         {
@@ -145,7 +141,7 @@ void Menu::keyPressedAction(sf::Event event)
         }break;
         case sf::Keyboard::Num5:
         {
-            pGame->pushState(new SecondLevel(pGame, 2, 0, 0.0));
+            pGame->pushState(new SecondLevel(pGame, 2, 100.0, 100.0));
         }break;
     }
 }

@@ -6,6 +6,7 @@ Cannon::Cannon(int ident, double px, double py, double sx, double sy, double vx,
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
     acceleration=CANNON_ACELERATION;
+    crossable=1;
 }
 Cannon::~Cannon()
 {

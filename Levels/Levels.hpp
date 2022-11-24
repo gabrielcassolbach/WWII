@@ -11,6 +11,8 @@
 #include "../Entities/Projectile.hpp"
 #include "../Entities/Characters/Sniper.hpp"
 #include "../Game_State.hpp"
+#include <iostream>
+using namespace std;
  
 class Character;
 
@@ -26,6 +28,11 @@ protected:
     std::vector<Player*> pPlayersList;
 
     int nPlayers;
+
+/*Showing informations on screen*/
+    sf::Text showPoints1;
+    sf::Text showPoints2;
+    sf::Font font;
                                                    
 public:
 /*CONSTRUCTORS & DESTRUCTORS*/

@@ -6,6 +6,7 @@ Trench::Trench(int ident, double px, double py, double sx, double sy, double vx,
 Obstacle(ident, px, py, sx, sy, vx, vy)
 {
     slowness=TRENCH_SLOWNESS;
+    crossable=1;
 }
 Trench::~Trench()
 {

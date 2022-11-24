@@ -42,7 +42,7 @@ Levels(pg, np)
     createTrenchs();
     createCannons();
     createBoxes();
-    //createSnipers();
+    createSnipers();
     createBoss();
 
     StaticEntityList.initAll();
@@ -51,6 +51,26 @@ Levels(pg, np)
     CM.init(&MovingEntityList, &StaticEntityList);
 
     setBackground();
+
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+    
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    int points1=pPlayersList[0]->getPoints();
+    string str= to_string(points1);
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (np==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
 }
 SecondLevel::SecondLevel(Game* pg, int np, double p1) : CM(),
 Levels(pg, np)
@@ -69,7 +89,7 @@ Levels(pg, np)
     createTrenchs();
     createCannons();
     createBoxes();
-    //createSnipers();
+    createSnipers();
     createBoss();
 
     StaticEntityList.initAll();
@@ -78,6 +98,26 @@ Levels(pg, np)
     CM.init(&MovingEntityList, &StaticEntityList);
 
     setBackground();
+
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    double points1=pPlayersList[0]->getPoints();
+    string str= to_string(static_cast<int>(points1));
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (np==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
 }
 SecondLevel::SecondLevel(Game* pg, int np, int size):CM(),
 Levels(pg, np)
@@ -102,8 +142,6 @@ Levels(pg, np)
         {
         case 0:
         {
-            //cout<<"0"<<endl;
-            //system("pause");
             recoverPlayer(&recover);
             i++;
         }break;
@@ -226,6 +264,26 @@ Levels(pg, np)
     
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
+
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    double points1=pPlayersList[0]->getPoints();
+    string str= to_string(static_cast<int>(points1));
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (np==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
 }
 SecondLevel::~SecondLevel()
 {
@@ -324,6 +382,15 @@ void SecondLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
+    
+    int points1=pPlayersList[0]->getPoints();
+    string str= to_string(points1);
+    showPoints1.setString(str);
+    if (nPlayers==2){
+        int points2=pPlayersList[1]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+    }
     
     MovingEntityList.updateAll(timeFraction);//ERRO AQUI
     StaticEntityList.updateAll(timeFraction);
@@ -448,9 +515,7 @@ void SecondLevel::createBoxes()
         quantity--;
     }
 }
-
-
-/*void SecondLevel::createSnipers()
+void SecondLevel::createSnipers()
 {
     ifstream recover ( "Data/lvl2-snipers.dat", ios::in );
     
@@ -463,16 +528,16 @@ void SecondLevel::createBoxes()
 
     double px, py;
     int quantity=entitiesQuantity[5];
-    for (int i=1; i>=0; i--){
+    for (int i=quantity; i>0; i--){
         recover>>px>>py;
         if (nPlayers==2){
             if (px<640)
-                pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]));
             else
-                pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[1]));
+                pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[1]));
         }
         else
-            pSniperList.push_back(new Sniper(5, px, py, 45.00, 20.00, 0.0, 0.0, 3, 4, 0.0, pPlayersList[0]));
+            pSniperList.push_back(new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]));
     }
 
     for(int i = 0; i < pSniperList.size(); i++)
@@ -480,8 +545,7 @@ void SecondLevel::createBoxes()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i])); 
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
-}*/
-
+}
 void SecondLevel::createPlayers(double p1){
     Player* pPlayer1=new Player(0, 20.0, 40.0, 35.00, 60.0, 0.0, 0.0, 10);
     MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
@@ -505,7 +569,7 @@ void SecondLevel::createPlayers(double p1, double p2)
 }
 void SecondLevel::createBoss()
 {
-    Boss* pBoss1 = new Boss (9, 170.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
+    Boss* pBoss1 = new Boss (9, 345.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
     Boss* pBoss2 = new Boss (9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
     Boss* pBoss3 = new Boss (9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[nPlayers-1]);
 
@@ -530,6 +594,9 @@ void SecondLevel::draw()
     pGM->getWindow()->draw(backgroundSprite);
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
+    pGM->getWindow()->draw(showPoints1);
+    if (nPlayers==2)
+        pGM->getWindow()->draw(showPoints2);
 }
 void SecondLevel::CheckLevelEnd()
 {

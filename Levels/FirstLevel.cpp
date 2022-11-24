@@ -50,6 +50,26 @@ Levels(pg, np)
     
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
+
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+    
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    int points1=pPlayersList[0]->getPoints();
+    string str= to_string(points1);
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (np==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
 }
 FirstLevel::FirstLevel(Game* pg, int diff, int np, int rec):CM(),
 Levels(pg, np)
@@ -149,16 +169,35 @@ Levels(pg, np)
     recover>>nPoints1;
     this->getPlayer(1)->setPoints(nPoints1);
     if (nPlayers==2){
-        recover>>nPoints1;
-        this->getPlayer(2)->setPoints(nPoints1);
+        recover>>nPoints2;
+        this->getPlayer(2)->setPoints(nPoints2);
     }
-
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
     
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
+
+    if(!font.loadFromFile("Font/PIXEARG_.TTF")) {cout << "error" << endl; exit(1);}
+
+    showPoints1.setFont(font);
+    showPoints1.setCharacterSize(20);
+    showPoints1.setFillColor(sf::Color::Black);
+    double points1=pPlayersList[0]->getPoints();
+    string str= to_string(static_cast<int>(points1));
+    showPoints1.setString(str);
+    showPoints1.setPosition(sf::Vector2f(30, 30));
+
+    if (np==2){
+        showPoints2.setFont(font);
+        showPoints2.setCharacterSize(20);
+        showPoints2.setFillColor(sf::Color::Black);
+        int points2=pPlayersList[0]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+        showPoints2.setPosition(sf::Vector2f(30, 57));
+    }
 }
 FirstLevel::~FirstLevel()
 {
@@ -268,6 +307,16 @@ void FirstLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
         pPlayersList[i]->operator-(0.01);
+
+    int points1=pPlayersList[0]->getPoints();
+    string str= to_string(points1);
+    showPoints1.setString(str);
+    if (nPlayers==2){
+        int points2=pPlayersList[1]->getPoints();
+        string str= to_string(points2);
+        showPoints2.setString(str);
+    }
+
     MovingEntityList.updateAll(timeFraction);
     StaticEntityList.updateAll(timeFraction);
     CM.collision();
@@ -502,6 +551,9 @@ void FirstLevel::createPlayers()
 void FirstLevel::draw()
 {
     pGM->getWindow()->draw(backgroundSprite);
+    pGM->getWindow()->draw(showPoints1);
+    if (nPlayers==2)
+        pGM->getWindow()->draw(showPoints2);
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
@@ -511,6 +563,7 @@ void FirstLevel::recoverPlayer(ifstream* recover){
     (*recover)>>px>>py>>vx>>vy>>hp;
     Player* pPlayer1=new Player(0, px, py, 35.00, 60.0, vx, vy, hp);
     MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    
     (*recover)>>id;
     (*recover)>>px>>py>>vx>>vy>>hp;
     pPlayer1->getBullet()->setPosition_x(px);
