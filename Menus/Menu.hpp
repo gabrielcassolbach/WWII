@@ -9,31 +9,36 @@
 
 class Game;
 
-class Menu : public MenuCore
+namespace Menus
 {
-private:
-    sf::Text text[MAX_NUMBER_OF_ITENS];
-    sf::Text Title;
+    class Menu : public MenuCore
+    {
+    private:
+        sf::Text text[MAX_NUMBER_OF_ITENS];
+        sf::Text Title;
 
-public:
-    /*CONSTRUCTORS & DESTRUCTORS*/
-    Menu(Game *pg);
-    ~Menu();
+    public:
+        /*CONSTRUCTORS & DESTRUCTORS*/
+        Menu(Game *pg);
+        ~Menu();
 
-    /*SETTERS & GETTERS*/
-    void setText();
-    void setMenuState(bool menu_state);
-    bool getMenuState() const;
-    void setBackground();
-    
-    /*METHODS*/
-    void keyPressedAction(sf::Event event);
-    void load_game();
+        /*SETTERS & GETTERS*/
+        void setText();
+        void setMenuState(bool menu_state);
+        bool getMenuState() const;
+        void setBackground();
 
-    // Polimorfismo Game_State()!
-    /*---------------------------*/
-    void drawThis(Graphic_Manager *pGM);
-    void draw();
-    void input();
-    void recover();
-};
+        /*METHODS*/
+        void keyPressedAction(sf::Event event);
+        void load_game();
+
+        // Polimorfismo Game_State()!
+        /*---------------------------*/
+        void drawThis(Graphic_Manager *pGM);
+        void draw();
+        void input();
+        void recover();
+    };
+}
+
+using namespace Menus;

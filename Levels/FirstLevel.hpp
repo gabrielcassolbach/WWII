@@ -1,29 +1,31 @@
-#pragma once 
+#pragma once
 #include "Levels.hpp"
 
-class FirstLevel : public Levels
+namespace Level
 {
+    class FirstLevel : public Levels
+    {
     private:
         Collision_Manager CM; // criar um singleton. -> não faz sentido nenhum. (PENSAR!)
-        int* entitiesQuantity;
+        int *entitiesQuantity;
         int difficulty;
 
         sf::Sprite backgroundSprite;
         sf::Texture backgroundTexture;
-         
+
     public:
-    /*CONSTRUCTORS & DESTRUCTORS*/
-        FirstLevel(Game* pg, int diff, int np);
-        FirstLevel(Game* pg, int diff, int np, int rec);
+        /*CONSTRUCTORS & DESTRUCTORS*/
+        FirstLevel(Game *pg, int diff, int np);
+        FirstLevel(Game *pg, int diff, int np, int rec);
         ~FirstLevel();
 
-    /*SETTERS & GETTERS*/
-        int* getEntitiesQuantity();
+        /*SETTERS & GETTERS*/
+        int *getEntitiesQuantity();
         int getDifficulty();
         void setBackground();
 
-    /*METHODS*/
-        void update (double timeFraction);
+        /*METHODS*/
+        void update(double timeFraction);
         void input();
         void draw(); // Implementar
         void keyPressedAction(sf::Event event);
@@ -32,8 +34,8 @@ class FirstLevel : public Levels
         void CheckLevelEnd();
         void goToLevel2();
         /*------------------------------------------------*/
-        void init (); // pensar!!
-        void drawThis(Graphic_Manager* pGM) {} // pensar!!
+        void init();                           // pensar!!
+        void drawThis(Graphic_Manager *pGM) {} // pensar!!
         /*------------------------------------------------*/
         void createEnemies();
         void createPlatforms();
@@ -42,10 +44,11 @@ class FirstLevel : public Levels
         void createBoxes();
         void createSnipers();
         void createPlayers();
-        void recoverPlayer(ifstream* recover);
+        void recoverPlayer(ifstream *recover);
 
+        /*SETTERS & GETTERS*/
+        sf::RectangleShape getRectangleShape() const {} // pensar sobre essa função
+    };
+}
 
-    /*SETTERS & GETTERS*/
-        sf::RectangleShape getRectangleShape() const { } // pensar sobre essa função
-        
-};
+using namespace Level;

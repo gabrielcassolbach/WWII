@@ -8,8 +8,9 @@
 
 /*Classe responsável pela mecânica geral do jogo*/
 
-class Levels;
-class Menu;
+namespace Level {class Levels;}
+
+namespace Menus {class Menu;}
 
 class Game
 {  
@@ -38,4 +39,5 @@ public:
     Game_State* CurrentState();
 };
 
-
+using namespace Level;
+using namespace Menus;

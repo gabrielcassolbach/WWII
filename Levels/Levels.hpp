@@ -1,8 +1,8 @@
 #pragma once
 #include "../Lists/EntityList.hpp"
-#include "../Managers/Graphic_Manager.hpp" 
-#include "../Managers/Collision_Manager.hpp" 
-#include "../Entities/Characters/Player.hpp" 
+#include "../Managers/Graphic_Manager.hpp"
+#include "../Managers/Collision_Manager.hpp"
+#include "../Entities/Characters/Player.hpp"
 #include "../Entities/Obstacles/Box.hpp"
 #include "../Entities/Obstacles/Trench.hpp"
 #include "../Entities/Obstacles/Cannon.hpp"
@@ -13,44 +13,49 @@
 #include "../Game_State.hpp"
 #include <iostream>
 using namespace std;
- 
+
 class Character;
 
 class Game;
 
-class Levels : public Enty, public Game_State
+namespace Level
 {
-protected:  
-    Game* pGame;
-    EntityList MovingEntityList;
-    EntityList StaticEntityList;
-    std::vector<Sniper*> pSniperList;
-    std::vector<Player*> pPlayersList;
+    class Levels : public Enty, public Game_State
+    {
+    protected:
+        Game *pGame;
+        EntityList MovingEntityList;
+        EntityList StaticEntityList;
+        std::vector<Sniper *> pSniperList;
+        std::vector<Player *> pPlayersList;
 
-    int nPlayers;
+        int nPlayers;
 
-/*Showing informations on screen*/
-    sf::Text showPoints1;
-    sf::Text showPoints2;
-    sf::Font font;
-                                                   
-public:
-/*CONSTRUCTORS & DESTRUCTORS*/
-    Levels(Game* pg = nullptr, int np=1);
-    ~Levels();
+        /*Showing informations on screen*/
+        sf::Text showPoints1;
+        sf::Text showPoints2;
+        sf::Font font;
 
-/*SETTERS & GETTERS*/
-    Player* getPlayer(int player_selected);
-    EntityList* getMovingEntityList();
-    EntityList* getStaticEntityList();
-    int getNPlayers ();
+    public:
+        /*CONSTRUCTORS & DESTRUCTORS*/
+        Levels(Game *pg = nullptr, int np = 1);
+        ~Levels();
 
-/*METHODS*/
-    void initPointsText();
-    virtual void createEnemies() = 0;
-    virtual void createPlatforms() = 0;
-    virtual void createTrenchs() = 0;
-    virtual void createCannons() = 0;
+        /*SETTERS & GETTERS*/
+        Player *getPlayer(int player_selected);
+        EntityList *getMovingEntityList();
+        EntityList *getStaticEntityList();
+        int getNPlayers();
 
-    int randomQuantity();
-};
+        /*METHODS*/
+        void initPointsText();
+        virtual void createEnemies() = 0;
+        virtual void createPlatforms() = 0;
+        virtual void createTrenchs() = 0;
+        virtual void createCannons() = 0;
+
+        int randomQuantity();
+    };
+}
+
+using namespace Level;
