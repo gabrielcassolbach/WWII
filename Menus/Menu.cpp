@@ -158,22 +158,37 @@ void Menu::keyPressedAction(sf::Event event)
     }
 }
 void Menu::recover(){
-    int level, nP, diff, id, hp;
+    int level, nP, diff, id, hp, size;
     double px, py, vx, vy;
     ifstream recover ("Data/gameSave.dat", ios::in);
-    if ( !recover ){
-        cerr << " Arquivo não pode ser aberto " << endl;
-        fflush ( stdin );
-        getchar( );
-        return;
+    
+    try{
+        if (!recover)
+            throw 1;
+        else
+            recover>>level;
+    }
+    catch(int error){
+        if (error==1){
+            cerr << " Arquivo não pode ser aberto " << endl;
+            fflush ( stdin );
+            getchar( );
+            return;
+        }     
     }
 
-    recover>>level;
     if (level==1){
         recover>>diff;
         recover>>nP;
-        FirstLevel* fl=new FirstLevel(pGame, diff, nP, 1);
+        recover>>size;
+        FirstLevel* fl=new FirstLevel(pGame, diff, nP, size);
         pGame->pushState(fl);
+    }
+    else{
+        recover>>nP;
+        recover>>size;
+        SecondLevel* sl=new SecondLevel(pGame, nP, size);
+        pGame->pushState(sl);
     }
 
     recover.close();

@@ -14,6 +14,7 @@ public:
 
     /*SETTERS & GETTERS*/
     void setPPlayer(Player *pP);
+    Player* getFollowingPlayer();
 
     /*METHODS*/
     virtual void update(double timeFraction) = 0;

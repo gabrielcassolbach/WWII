@@ -16,3 +16,8 @@ void Enemy::setPPlayer(Player *pP)
 {
     pPlayer = pP;
 }
+Player* Enemy::getFollowingPlayer(){
+    return pPlayer;
+}
+
+

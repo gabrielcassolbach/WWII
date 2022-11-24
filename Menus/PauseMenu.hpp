@@ -42,6 +42,7 @@ public:
     void saveLevelOne();
     void saveMovingEntities(ofstream* saver);
     void saveStaticEntities(ofstream* saver);
+    void saveLevelTwo();
 
     // Polimorfismo Game_State()!
     /*---------------------------*/

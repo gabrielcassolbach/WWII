@@ -155,7 +155,7 @@ void GameOverMenu::writeLetter(sf::Event event){
 
 void GameOverMenu::saveLeaderboard()
 {
-    ofstream saver ( "Leaderboard.dat", ios::out | ios::app);
+    ofstream saver ( "Data/Leaderboard.dat", ios::out | ios::app);
     
     if ( !saver ){
         cerr << " Arquivo não pode ser aberto " << endl;

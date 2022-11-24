@@ -2,6 +2,28 @@
 #include "../Game.hpp"
 #include "../Menus/Menu.hpp"
 
+/*EXEMPLO GERAÇÃO AUTOMÁTICA
+ofstream saver ( "lvl1-trenchs.dat", ios::out );
+
+    
+    if ( !saver ){
+        cerr << " Arquivo não pode ser aberto " << endl;
+        fflush ( stdin );
+        getchar( );
+        return;
+    }
+
+    saver<<920.0<<' '<<620.0<<endl;
+    saver<<1000.0<<' '<<620.0<<endl;
+    saver<<800.0<<' '<<200.0<<endl;
+    saver<<1100.0<<' '<<200.0<<endl;
+    saver<<200.0<<' '<<200.0<<endl;
+    saver<<350.0<<' '<<200.0<<endl;
+    saver<<380.0<<' '<<630.0<<endl;
+    saver<<500.0<<' '<<600.0<<endl;
+    saver<<650.0<<' '<<200.0<<endl;
+    saver<<700.0<<' '<<200.0<<endl;*/
+
 FirstLevel::FirstLevel(Game* pg, int diff, int np) : CM(),
 Levels(pg, np)
 {
@@ -29,12 +51,11 @@ Levels(pg, np)
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
 }
-
 FirstLevel::FirstLevel(Game* pg, int diff, int np, int rec):CM(),
 Levels(pg, np)
 {
-    double px, py, vx, vy, nPoints, level;
-    int hp, id;
+    double px, py, vx, vy, nPoints1, level, size, nPoints2;
+    int hp, id, i=0;
     ifstream recover ("Data/gameSave.dat", ios::in);
     if ( !recover ){
         cerr << " Arquivo não pode ser aberto " << endl;
@@ -46,48 +67,73 @@ Levels(pg, np)
     recover>>level;
     recover>>difficulty;
     recover>>nPlayers;
+    recover>>size;
 
-    while (recover>>id){
+    while (i<size){
+        recover>>id;
         switch (id)
         {
         case 0:
         {
-            if (nPlayers==1){
-                recover>>px>>py>>vx>>vy>>hp;
-                Player* pPlayer1=new Player(id, px, py, 35.00, 60.0, vx, vy, hp);
-                MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
-                MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
-                pPlayersList.push_back(pPlayer1);
-            }
+            recoverPlayer(&recover);
+            i++;
         }break;
         case 1:
         {
             recover>>px>>py>>vx>>vy>>hp;
+            double p;
+            recover>>p;
+            if (p==1)
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, vx, vy, hp, pPlayersList[0], 1)));
+            else
+                MovingEntityList.includeEntity(static_cast<Entity *>(new Samurai(1, px, py, 35.0, 60.0, vx, vy, hp, pPlayersList[1], 1)));
         }break;
         case 2:
         {
             recover>>px>>py>>vx>>vy;
-        }
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Box(2, px, py, 30.0, 50.0)));
+
+        }break;
         case 3:
         {
+            double sx, sy;
             recover>>px>>py>>vx>>vy;
-            StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, px, py, 1280.0, 80.0)));
+            recover>>sx>>sy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, px, py, sx, sy)));
         }break;
         case 4:
         {
-            recover>>px>>py>>vx>>vy>>hp;
         }break;
         case 5:
         {
             recover>>px>>py>>vx>>vy>>hp;
+            double p;
+            recover>>p;
+            Sniper* pSniper=nullptr;
+            if (p==1)
+                pSniper=new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[0]);
+            else
+                pSniper=new Sniper(5, px, py, 35.00, 60.00, 0.0, 0.0, 3, pPlayersList[1]);
+            pSniperList.push_back(pSniper);
+            MovingEntityList.includeEntity(static_cast<Entity*>(pSniper));
+            recover>>id;
+            recover>>px>>py>>vx>>vy>>hp;
+            pSniper->getBullet()->setPosition_x(px);
+            pSniper->getBullet()->setPosition_y(py);
+            pSniper->getBullet()->setVelocity_x(vx);
+            pSniper->getBullet()->setVelocity_y(py);
+            MovingEntityList.includeEntity(static_cast<Entity *>(pSniper-> getBullet()));
+            i++;
         }break;
         case 6:
         {
             recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Trench(6, px, py, 40.0, 11.0)));
         }break;
         case 7:
         {
             recover>>px>>py>>vx>>vy;
+            StaticEntityList.includeEntity(static_cast<Entity *>(new Cannon(7, px, py, 40.0, 11.0)));
         }break;
         case 8:
         {
@@ -97,10 +143,16 @@ Levels(pg, np)
         default:
             break;
         }
+        i++;
     }
-    cout<<"Oi"<<endl;
+    
+    recover>>nPoints1;
+    this->getPlayer(1)->setPoints(nPoints1);
+    if (nPlayers==2){
+        recover>>nPoints1;
+        this->getPlayer(2)->setPoints(nPoints1);
+    }
 
-    //ARRUMAR PONTOS
 
     StaticEntityList.initAll();
     MovingEntityList.initAll();
@@ -108,7 +160,6 @@ Levels(pg, np)
     CM.init(&MovingEntityList, &StaticEntityList);
     setBackground();
 }
-
 FirstLevel::~FirstLevel()
 {
     MovingEntityList.destroyAll();
@@ -157,7 +208,6 @@ void FirstLevel::input()
         }
     }
 }
-
 void FirstLevel::keyPressedAction(sf::Event event)
 {
     switch (event.key.code)
@@ -214,7 +264,6 @@ void FirstLevel::keyPressedAction(sf::Event event)
         break;
     }
 }
-
 void FirstLevel::update(double timeFraction)
 {
     for (int i=0; i<pPlayersList.size(); i++)
@@ -275,7 +324,6 @@ void FirstLevel::endCurrentState()
     if(pGame)
         pGame -> popState();
 }
-
 void FirstLevel::createEnemies()
 {
     ifstream recover ( "Data/lvl1-samurais.dat", ios::in);
@@ -287,7 +335,7 @@ void FirstLevel::createEnemies()
         return;
     }
 
-    int quantity=entitiesQuantity[6];
+    int quantity=entitiesQuantity[1];
     
     double px, py;
     while (quantity>0){
@@ -303,7 +351,6 @@ void FirstLevel::createEnemies()
         quantity--;
     }
 }
-
 void FirstLevel::createPlatforms()
 {
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 0.0, 640.0, 1280.0, 80.0)));  // Floor
@@ -317,7 +364,6 @@ void FirstLevel::createPlatforms()
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 800.0, 240.0, 200.0, 30.0))); // Plataforma 4
     StaticEntityList.includeEntity(static_cast<Entity *>(new Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
 }
-
 void FirstLevel::createTrenchs()
 {
     ifstream recover ( "Data/lvl1-trenchs.dat", ios::in );
@@ -339,7 +385,6 @@ void FirstLevel::createTrenchs()
     }
 
 }
-
 void FirstLevel::createCannons()
 {
     ifstream recover ( "Data/lvl1-cannons.dat", ios::in );
@@ -351,7 +396,7 @@ void FirstLevel::createCannons()
         getchar( );
     }
 
-    int quantity=entitiesQuantity[2];
+    int quantity=entitiesQuantity[7];
     
     double px, py;
     while (quantity>0){
@@ -360,7 +405,6 @@ void FirstLevel::createCannons()
         quantity--;
     }
 }
-
 void FirstLevel::createBoxes()
 {
     ifstream recover ( "Data/lvl1-boxes.dat", ios::in );
@@ -381,7 +425,6 @@ void FirstLevel::createBoxes()
         quantity--;
     }
 }
-
 void FirstLevel::createSnipers()
 {
     ifstream recover ( "Data/lvl1-snipers.dat", ios::in );
@@ -413,7 +456,6 @@ void FirstLevel::createSnipers()
         MovingEntityList.includeEntity(static_cast<Entity *>(pSniperList[i]->getBullet())); 
     }
 }
- 
 void FirstLevel::createPlayers()
 {
     if (nPlayers==1){
@@ -457,11 +499,30 @@ void FirstLevel::createPlayers()
         }
     }
 }
-
 void FirstLevel::draw()
 {
     pGM->getWindow()->draw(backgroundSprite);
     MovingEntityList.drawAll();
     StaticEntityList.drawAll();
 }
+void FirstLevel::recoverPlayer(ifstream* recover){
+    double px, py, vx, vy;
+    int id, hp;
+    (*recover)>>px>>py>>vx>>vy>>hp;
+    Player* pPlayer1=new Player(0, px, py, 35.00, 60.0, vx, vy, hp);
+    MovingEntityList.includeEntity(static_cast<Entity*>(pPlayer1));
+    (*recover)>>id;
+    (*recover)>>px>>py>>vx>>vy>>hp;
+    pPlayer1->getBullet()->setPosition_x(px);
+    pPlayer1->getBullet()->setPosition_y(py);
+    pPlayer1->getBullet()->setVelocity_x(vx);
+    pPlayer1->getBullet()->setVelocity_y(py);
+    MovingEntityList.includeEntity(static_cast<Entity *>(pPlayer1-> getBullet()));
+    pPlayersList.push_back(pPlayer1);
+}
+
+
+
+
+
 

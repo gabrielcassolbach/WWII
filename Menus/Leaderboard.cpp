@@ -3,17 +3,14 @@
 
 /*CONSTRUCTORS & DESTRUCTORS*/
 Leaderboard::Leaderboard(Game *pg)
-{
-    cout << "ENTROU NA CONSTRUTORA " << endl;
+{   
     setBackground();
     setText();
-    cout << "setou o fundo e o texto" << endl;
 
     pGame = pg;
     nUsers = 0;
 
     readLeaderboard();
-    cout << "LEU O LEADERBOARD" << endl;
 }
 
 /*SETTERS & GETTERS*/
@@ -44,7 +41,6 @@ void Leaderboard::setBackground()
 /*METHODS*/
 void Leaderboard::drawThis(Graphic_Manager *pGM)
 {
-    cout << "CHEGOU AQUI DRAW" << endl;
     pGM->getWindow()->draw(backgroundRectangle);
     pGM->getWindow()->draw(Title);
 
@@ -52,13 +48,11 @@ void Leaderboard::drawThis(Graphic_Manager *pGM)
     {
         pGM->getWindow()->draw(text[i]);
         pGM->getWindow()->draw(text2[i]);
-        cout << "CHEGOU AQUI " << i << endl;
     }
 }
 
 void Leaderboard::draw()
 {
-    cout << "CHAMOU DRAWTHIS" << endl;
     drawThis(pGM);
 }
 
@@ -73,7 +67,7 @@ void Leaderboard::readLeaderboard()
     char ch[10];
     float pt;
 
-    ifstream recover("Leaderboard.dat", ios::in);
+    ifstream recover("Data/Leaderboard.dat", ios::in);
 
     if (!recover)
     {
@@ -105,11 +99,8 @@ void Leaderboard::readLeaderboard()
         text2[i].setCharacterSize(20);
         text2[i].setFillColor(sf::Color::White);
         text2[i].setPosition(sf::Vector2f(780, 200 + 100 * i));
-        i++;
-        cout << "CHEGOU AQUI " << i + 1 << endl;
+        i++;        
     }
-
-    cout << "SETEI AS STRINGS" << endl;
 
 }
 
@@ -123,14 +114,12 @@ void Leaderboard::input()
         case sf::Event::Closed:
         {
             (pGM->getWindow())->close();
-            cout << "CLOSE"<< endl;
         }
         break;
 
         case sf::Event::KeyPressed:
         {
             keyPressedAction(event);
-            cout << "EVENT"<< endl;
         }
         break;
 
