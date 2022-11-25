@@ -161,7 +161,12 @@ namespace Levels
             showPoints2.setString(str);
             showPoints2.setPosition(sf::Vector2f(30, 57));
         }
+
+        //cout << "Saiu da construtora!" << endl;
+
     }
+
+
     FirstLevel::~FirstLevel()
     {
         MovingEntityList.destroyAll();

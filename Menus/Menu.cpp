@@ -170,6 +170,7 @@ namespace Menus
             else
                 recover >> level;
         }
+
         catch (int error)
         {
             if (error == 1)
@@ -181,23 +182,32 @@ namespace Menus
             }
         }
 
+        cout << "Quebrou 1" << endl;
+
         if (level == 1)
         {
             recover >> diff;
             recover >> nP;
             recover >> size;
+            cout << "Level 1 -> antes de chamar a construtora." << endl;
             Levels::FirstLevel *fl = new Levels::FirstLevel(pGame, diff, nP, size);
+            cout << "Quebrou 1" << endl;
             pGame->pushState(fl);
+            cout << "Quebrou 1" << endl;
         }
         else
         {
             recover >> nP;
             recover >> size;
+            cout << "Quebrou 1" << endl;
             Levels::SecondLevel *sl = new Levels::SecondLevel(pGame, nP, size);
+            cout << "Quebrou 1" << endl;
             pGame->pushState(sl);
+            cout << "Quebrou 1" << endl;
         }
 
         recover.close();
+        cout << "Saiu recover" << endl;
     }
 
 }

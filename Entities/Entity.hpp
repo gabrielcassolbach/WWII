@@ -42,7 +42,7 @@ namespace Entities
 
         virtual int getDamage() const = 0;
         virtual int getHealth();
-        Characters::Player* getFollowingPlayer() {}
+        virtual Characters::Player* getFollowingPlayer() {}
 
         /*METHODS*/
         void drawThis(Managers::Graphic_Manager *pGM);
