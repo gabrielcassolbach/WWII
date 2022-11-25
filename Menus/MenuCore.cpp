@@ -1,8 +1,15 @@
 #include "MenuCore.hpp"
 
-MenuCore::MenuCore(Game* pg){
-    pGame=pg;
-}
-MenuCore::~MenuCore(){
-    pGame=nullptr;
+namespace Menus
+{
+
+    MenuCore::MenuCore(Game *pg)
+    {
+        pGame = pg;
+    }
+    MenuCore::~MenuCore()
+    {
+        pGame = nullptr;
+    }
+
 }

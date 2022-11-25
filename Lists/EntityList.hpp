@@ -2,23 +2,27 @@
 #include "List.hpp"
 #include "../Entities/Entity.hpp"
 
-class EntityList{
-private:
-    List<Entity*> EntitiesList;
+namespace Lists
+{
+    class EntityList
+    {
+    private:
+        List<Entities::Entity *> EntitiesList;
 
-public:
-/*CONSTRUCTOS & DESTRUCTORS*/
-    EntityList();
-    ~EntityList();
+    public:
+        /*CONSTRUCTOS & DESTRUCTORS*/
+        EntityList();
+        ~EntityList();
 
-/*SETTERS & GETTERS*/
-    int getSize ();
+        /*SETTERS & GETTERS*/
+        int getSize();
 
-/*METHODS*/
-    void includeEntity(Entity* p);
-    void drawAll();
-    void updateAll(double timeFraction);
-    void initAll();
-    void destroyAll();
-    Entity* operator[](int index);
-};
+        /*METHODS*/
+        void includeEntity(Entities::Entity *p);
+        void drawAll();
+        void updateAll(double timeFraction);
+        void initAll();
+        void destroyAll();
+        Entities::Entity *operator[](int index);
+    };
+}

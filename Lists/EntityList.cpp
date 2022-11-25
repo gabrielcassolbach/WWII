@@ -1,75 +1,78 @@
 #include "EntityList.hpp"
 
-/*CONSTRUCTOS & DESTRUCTORS*/
-EntityList::EntityList()
+namespace Lists
 {
-}
-
-EntityList::~EntityList()
-{
-    EntitiesList.clear();
-}
-
-/*SETTERS & GETTERS*/
-int EntityList::getSize()
-{
-    return EntitiesList.getSize();
-}
-
-/*METHODS*/
-void EntityList::includeEntity(Entity *p)
-{
-    if (p != NULL)
-        EntitiesList.includeElement(p);
-}
-
-void EntityList::drawAll()
-{
-    List<Entity *>::Element *cur = NULL;
-    cur = EntitiesList.getFirstElement();
-    while (cur != NULL)
+    /*CONSTRUCTOS & DESTRUCTORS*/
+    EntityList::EntityList()
     {
-        cur->getValue()->drawThis(cur->getValue()->getGraphicManager());
-        cur = cur->getNextElement();
     }
-}
 
-void EntityList::updateAll(double timeFraction)
-{
-    List<Entity *>::Element *cur = NULL;
-    cur = EntitiesList.getFirstElement();
-    while (cur != NULL)
+    EntityList::~EntityList()
     {
-        cur->getValue()->update(timeFraction);
-        cur = cur->getNextElement();
+        EntitiesList.clear();
     }
-}
 
-void EntityList::initAll()
-{
-    List<Entity *>::Element *cur = NULL;
-    cur = EntitiesList.getFirstElement();
-    while (cur != NULL)
+    /*SETTERS & GETTERS*/
+    int EntityList::getSize()
     {
-        cur->getValue()->init();
-        cur = cur->getNextElement();
+        return EntitiesList.getSize();
     }
-}
 
-void EntityList::destroyAll()
-{
-    EntitiesList.clear();
-}
-
-Entity *EntityList::operator[](int index)
-{
-    int contador = 0;
-    List<Entity *>::Element *cur = NULL;
-    cur = EntitiesList.getFirstElement();
-    while (cur->getNextElement() != NULL && contador < index)
+    /*METHODS*/
+    void EntityList::includeEntity(Entities::Entity *p)
     {
-        contador++;
-        cur = cur->getNextElement();
+        if (p != NULL)
+            EntitiesList.includeElement(p);
     }
-    return (cur->getValue());
+
+    void EntityList::drawAll()
+    {
+        List<Entities::Entity *>::Element *cur = NULL;
+        cur = EntitiesList.getFirstElement();
+        while (cur != NULL)
+        {
+            cur->getValue()->drawThis(cur->getValue()->getGraphicManager());
+            cur = cur->getNextElement();
+        }
+    }
+
+    void EntityList::updateAll(double timeFraction)
+    {
+        List<Entities::Entity *>::Element *cur = NULL;
+        cur = EntitiesList.getFirstElement();
+        while (cur != NULL)
+        {
+            cur->getValue()->update(timeFraction);
+            cur = cur->getNextElement();
+        }
+    }
+
+    void EntityList::initAll()
+    {
+        List<Entities::Entity *>::Element *cur = NULL;
+        cur = EntitiesList.getFirstElement();
+        while (cur != NULL)
+        {
+            cur->getValue()->init();
+            cur = cur->getNextElement();
+        }
+    }
+
+    void EntityList::destroyAll()
+    {
+        EntitiesList.clear();
+    }
+
+    Entities::Entity *EntityList::operator[](int index)
+    {
+        int contador = 0;
+        List<Entities::Entity *>::Element *cur = NULL;
+        cur = EntitiesList.getFirstElement();
+        while (cur->getNextElement() != NULL && contador < index)
+        {
+            contador++;
+            cur = cur->getNextElement();
+        }
+        return (cur->getValue());
+    }
 }

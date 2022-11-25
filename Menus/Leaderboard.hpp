@@ -4,41 +4,44 @@
 #include <string>
 #include <map>
 using namespace std;
-
 #define MAX_LEADERBOARD_ITENS 4
-
-typedef multimap<float, string, std::greater<float> > map_;
-typedef pair<float, string> pair_;
 
 class Game;
 
-class Leaderboard: public Enty, public Game_State
+namespace Menus
 {
-private:
-    Game* pGame;
-    sf::Text text[MAX_LEADERBOARD_ITENS];
-    sf::Text text2[MAX_LEADERBOARD_ITENS];
-    sf::Text Title;
-    sf::Font font;
-    sf::RectangleShape backgroundRectangle;
-    sf::Texture backgroundTexture;
+    typedef multimap<float, string, std::greater<float>> map_;
+    typedef pair<float, string> pair_;
 
-    map_ map_leaderboard;
+    class Leaderboard : public Enty, public Game_State
+    {
+    private:
+        Game *pGame;
+        sf::Text text[MAX_LEADERBOARD_ITENS];
+        sf::Text text2[MAX_LEADERBOARD_ITENS];
+        sf::Text Title;
+        sf::Font font;
+        sf::RectangleShape backgroundRectangle;
+        sf::Texture backgroundTexture;
 
-    int nUsers;
-    int pontuations;
+        map_ map_leaderboard;
 
-public:
-    Leaderboard(Game* pg);
-    ~Leaderboard();
-    void init (){}
-    void setText();
-    void setBackground();
-    sf::RectangleShape getRectangleShape()const {}
-    void drawThis(Graphic_Manager *pGM);
-    void draw();
-    void update(double timeFraction){};
-    void input();
-    void readLeaderboard();
-    void keyPressedAction(sf::Event event);
-};
+        int nUsers;
+        int pontuations;
+
+    public:
+        Leaderboard(Game *pg);
+        ~Leaderboard();
+        void init() {}
+        void setText();
+        void setBackground();
+        sf::RectangleShape getRectangleShape() const {}
+        void drawThis(Managers::Graphic_Manager *pGM);
+        void draw();
+        void update(double timeFraction){};
+        void input();
+        void readLeaderboard();
+        void keyPressedAction(sf::Event event);
+    };
+
+}

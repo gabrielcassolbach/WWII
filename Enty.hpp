@@ -6,7 +6,7 @@
 class Enty 
 {
     protected: 
-        Graphic_Manager* pGM;
+        Managers::Graphic_Manager* pGM;
 
     public:
     /*CONSTRUCTORS & DESTRUCTORS*/
@@ -16,8 +16,8 @@ class Enty
 
     /*SETTERS & GETTERS*/
         virtual sf::RectangleShape getRectangleShape() const = 0;
-        Graphic_Manager* getGraphicManager() const;
+        Managers::Graphic_Manager* getGraphicManager() const;
 
     /*METHODS*/
-        virtual void drawThis(Graphic_Manager* pGM) = 0;
+        virtual void drawThis(Managers::Graphic_Manager* pGM) = 0;
 };

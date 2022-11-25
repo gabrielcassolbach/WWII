@@ -9,7 +9,7 @@ Game::Game()
     dt = 0.0;
 
     initGame_States();
-    pGM = Graphic_Manager::getGraphic_Manager();
+    pGM = Managers::Graphic_Manager::getGraphic_Manager();
     execute();
 }
 
@@ -21,7 +21,7 @@ Game::~Game()
 /*METHODS*/
 void Game::initGame_States()
 {
-    game_states.push(new Menu(this));
+    game_states.push(new Menus::Menu(this));
 }
 
 void Game::execute()

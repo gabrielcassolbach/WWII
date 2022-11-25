@@ -3,139 +3,143 @@
 #include <iostream>
 using namespace std;
 
-template <class TIPO>
-class List
+namespace Lists
 {
-public:
-    class Element
+    template <class TIPO>
+    class List
     {
     public:
+        class Element
+        {
+        public:
+            /*CONSTRUCTORS & DESTRUCTORS*/
+            Element()
+            {
+                nextElement = NULL;
+                prevElement = NULL;
+            }
+            ~Element()
+            {
+                nextElement = NULL;
+                prevElement = NULL;
+            }
+
+            /*SETTERS & GETTERS*/
+            void setPrevElement(Element *p)
+            {
+                prevElement = p;
+            }
+
+            Element *getPrevElement()
+            {
+                return prevElement;
+            }
+
+            void setNextElement(Element *n)
+            {
+                nextElement = n;
+            }
+
+            Element *getNextElement()
+            {
+                return nextElement;
+            }
+
+            void setValue(TIPO c)
+            {
+                Value = c;
+            }
+
+            TIPO getValue()
+            {
+                return Value;
+            }
+
+            /*METHODS*/
+        private:
+            Element *nextElement;
+            Element *prevElement;
+            TIPO Value;
+        };
+
+    private:
+        Element *firstElement;
+        Element *currentElement;
+        int size;
+
+    public:
         /*CONSTRUCTORS & DESTRUCTORS*/
-        Element()
+        List()
         {
-            nextElement = NULL;
-            prevElement = NULL;
+            firstElement = NULL;
+            currentElement = NULL;
+            size = 0;
         }
-        ~Element()
+
+        ~List()
         {
-            nextElement = NULL;
-            prevElement = NULL;
+            clear();
         }
 
         /*SETTERS & GETTERS*/
-        void setPrevElement(Element *p)
+        void setFirstElement(Element *f)
         {
-            prevElement = p;
+            firstElement = f;
         }
 
-        Element *getPrevElement()
+        Element *getFirstElement()
         {
-            return prevElement;
+            return firstElement;
         }
 
-        void setNextElement(Element *n)
+        void setCurrentElement(Element *c)
         {
-            nextElement = n;
+            currentElement = c;
         }
 
-        Element *getNextElement()
+        Element *getCurrentElement()
         {
-            return nextElement;
+            return (currentElement);
         }
 
-        void setValue(TIPO c)
+        int getSize()
         {
-            Value = c;
-        }
-
-        TIPO getValue()
-        {
-            return Value;
+            return size;
         }
 
         /*METHODS*/
-    private:
-        Element *nextElement;
-        Element *prevElement;
-        TIPO Value;
-    };
-
-private:
-    Element *firstElement;
-    Element *currentElement;
-    int size;
-
-public:
-    /*CONSTRUCTORS & DESTRUCTORS*/
-    List()
-    {
-        firstElement = NULL;
-        currentElement = NULL;
-        size = 0;
-    }
-
-    ~List()
-    {
-        clear();
-    }
-
-    /*SETTERS & GETTERS*/
-    void setFirstElement(Element *f)
-    {
-        firstElement = f;
-    }
-
-    Element *getFirstElement()
-    {
-        return firstElement;
-    }
-
-    void setCurrentElement(Element *c)
-    {
-        currentElement = c;
-    }
-
-    Element *getCurrentElement()
-    {
-        return (currentElement);
-    }
-
-    int getSize()
-    {
-        return size;
-    }
-
-    /*METHODS*/
-    void clear()
-    {
-        Element *it = NULL;
-        it = firstElement;
-        Element *aux = NULL;
-
-        while (it != NULL)
+        void clear()
         {
-            aux = it->getNextElement();
-            delete (it);
-            it = aux;
+            Element *it = NULL;
+            it = firstElement;
+            Element *aux = NULL;
+
+            while (it != NULL)
+            {
+                aux = it->getNextElement();
+                delete (it);
+                it = aux;
+            }
+
+            firstElement = NULL;
+            currentElement = NULL;
         }
 
-        firstElement = NULL;
-        currentElement = NULL;
-    }
+        void includeElement(TIPO n)
+        {
+            Element *newEl = NULL;
+            newEl = new Element();
+            newEl->setValue(n);
 
-    void includeElement(TIPO n)
-    {
-        Element *newEl = NULL;
-        newEl = new Element();
-        newEl->setValue(n);
+            if (currentElement != NULL)
+                currentElement->setNextElement(newEl);
+            else
+                firstElement = newEl;
 
-        if (currentElement != NULL)
-            currentElement->setNextElement(newEl);
-        else
-            firstElement = newEl;
+            newEl->setPrevElement(currentElement);
+            currentElement = newEl;
+            size++;
+        }
+    };
 
-        newEl->setPrevElement(currentElement);
-        currentElement = newEl;
-        size++;
-    }
-};
+}

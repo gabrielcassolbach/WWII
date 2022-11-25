@@ -4,19 +4,32 @@
 #include "../Entities/Characters/Character.hpp"
 #include "../Entities/Obstacles/Obstacle.hpp"
 
-class Entity;
-class EntityList;
+namespace Entities
+{
+    class Entity;
+}
 
-class Collision_Manager{
-private:
-    std::vector<Entity*> movingEntitiesList;
-    std::list<Entity*> staticEntitiesList;
+namespace Lists
+{
+    class EntityList;
+}
 
-public:
-    Collision_Manager ();
-    ~Collision_Manager();
-    void init(EntityList *lMoving, EntityList *lStatic);
+namespace Managers
+{
 
-/*SETTERS & GETTERS*/
-    void collision();
-};
+    class Collision_Manager
+    {
+    private:
+        std::vector<Entities::Entity *> movingEntitiesList;
+        std::list<Entities::Entity *> staticEntitiesList;
+
+    public:
+        Collision_Manager();
+        ~Collision_Manager();
+        void init(Lists::EntityList *lMoving, Lists::EntityList *lStatic);
+
+        /*SETTERS & GETTERS*/
+        void collision();
+    };
+
+}

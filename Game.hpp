@@ -1,24 +1,25 @@
 #pragma once
 #include "Menus/Menu.hpp"
 #include "Menus/PauseMenu.hpp"
-#include "Levels/Levels.hpp"
+#include "Levels/Level.hpp"
 #include "Game_State.hpp"
 #include <stack>
 #define FRAME_RATE 0.01
 
 /*Classe responsável pela mecânica geral do jogo*/
 
-class Levels;
-class Menu;
+namespace Levels {class Level;}
+
+namespace Menus {class Menu;}
 
 class Game
 {  
 private:
-    Levels* level;    
-    Menu* menu; 
+    Levels::Level* level;    
+    Menus::Menu* menu; 
     std::stack <Game_State*> game_states;
 
-    Graphic_Manager* pGM;
+    Managers::Graphic_Manager* pGM;
     sf::Clock clock;
     double dt;
 
