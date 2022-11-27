@@ -172,6 +172,10 @@ namespace Entities
             {
                 collisionMovement(ent2, inter_x, inter_y);
             }
+
+            if(id == 0)
+                collisionMovement(ent2, inter_x, inter_y);
+
         }
         void Player::jump(double timeFraction)
         {

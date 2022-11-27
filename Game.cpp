@@ -29,9 +29,9 @@ void Game::execute()
     while ((pGM->getWindow())->isOpen())
     {
         screenFPS();
-        CurrentState() -> input(); cout << "Pegou Input" << endl;
+        CurrentState() -> input(); 
         (pGM->getWindow())->clear();
-        CurrentState() -> draw(); cout << "Desenhou" << endl;
+        CurrentState() -> draw(); 
         (pGM->getWindow())->display();
     }
 }
@@ -45,7 +45,7 @@ void Game::screenFPS()
     }
     else
     {
-        CurrentState() -> update(0.0166);  cout << "Uptade" << endl;
+        CurrentState() -> update(0.0166);
         dt -= FRAME_RATE;
     }
 }

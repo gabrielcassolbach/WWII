@@ -4,7 +4,6 @@ namespace Entities
 {
     namespace Characters
     {
-
         class Samurai : public Enemy
         {
         private:

@@ -29,8 +29,9 @@ namespace Entities
         }
         void Trench::init()
         {
+            text.loadFromFile("Images/trench.png");
             retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
-            retangulo.setFillColor(sf::Color::Magenta);
+            retangulo.setTexture(&text);
             retangulo.setPosition(sf::Vector2f(position_x, position_y));
         }
         void Trench::collide(Entity *ent2, double inter_x, double inter_y)

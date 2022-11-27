@@ -102,13 +102,13 @@ namespace Levels
             case 6:
             {
                 recover >> px >> py >> vx >> vy;
-                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 11.0)));
+                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 30.0)));
             }
             break;
             case 7:
             {
                 recover >> px >> py >> vx >> vy;
-                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Cannon(7, px, py, 40.0, 11.0)));
+                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Cannon(7, px, py, 40.0, 30.0)));
             }
             break;
             case 8:
@@ -237,55 +237,60 @@ namespace Levels
     {
         switch (event.key.code)
         {
-        case sf::Keyboard::Right:
-        {
-            if (getPlayer(1)->getLeftDirection())
-                getPlayer(1)->setLeftDirection(false);
-        }
-        break;
-        case sf::Keyboard::Left:
-        {
-            getPlayer(1)->setLeftDirection(true);
-        }
-        break;
-        case sf::Keyboard::Up:
-        {
-            getPlayer(1)->jump(0.01666);
-        }
-        break;
-        case sf::Keyboard::Space:
-        {
-            getPlayer(1)->attack();
-        }
-        break;
+            case sf::Keyboard::Right:
+            {
+                if (getPlayer(1)->getLeftDirection())
+                    getPlayer(1)->setLeftDirection(false);
+            }
+            break;
+            case sf::Keyboard::Left:
+            {
+                getPlayer(1)->setLeftDirection(true);
+            }
+            break;
+            case sf::Keyboard::Up:
+            {
+                getPlayer(1)->jump(0.01666);
+            }
+            break;
+            case sf::Keyboard::Space:
+            {
+                getPlayer(1)->attack();
+            }
+            break;
 
-        case sf::Keyboard::Escape:
-        {
-            pGame->pushState(new Menus::PauseMenu(pGame, this));
-        }
-        break;
-
-            if (nPlayers == 2)
+            case sf::Keyboard::Escape:
+            {
+                pGame->pushState(new Menus::PauseMenu(pGame, this));
+            }
+            break;
             case sf::Keyboard::D:
             {
+                if(nPlayers != 2) return;
                 if (getPlayer(2)->getLeftDirection())
                     getPlayer(2)->setLeftDirection(false);
             }
             break;
             case sf::Keyboard::A:
             {
+                if(nPlayers != 2) return;
                 getPlayer(2)->setLeftDirection(true);
             }
             break;
             case sf::Keyboard::W:
             {
+                if(nPlayers != 2) return;
                 getPlayer(2)->jump(0.01666);
             }
             break;
             case sf::Keyboard::R:
             {
+                if(nPlayers != 2) return;
                 getPlayer(2)->attack();
             }
+            break;
+            default: 
+                cout << "Default" << endl;
             break;
         }
     }
@@ -426,7 +431,7 @@ namespace Levels
         while (quantity > 0)
         {
             recover >> px >> py;
-            StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 11.0)));
+            StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 30.0)));
             quantity--;
         }
     }

@@ -9,7 +9,7 @@
 namespace Entities
 {
     namespace Characters
-    {
+    { 
 
         /*CONSTRUCTORS & DESTRUCTORS*/
         Samurai::Samurai(int ident, double px, double py, double sx, double sy, double vx, double vy, int hp, Player *pP, int bt) : Enemy(ident, px, py, sx, sy, vx, vy, hp, SAMURAI_DAMAGE, SAMURAI_ATTACK_COOLDOWN, pP)
@@ -65,7 +65,6 @@ namespace Entities
             text.loadFromFile("Images/samurai.png");
             retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
             retangulo.setTexture(&text);
-            // retangulo.setFillColor(sf::Color::Blue);
             retangulo.setPosition(sf::Vector2f(position_x, position_y));
         }
 

@@ -6,7 +6,7 @@
 namespace Levels
 {
     SecondLevel::SecondLevel(Game *pg, int np, double p1, double p2) : CM(),
-                                                                       Level(pg, np)
+    Level(pg, np)
     {
         entitiesQuantity = new int[8];
         entitiesQuantity[0] = np;
@@ -58,7 +58,7 @@ namespace Levels
         }
     }
     SecondLevel::SecondLevel(Game *pg, int np, double p1) : CM(),
-                                                            Level(pg, np)
+    Level(pg, np)
     {
         entitiesQuantity = new int[8];
         entitiesQuantity[0] = np;
@@ -110,7 +110,7 @@ namespace Levels
         }
     }
     SecondLevel::SecondLevel(Game *pg, int np, int size) : CM(),
-                                                           Level(pg, np)
+    Level(pg, np)
     {
         double px, py, vx, vy, nPoints1, level, s, nPoints2;
         int hp, id, i = 0;
@@ -205,7 +205,7 @@ namespace Levels
                 // cout<<"1"<<endl;
                 // system("pause");
                 recover >> px >> py >> vx >> vy;
-                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 11.0)));
+                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 30.0)));
             }
             break;
             case 7:
@@ -213,7 +213,7 @@ namespace Levels
                 // cout<<"1"<<endl;
                 // system("pause");
                 recover >> px >> py >> vx >> vy;
-                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Cannon(7, px, py, 40.0, 11.0)));
+                StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Cannon(7, px, py, 40.0, 30.0)));
             }
             break;
             case 8:
@@ -361,31 +361,32 @@ namespace Levels
             pGame->pushState(new Menus::PauseMenu(pGame, this));
         }
         break;
-            if (nPlayers == 2)
-            {
-            case sf::Keyboard::D:
-            {
-                if (getPlayer(2)->getLeftDirection())
-                    getPlayer(2)->setLeftDirection(false);
-            }
-            break;
-            case sf::Keyboard::A:
-            {
-                getPlayer(2)->setLeftDirection(true);
-            }
-            break;
-            case sf::Keyboard::W:
-            {
-                getPlayer(2)->jump(0.01666);
-            }
-            break;
-            case sf::Keyboard::R:
-            {
-                getPlayer(2)->attack();
-            }
-            break;
-            }
+        case sf::Keyboard::D:
+        {
+            if(nPlayers != 2) return;
+            if (getPlayer(2)->getLeftDirection())
+                getPlayer(2)->setLeftDirection(false);
         }
+        break;
+        case sf::Keyboard::A:
+        {
+            if(nPlayers != 2) return;
+            getPlayer(2)->setLeftDirection(true);
+        }
+        break;
+        case sf::Keyboard::W:
+        {
+            if(nPlayers != 2) return;
+            getPlayer(2)->jump(0.01666);
+        }
+        break;
+        case sf::Keyboard::R:
+        {
+            if(nPlayers != 2) return;
+            getPlayer(2)->attack();
+        }
+        break;
+    }
     }
     void SecondLevel::update(double timeFraction)
     {
@@ -463,12 +464,16 @@ namespace Levels
         StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 0.0, 5.0, 5.0, 635.0)));     // LeftWall
         StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 1275.0, 5.0, 5.0, 635.0)));  // RightWall
 
-        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 200.0, 540.0, 300.0, 30.0)));  // Plataforma 1
-        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 400.0, 440.0, 200.0, 30.0)));  // Plataforma 2
-        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 600.0, 340.0, 200.0, 30.0)));  // Plataforma 3
-        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 800.0, 240.0, 200.0, 30.0)));  // Plataforma 4
-        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 1100.0, 140.0, 200.0, 30.0))); // Plataforma 4
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 5.0, 100.0, 180.0, 30.0)));  // Spawn player 1
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 1100.0, 100.0, 180.0, 30.0))); // Spawn player 2.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 5.0, 440.0, 300.0, 30.0)));  // Spawn chefão 1.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 1000.0, 340.0, 275.0, 30.0)));  // Spawn Chefão 2.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 240.0, 170.0, 200.0, 30.0)));  // Snipers.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 670.0, 240.0, 300.0, 30.0)));  // Snipers.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 300.0, 300.0, 300.0, 30.0)));  // Snipers.
+        StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Platform(3, 390.0, 505.0, 300.0, 30.0)));  // Snipers.
     }
+    
     void SecondLevel::createTrenchs()
     {
         ifstream recover("Data/lvl2-trenchs.dat", ios::in);
@@ -486,7 +491,7 @@ namespace Levels
         while (quantity > 0)
         {
             recover >> px >> py;
-            StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 7.0)));
+            StaticEntityList.includeEntity(static_cast<Entities::Entity *>(new Entities::Obstacles::Trench(6, px, py, 40.0, 30.0)));
             quantity--;
         }
     }
@@ -582,7 +587,7 @@ namespace Levels
         pPlayersList.push_back(pPlayer1);
         pPlayer1->setPoints(p1);
 
-        Entities::Characters::Player *pPlayer2 = new Entities::Characters::Player(0, 1240.0, 600.00, 35.00, 60.0, 0.0, 0.0, 10);
+        Entities::Characters::Player *pPlayer2 = new Entities::Characters::Player(0, 1240.0, 40.00, 35.00, 60.0, 0.0, 0.0, 10);
         MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2));
         MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2->getBullet()));
         pPlayersList.push_back(pPlayer2);
@@ -590,8 +595,8 @@ namespace Levels
     }
     void SecondLevel::createBoss()
     {
-        Entities::Characters::Boss *pBoss1 = new Entities::Characters::Boss(9, 345.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
-        Entities::Characters::Boss *pBoss2 = new Entities::Characters::Boss(9, 700.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
+        Entities::Characters::Boss *pBoss1 = new Entities::Characters::Boss(9, 50.0, 380, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
+        Entities::Characters::Boss *pBoss2 = new Entities::Characters::Boss(9, 1150.0, 280, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[0]);
         Entities::Characters::Boss *pBoss3 = new Entities::Characters::Boss(9, 1000.0, 590, 35.0, 60.0, 0.0, 0.0, 20.0, pPlayersList[nPlayers - 1]);
 
         pBossList.push_back(pBoss1);
@@ -629,7 +634,7 @@ namespace Levels
             double px2 = getPlayer(2)->getPosition_x() + getPlayer(2)->getSize_x();
             double py2 = getPlayer(2)->getPosition_y() + getPlayer(2)->getSize_y();
 
-            if ((px1 > 1270 && py1 < 145) || (px2 > 1270 && py2 < 145))
+            if ((px1 > 1270 && (py1 < 630 && py1 > 550)) || (px2 > 1270 && (py2 < 630 && py2 > 550)))
                 pGame->pushState(new Menus::GameOverMenu(pGame, pPlayersList[0]->getPoints()));
         }
         else if (nPlayers == 1)
@@ -637,7 +642,7 @@ namespace Levels
             double px1 = getPlayer(1)->getPosition_x() + getPlayer(1)->getSize_x();
             double py1 = getPlayer(1)->getPosition_y() + getPlayer(1)->getSize_y();
 
-            if (px1 > 1270 && py1 < 145)
+            if (px1 > 1270 && (py1 < 600 && py1 > 540))
                 pGame->pushState(new Menus::GameOverMenu(pGame, pPlayersList[0]->getPoints()));
         }
     }

@@ -7,7 +7,6 @@ namespace Levels
     /*CONSTRUCTORS & DESTRUCTORS*/
     Level::Level(Game *pg, int np)
     {
-        srand(time(0));
         pGame = pg;
         nPlayers = np;
     }
