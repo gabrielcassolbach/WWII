@@ -9,6 +9,7 @@ namespace Entities
         {
             slowness = TRENCH_SLOWNESS;
             crossable = 1;
+            weight = 0.3;
         }
         Trench::~Trench()
         {
@@ -16,7 +17,7 @@ namespace Entities
 
         double Trench::getSlowness()
         {
-            return slowness;
+            return slowness + weight;
         }
 
         void Trench::update(double timeFraction)

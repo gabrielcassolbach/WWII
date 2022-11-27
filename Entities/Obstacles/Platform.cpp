@@ -10,6 +10,7 @@ namespace Entities
             velocity_x = vx;
             velocity_y = vx;
             crossable = 0;
+            weight = 0; 
         }
 
         Platform::~Platform()
@@ -18,7 +19,7 @@ namespace Entities
 
         void Platform::update(double timeFraction)
         {
-            velocity_y += GRAVITY + floatabily_constant;
+            velocity_y += GRAVITY + floatabily_constant + ((int)weight);
 
             position_x += velocity_x;
             position_y += velocity_y;

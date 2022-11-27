@@ -25,6 +25,7 @@ namespace Entities
             damageCooldownTimer = 0;
             aceleration = 1;
             points = 100;
+            player2 = false;
         }
 
         Player::~Player()
@@ -91,6 +92,11 @@ namespace Entities
             points = pt;
         }
 
+        bool Player::setPlayer2(bool condition)
+        {
+            player2 = condition;
+        }
+
         /*METHODS*/
         void Player::init()
         {
@@ -98,6 +104,8 @@ namespace Entities
             retangulo = sf::RectangleShape(sf::Vector2f(size_x, size_y));
             retangulo.setTexture(&text);
             retangulo.setPosition(sf::Vector2f(position_x, position_y));
+            if(player2) 
+                retangulo.setFillColor(sf::Color(87,122,228));
         }
 
         void Player::update(double timeFraction)

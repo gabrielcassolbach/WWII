@@ -53,7 +53,7 @@ namespace Levels
         void createPlayers(double p1, double p2);
         void createPlayers(double p1);
         void setBackground();
-        void recoverPlayer(ifstream *recover);
+        void recoverPlayer(ifstream *recover, int color);
 
         /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const {} // pensar sobre essa função

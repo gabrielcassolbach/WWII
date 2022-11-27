@@ -25,50 +25,49 @@ namespace Menus
         Title.setFont(font);
         Title.setCharacterSize(40);
         Title.setFillColor(sf::Color::White);
-        Title.setString("Battle for Monte Castello"); // 1 item
-        Title.setPosition(sf::Vector2f(310, 30));
+        Title.setString("WWII++"); // 1 item
+        Title.setPosition(sf::Vector2f(600, 30));
 
         text[0].setFont(font);
         text[0].setCharacterSize(35);
         text[0].setFillColor(sf::Color::Red);
-        text[0].setString("First Level (1 player)"); // 1 item
+        text[0].setString("2 - First Level (1 player)"); // 1 item
         text[0].setPosition(sf::Vector2f(380, 220));
 
         text[1].setFont(font);
         text[1].setCharacterSize(35);
         text[1].setFillColor(sf::Color::Red);
-        text[1].setString("Second Level (1 player)"); // 2 item ...
+        text[1].setString("3 - Second Level (1 player)"); // 2 item ...
         text[1].setPosition(sf::Vector2f(350, 320));  // Janela 1280 x 720.
 
         text[2].setFont(font);
         text[2].setCharacterSize(35);
         text[2].setFillColor(sf::Color::Red);
-        ;
-        text[2].setString("Ranking");
+        text[2].setString("6 - Ranking");
         text[2].setPosition(sf::Vector2f(500, 620));
 
         text[3].setFont(font);
         text[3].setCharacterSize(35);
         text[3].setFillColor(sf::Color::Red);
-        text[3].setString("Resume");
+        text[3].setString("1 - Resume");
         text[3].setPosition(sf::Vector2f(500, 720));
 
         text[4].setFont(font);
         text[4].setCharacterSize(35);
         text[4].setFillColor(sf::Color::Red);
-        text[4].setString("First Leval (2 players)");
+        text[4].setString("4 - First Leval (2 players)");
         text[4].setPosition(sf::Vector2f(350, 420));
 
         text[5].setFont(font);
         text[5].setCharacterSize(35);
         text[5].setFillColor(sf::Color::Red);
-        text[5].setString("Second Leval (2 players)");
+        text[5].setString("5 - Second Leval (2 players)");
         text[5].setPosition(sf::Vector2f(320, 520));
 
         text[6].setFont(font);
         text[6].setCharacterSize(35);
         text[6].setFillColor(sf::Color::Red);
-        text[6].setString("Resume");
+        text[6].setString("1 - Resume");
         text[6].setPosition(sf::Vector2f(520, 120));
     }
 
@@ -182,32 +181,30 @@ namespace Menus
             }
         }
 
-        cout << "Quebrou 1" << endl;
+        
 
         if (level == 1)
         {
             recover >> diff;
             recover >> nP;
             recover >> size;
-            cout << "Level 1 -> antes de chamar a construtora." << endl;
             Levels::FirstLevel *fl = new Levels::FirstLevel(pGame, diff, nP, size);
-            cout << "Quebrou 1" << endl;
+            
             pGame->pushState(fl);
-            cout << "Quebrou 1" << endl;
+            
         }
         else
         {
             recover >> nP;
             recover >> size;
-            cout << "Quebrou 1" << endl;
+            
             Levels::SecondLevel *sl = new Levels::SecondLevel(pGame, nP, size);
-            cout << "Quebrou 1" << endl;
+            
             pGame->pushState(sl);
-            cout << "Quebrou 1" << endl;
+            
         }
 
         recover.close();
-        cout << "Saiu recover" << endl;
     }
 
 }

@@ -43,19 +43,19 @@ namespace Menus
         text[0].setFont(font);
         text[0].setCharacterSize(35);
         text[0].setFillColor(sf::Color::White);
-        text[0].setString("Return"); // 1 item
+        text[0].setString("1 - Return"); // 1 item
         text[0].setPosition(sf::Vector2f(500, 220));
 
         text[1].setFont(font);
         text[1].setCharacterSize(35);
         text[1].setFillColor(sf::Color::White);
-        text[1].setString("Save");                   // 2 item ...
+        text[1].setString("2 - Save");                   // 2 item ...
         text[1].setPosition(sf::Vector2f(500, 320)); // Janela 1280 x 720.
 
         text[2].setFont(font);
         text[2].setCharacterSize(35);
         text[2].setFillColor(sf::Color::White);
-        text[2].setString("Menu");
+        text[2].setString("3 - Menu");
         text[2].setPosition(sf::Vector2f(500, 420));
     }
 

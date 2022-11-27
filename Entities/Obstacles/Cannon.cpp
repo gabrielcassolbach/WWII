@@ -10,6 +10,7 @@ namespace Entities
         {
             acceleration = CANNON_ACELERATION;
             crossable = 1;
+            weight = 1.05; // Aqui.
         }
         Cannon::~Cannon()
         {
@@ -17,7 +18,7 @@ namespace Entities
 
         double Cannon::getAcceleration()
         {
-            return acceleration;
+            return (acceleration*1.05);
         }
 
         void Cannon::update(double timeFraction)

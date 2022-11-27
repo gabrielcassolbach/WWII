@@ -10,6 +10,7 @@ namespace Entities
         {
             damage = BOX_DAMAGE;
             crossable = 0;
+            weight = 0.2; // Aqui.
         }
         Box::~Box()
         {
@@ -17,11 +18,11 @@ namespace Entities
 
         int Box::getDamage()
         {
-            return damage;
+            return damage + weight;
         }
         void Box::update(double timeFraction)
         {
-            velocity_x = 0.0f; // Aqui é necessário adicionar a parte de colisão. A fim de garantir que eu consiga mover a caixa.
+            velocity_x = 0.0f; 
             velocity_y += 9.8f * timeFraction;
             position_x += (velocity_x);
             position_y += (velocity_y);

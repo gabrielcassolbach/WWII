@@ -22,6 +22,8 @@ namespace Entities
             bool dead;
             Projectile *Copper_Bullet;
 
+            bool player2;
+
             double points;
 
         public:
@@ -41,6 +43,7 @@ namespace Entities
             Projectile *getBullet();
             double getPoints();
             void setPoints(double pt);
+            bool setPlayer2(bool condition);
 
             /*METHODS*/
             bool canAttack();

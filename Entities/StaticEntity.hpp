@@ -7,6 +7,8 @@ namespace Entities
     class StaticEntity : public Entity
     {
     protected:
+        double weight;
+        
     public:
         /*CONSTRUCTORS & DESTRUCTORS*/
         StaticEntity(int ident = -3, double px = 0.0f, double py = 0.0f, double sx = 0.0f, double sy = 0.0f, double vx = 0.0f, double vy = 0.0f);

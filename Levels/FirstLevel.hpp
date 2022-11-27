@@ -44,7 +44,7 @@ namespace Levels
         void createBoxes();
         void createSnipers();
         void createPlayers();
-        void recoverPlayer(ifstream *recover);
+        void recoverPlayer(ifstream *recover, int color);
 
         /*SETTERS & GETTERS*/
         sf::RectangleShape getRectangleShape() const {} // pensar sobre essa função

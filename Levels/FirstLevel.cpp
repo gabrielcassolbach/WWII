@@ -23,6 +23,7 @@ namespace Levels
     {
         double px, py, vx, vy, nPoints1, level, size, nPoints2;
         int hp, id, i = 0;
+        int color = 0;
         ifstream recover("Data/gameSave.dat", ios::in);
         if (!recover)
         {
@@ -44,8 +45,9 @@ namespace Levels
             {
             case 0:
             {
-                recoverPlayer(&recover);
+                recoverPlayer(&recover, color);
                 i++;
+                color++;
             }
             break;
             case 1:
@@ -541,6 +543,7 @@ namespace Levels
                 pPlayersList.push_back(pPlayer1);
 
                 Entities::Characters::Player *pPlayer2 = new Entities::Characters::Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
+                pPlayer2 -> setPlayer2(true);
                 MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2));
                 MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2->getBullet()));
                 pPlayersList.push_back(pPlayer2);
@@ -553,6 +556,7 @@ namespace Levels
                 pPlayersList.push_back(pPlayer1);
 
                 Entities::Characters::Player *pPlayer2 = new Entities::Characters::Player(0, 1220.0, 500.0, 35.00, 60.0, 0.0, 0.0, 10);
+                pPlayer2 -> setPlayer2(true);
                 MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2));
                 MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer2->getBullet()));
                 pPlayersList.push_back(pPlayer2);
@@ -568,21 +572,22 @@ namespace Levels
         MovingEntityList.drawAll();
         StaticEntityList.drawAll();
     }
-    void FirstLevel::recoverPlayer(ifstream *recover)
+    void FirstLevel::recoverPlayer(ifstream *recover, int color)
     {
         double px, py, vx, vy;
         int id, hp;
         (*recover) >> px >> py >> vx >> vy >> hp;
-        Entities::Characters::Player *pPlayer1 = new Entities::Characters::Player(0, px, py, 35.00, 60.0, vx, vy, hp);
-        MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer1));
+        Entities::Characters::Player *pPlayer = new Entities::Characters::Player(0, px, py, 35.00, 60.0, vx, vy, hp);
+        if(color) pPlayer -> setPlayer2(true);
+        MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer));
 
         (*recover) >> id;
         (*recover) >> px >> py >> vx >> vy >> hp;
-        pPlayer1->getBullet()->setPosition_x(px);
-        pPlayer1->getBullet()->setPosition_y(py);
-        pPlayer1->getBullet()->setVelocity_x(vx);
-        pPlayer1->getBullet()->setVelocity_y(py);
-        MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer1->getBullet()));
-        pPlayersList.push_back(pPlayer1);
+        pPlayer->getBullet()->setPosition_x(px);
+        pPlayer->getBullet()->setPosition_y(py);
+        pPlayer->getBullet()->setVelocity_x(vx);
+        pPlayer->getBullet()->setVelocity_y(py);
+        MovingEntityList.includeEntity(static_cast<Entities::Entity *>(pPlayer->getBullet()));
+        pPlayersList.push_back(pPlayer);
     }
 }
