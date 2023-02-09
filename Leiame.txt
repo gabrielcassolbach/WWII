@@ -1,0 +1,10 @@
+O arquivo dentro de WWII++.zip executa no sistema operacional Ubuntu;
+O compilador utilizado foi o GCC versão 12.2;
+A biblioteca gráfica utilizada foi o SFML versão 2.5.1. 
+
+Instruções: para compilar e executar o código é necessário ter instalado a
+versão do SFML em seu computador. 
+
+- abre o terminal na pasta do jogo, digite o comando make e, após isso, rode
+o programa com o comando ./z_jogo.
+
